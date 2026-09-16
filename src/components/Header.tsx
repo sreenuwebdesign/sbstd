@@ -44,12 +44,7 @@ export const Header: React.FC<HeaderProps> = ({
 
   const navItems = [
     { id: 'about', labelEn: 'About Temple', labelTe: 'ఆలయ విశేషాలు' },
-    { id: 'deity', labelEn: 'Deity', labelTe: 'స్వామివారు' },
-    { id: 'pooja', labelEn: 'Pooja & Seva', labelTe: 'పూజ & సేవలు' },
-    { id: 'festivals', labelEn: 'Festivals', labelTe: 'ఉత్సవాలు' },
     { id: 'gallery', labelEn: 'Gallery', labelTe: 'చిత్రమాలిక' },
-    { id: 'devotional', labelEn: 'Devotional', labelTe: 'స్తోత్రాలు & భజనలు' },
-    { id: 'donations', labelEn: 'Donations', labelTe: 'విరాళాలు' },
     { id: 'contact', labelEn: 'Contact', labelTe: 'సంప్రదించండి' },
   ];
 
@@ -135,7 +130,7 @@ export const Header: React.FC<HeaderProps> = ({
           </button>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden xl:flex items-center space-x-1 lg:space-x-1.5" aria-label="Main Navigation">
+          <nav className="hidden md:flex items-center space-x-1 sm:space-x-2" aria-label="Main Navigation">
             {navItems.map((item) => {
               const isActive = activeSection === item.id;
               return (
@@ -143,7 +138,7 @@ export const Header: React.FC<HeaderProps> = ({
                   key={item.id}
                   id={`nav-link-${item.id}`}
                   onClick={() => handleNavClick(item.id)}
-                  className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 relative ${
+                  className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-200 relative ${
                     isActive
                       ? 'text-[#FFE58F] bg-[#5E141F]'
                       : 'text-[#F3E5AB] hover:text-white hover:bg-[#5E141F]/60'
@@ -158,7 +153,7 @@ export const Header: React.FC<HeaderProps> = ({
             })}
           </nav>
 
-          {/* Right Action Controls: Sacred Bell, Language Switcher, Donate CTA */}
+          {/* Right Action Controls: Sacred Bell & Mobile Menu Toggle */}
           <div className="flex items-center gap-2 sm:gap-3">
             
             {/* Temple Bell Sound Button */}
@@ -172,22 +167,11 @@ export const Header: React.FC<HeaderProps> = ({
               <TempleBellIcon className="w-5 h-5" animated={bellRinging} />
             </button>
 
-            {/* Prominent Donate Now Button */}
-            <button
-              id="header-donate-btn"
-              onClick={onOpenDonate}
-              className="bg-gradient-to-r from-[#D4AF37] via-[#E5B839] to-[#D48806] hover:from-[#FFE29F] hover:to-[#C58000] text-[#360910] font-bold px-2.5 sm:px-5 py-1.5 sm:py-2.5 rounded-full text-xs sm:text-sm md:text-base shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5 flex items-center gap-1.5 sm:gap-2 border border-[#FFF3C4] whitespace-nowrap"
-            >
-              <HeartHandshake className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 text-[#360910] shrink-0" />
-              <span className="hidden xs:inline sm:inline">{currentLang === 'te' ? 'విరాళం ఇవ్వండి' : 'Donate Now'}</span>
-              <span className="inline xs:hidden sm:hidden">{currentLang === 'te' ? 'విరాళం' : 'Donate'}</span>
-            </button>
-
             {/* Mobile Menu Toggle Button */}
             <button
               id="mobile-menu-toggle"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="xl:hidden p-2 rounded-lg text-[#F3E5AB] hover:text-white hover:bg-[#5E141F] focus:outline-none"
+              className="md:hidden p-2 rounded-lg text-[#F3E5AB] hover:text-white hover:bg-[#5E141F] focus:outline-none"
               aria-label="Toggle Navigation Menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -198,8 +182,8 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="xl:hidden bg-[#3A0A10] border-t border-[#D4AF37]/30 px-4 pt-3 pb-6 space-y-2 shadow-2xl">
-          <div className="grid grid-cols-2 gap-2 pb-2">
+        <div className="md:hidden bg-[#3A0A10] border-t border-[#D4AF37]/30 px-4 pt-3 pb-6 space-y-3 shadow-2xl">
+          <div className="flex flex-col gap-1.5 pb-2">
             {navItems.map((item) => {
               const isActive = activeSection === item.id;
               return (
@@ -207,7 +191,7 @@ export const Header: React.FC<HeaderProps> = ({
                   key={item.id}
                   id={`mobile-nav-${item.id}`}
                   onClick={() => handleNavClick(item.id)}
-                  className={`text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                  className={`text-left px-4 py-3 rounded-xl text-base font-medium transition-colors ${
                     isActive
                       ? 'bg-[#731A28] text-[#FFE58F] font-semibold border border-[#D4AF37]/30'
                       : 'text-[#F3E5AB] hover:bg-[#5E141F]'
@@ -227,12 +211,11 @@ export const Header: React.FC<HeaderProps> = ({
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
-                onOpenAdminRecords();
+                onNavigate('contact');
               }}
-              className="text-[#FFE58F] underline hover:text-white flex items-center gap-1"
+              className="text-[#FFE58F] underline hover:text-white"
             >
-              <ShieldCheck className="w-3.5 h-3.5" />
-              <span>{currentLang === 'te' ? 'రసీదుల రికార్డు' : 'E-Receipts'}</span>
+              {currentLang === 'te' ? 'సంప్రదించండి' : 'Contact Us'}
             </button>
           </div>
         </div>

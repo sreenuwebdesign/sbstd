@@ -1,25 +1,34 @@
 import React, { useState } from 'react';
-import { Sparkles, Calendar, Clock, ChevronRight, HeartHandshake, ShieldCheck } from 'lucide-react';
+import { Sparkles, Clock, ChevronRight, Image as ImageIcon, MapPin } from 'lucide-react';
 import { Language } from '../types';
 import { TEMPLE_INFO } from '../data/templeData';
 import { TempleBellIcon, DiyaIcon, LotusIcon } from './TempleMotifs';
 import { templeAudio } from '../utils/audio';
 
 interface HeroProps {
-  currentLang: Language;
-  onOpenDarshanModal?: () => void;
+  currentLang?: Language;
+  onExploreAbout?: () => void;
+  onExploreGallery?: () => void;
   onExploreDarshan?: () => void;
-  onOpenDonate: () => void;
+  onOpenDonate?: () => void;
 }
 
 export const Hero: React.FC<HeroProps> = ({
-  currentLang,
-  onOpenDarshanModal,
+  currentLang = 'en',
+  onExploreAbout,
+  onExploreGallery,
   onExploreDarshan,
-  onOpenDonate,
 }) => {
   const [bellRinging, setBellRinging] = useState(false);
-  const handleDarshanAction = onOpenDarshanModal || onExploreDarshan || (() => {});
+  const handleAboutAction = onExploreAbout || onExploreDarshan || (() => {
+    const el = document.getElementById('about');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  });
+
+  const handleGalleryAction = onExploreGallery || (() => {
+    const el = document.getElementById('gallery');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  });
 
   const handleHeroBellRing = () => {
     setBellRinging(true);
@@ -76,7 +85,7 @@ export const Hero: React.FC<HeroProps> = ({
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center flex flex-col items-center">
         
         {/* Sacred Deity Medallion / Consecrated Darshan Frame */}
-        <div className="relative mb-5 group cursor-pointer" onClick={handleDarshanAction}>
+        <div className="relative mb-5 group cursor-pointer" onClick={handleAboutAction}>
           <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full p-1 bg-gradient-to-tr from-[#D4AF37] via-[#FFF2C6] to-[#E5B839] shadow-2xl ring-4 ring-[#D4AF37]/35 group-hover:scale-105 transition-transform duration-500">
             <div className="w-full h-full rounded-full overflow-hidden relative bg-[#200407]">
               <img
@@ -129,27 +138,27 @@ export const Hero: React.FC<HeroProps> = ({
           Experience Divine Grace, Devotion & Peace
         </p>
 
-        {/* Action Buttons: "దర్శనం వివరాలు" & "Donate Now" */}
+        {/* Action Buttons: "ఆలయ విశేషాలు" & "చిత్రమాలిక" */}
         <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-          {/* Darshan Timings Button */}
+          {/* About Temple Button */}
           <button
-            id="hero-darshan-details-btn"
-            onClick={handleDarshanAction}
-            className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-[#420B12]/80 hover:bg-[#5E141F] text-[#FFE29F] border-2 border-[#D4AF37] font-semibold text-base shadow-lg hover:shadow-[#D4AF37]/20 transition-all duration-300 flex items-center justify-center gap-2 group backdrop-blur-sm"
+            id="hero-about-details-btn"
+            onClick={handleAboutAction}
+            className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-gradient-to-r from-[#D4AF37] via-[#E5B839] to-[#D48806] hover:from-[#FFE29F] hover:to-[#C58000] text-[#360910] font-bold text-base shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-0.5 flex items-center justify-center gap-2.5 border border-[#FFF5CC]"
           >
-            <Clock className="w-5 h-5 text-[#E5B839] group-hover:rotate-12 transition-transform" />
-            <span>{currentLang === 'te' ? 'దర్శనం వివరాలు' : 'Darshan & Seva Timings'}</span>
-            <ChevronRight className="w-4 h-4 text-[#E5B839] group-hover:translate-x-1 transition-transform" />
+            <Clock className="w-5 h-5 text-[#360910]" />
+            <span>{currentLang === 'te' ? 'ఆలయ విశేషాలు & దర్శనం' : 'About Temple & Darshan'}</span>
+            <ChevronRight className="w-4 h-4 text-[#360910]" />
           </button>
 
-          {/* Donate Now Button */}
+          {/* Photo Gallery Button */}
           <button
-            id="hero-donate-now-btn"
-            onClick={onOpenDonate}
-            className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-gradient-to-r from-[#D4AF37] via-[#E5B839] to-[#D48806] hover:from-[#FFE29F] hover:to-[#C58000] text-[#360910] font-bold text-base shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-0.5 flex items-center justify-center gap-2.5 border border-[#FFF5CC]"
+            id="hero-gallery-btn"
+            onClick={handleGalleryAction}
+            className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-[#420B12]/80 hover:bg-[#5E141F] text-[#FFE29F] border-2 border-[#D4AF37] font-semibold text-base shadow-lg hover:shadow-[#D4AF37]/20 transition-all duration-300 flex items-center justify-center gap-2 group backdrop-blur-sm"
           >
-            <HeartHandshake className="w-5 h-5 text-[#360910]" />
-            <span>{currentLang === 'te' ? 'Donate Now (విరాళం)' : 'Donate Now'}</span>
+            <ImageIcon className="w-5 h-5 text-[#E5B839] group-hover:scale-110 transition-transform" />
+            <span>{currentLang === 'te' ? 'దివ్య చిత్రమాలిక' : 'Sacred Photo Gallery'}</span>
           </button>
         </div>
 
@@ -172,10 +181,10 @@ export const Hero: React.FC<HeroProps> = ({
           </div>
 
           <div className="flex items-center justify-center gap-2.5 p-2 rounded-lg bg-[#380A11]/60">
-            <ShieldCheck className="w-4 h-4 text-[#E5B839]" />
+            <MapPin className="w-4 h-4 text-[#E5B839]" />
             <span>
-              {currentLang === 'te' ? 'ఆన్‌లైన్ ఈ-రసీదులు:' : 'Online e-Receipts:'}{' '}
-              <strong className="text-white">100% Instant & Verified</strong>
+              {currentLang === 'te' ? 'పవిత్ర క్షేత్రం:' : 'Sacred Kshetram:'}{' '}
+              <strong className="text-white">Tirupati District</strong>
             </span>
           </div>
         </div>

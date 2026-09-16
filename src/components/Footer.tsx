@@ -8,15 +8,14 @@ import { TEMPLE_INFO } from '../data/templeData';
 import { TempleEmblem, DiyaIcon, LotusIcon } from './TempleMotifs';
 
 interface FooterProps {
-  currentLang: Language;
+  currentLang?: Language;
   onNavigate: (sectionId: string) => void;
-  onOpenDonate: () => void;
+  onOpenDonate?: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
-  currentLang,
+  currentLang = 'en',
   onNavigate,
-  onOpenDonate,
 }) => {
   return (
     <footer className="bg-gradient-to-b from-[#2B060A] via-[#200407] to-[#140204] text-white pt-16 pb-8 border-t-2 border-[#D4AF37]/40 relative overflow-hidden">
@@ -47,13 +46,13 @@ export const Footer: React.FC<FooterProps> = ({
             </div>
           </div>
 
-          {/* Quick Offering Button */}
+          {/* Quick Contact & Directions Button */}
           <button
-            onClick={onOpenDonate}
+            onClick={() => onNavigate('contact')}
             className="px-6 py-3 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#C58000] hover:from-[#FFE29F] hover:to-[#B87200] text-[#360910] font-bold text-sm shadow-lg transition-all flex items-center gap-2"
           >
-            <HeartHandshake className="w-4 h-4" />
-            <span>{currentLang === 'te' ? 'ఆలయ సేవకు విరాళం' : 'Offer Temple Seva Donation'}</span>
+            <MapPin className="w-4 h-4" />
+            <span>{currentLang === 'te' ? 'ఆలయ దర్శనం & సంప్రదించండి' : 'Darshan & Contact Info'}</span>
           </button>
         </div>
 
@@ -67,11 +66,8 @@ export const Footer: React.FC<FooterProps> = ({
             </h4>
             <ul className="space-y-2 text-[#E8DCC0]">
               {[
-                { id: 'about', labelEn: 'About Temple & Deity', labelTe: 'ఆలయ చరిత్ర & ప్రాశస్త్యం' },
-                { id: 'poojas', labelEn: 'Daily Poojas & Sevas', labelTe: 'నిత్య పూజలు & సేవలు' },
-                { id: 'festivals', labelEn: 'Upcoming Festivals', labelTe: 'పండుగలు & ఉత్సవాలు' },
+                { id: 'about', labelEn: 'About Temple & History', labelTe: 'ఆలయ విశేషాలు & చరిత్ర' },
                 { id: 'gallery', labelEn: 'Sacred Photo Gallery', labelTe: 'దివ్య చిత్రమాలిక' },
-                { id: 'devotional', labelEn: 'Daily Slokas & Mantras', labelTe: 'శ్లోకాలు & భజనలు' },
                 { id: 'contact', labelEn: 'Timings & Directions', labelTe: 'సమయాలు & మార్గదర్శకత్వం' },
               ].map((link) => (
                 <li key={link.id}>
@@ -200,8 +196,8 @@ export const Footer: React.FC<FooterProps> = ({
               {currentLang === 'te' ? 'సహాయ కేంద్రం' : 'Help & Support'}
             </button>
             <span>•</span>
-            <button onClick={onOpenDonate} className="hover:text-white transition-colors">
-              {currentLang === 'te' ? 'ఈ-విరాళ విధానం' : 'Online Donation Policy'}
+            <button onClick={() => onNavigate('contact')} className="hover:text-white transition-colors">
+              {currentLang === 'te' ? 'దర్శన సమయాలు' : 'Darshan Hours'}
             </button>
           </div>
         </div>
