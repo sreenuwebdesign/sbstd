@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#240508"/>
+      <stop offset="50%" stop-color="#450A12"/>
+      <stop offset="100%" stop-color="#1A0205"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE082"/>
+      <stop offset="35%" stop-color="#FFD54F"/>
+      <stop offset="70%" stop-color="#FFA000"/>
+      <stop offset="100%" stop-color="#D4AF37"/>
+    </linearGradient>
+    <linearGradient id="deepGold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFF8E1"/>
+      <stop offset="40%" stop-color="#FFD54F"/>
+      <stop offset="100%" stop-color="#B8860B"/>
+    </linearGradient>
+    <linearGradient id="flameGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#D32F2F"/>
+      <stop offset="40%" stop-color="#FF9800"/>
+      <stop offset="80%" stop-color="#FFEB3B"/>
+      <stop offset="100%" stop-color="#FFFDE7"/>
+    </linearGradient>
+    <radialGradient id="haloGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFD54F" stop-opacity="0.6"/>
+      <stop offset="60%" stop-color="#D4AF37" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#3E070D" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="softGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  
+  <!-- Canvas Background -->
+  <rect width="800" height="600" fill="url(#bgGrad)"/>
+  
+  <!-- Subtle Ornamental Outer Border -->
+  <rect x="16" y="16" width="768" height="568" rx="16" fill="none" stroke="url(#goldGrad)" stroke-width="2" stroke-opacity="0.5"/>
+  <rect x="24" y="24" width="752" height="552" rx="12" fill="none" stroke="url(#goldGrad)" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="6,4"/>
+
+  <!-- Corner Cornerstones -->
+  <circle cx="24" cy="24" r="6" fill="#D4AF37"/>
+  <circle cx="776" cy="24" r="6" fill="#D4AF37"/>
+  <circle cx="24" cy="576" r="6" fill="#D4AF37"/>
+  <circle cx="776" cy="576" r="6" fill="#D4AF37"/>
+  
+  
+  <circle cx="400" cy="230" r="190" fill="url(#haloGlow)"/>
+  
+  <!-- Royal Ceremonial Parasol (Chatram / Umbrella) -->
+  <path d="M 280 130 Q 400 70 520 130 Z" fill="#B71C1C" stroke="url(#goldGrad)" stroke-width="4"/>
+  <line x1="400" y1="110" x2="400" y2="210" stroke="url(#goldGrad)" stroke-width="6"/>
+  <!-- Tassels -->
+  <circle cx="300" cy="135" r="4" fill="#FFD54F"/>
+  <circle cx="350" cy="138" r="4" fill="#FFD54F"/>
+  <circle cx="400" cy="140" r="4" fill="#FFD54F"/>
+  <circle cx="450" cy="138" r="4" fill="#FFD54F"/>
+  <circle cx="500" cy="135" r="4" fill="#FFD54F"/>
+
+  <!-- Golden Pedestal (Utsava Peetham) -->
+  <rect x="160" y="440" width="480" height="40" rx="8" fill="url(#deepGold)"/>
+  <rect x="180" y="430" width="440" height="15" rx="5" fill="#FFE082"/>
+
+  <!-- Central Murthi: Sri Malayappa Swamy -->
+  <g transform="translate(0, 10)">
+    <rect x="365" y="270" width="70" height="150" rx="10" fill="#1C1417"/>
+    <polygon points="370,250 430,250 415,170 400,140 385,170" fill="url(#deepGold)"/>
+    <!-- Thirunamam -->
+    <rect x="390" y="250" width="20" height="18" fill="#1C1417"/>
+    <path d="M 393 252 L 396 264 L 404 264 L 407 252 Z" fill="#FFF"/>
+    <rect x="399" y="252" width="2" height="14" fill="#D50000"/>
+    <!-- Silks & Garlands -->
+    <path d="M 365 290 Q 400 350 435 290" fill="none" stroke="url(#goldGrad)" stroke-width="8"/>
+    <path d="M 360 270 Q 330 380 400 420 Q 470 380 440 270" fill="none" stroke="#FF4081" stroke-width="10" stroke-dasharray="6,4"/>
+  </g>
+
+  <!-- Left Murthi: Goddess Sridevi -->
+  <g transform="translate(-100, 30)">
+    <rect x="375" y="280" width="50" height="120" rx="8" fill="#D7CCC8"/>
+    <path d="M 370 320 Q 360 400 430 400 Q 440 320 370 320 Z" fill="#C2185B"/>
+    <polygon points="380,260 420,260 410,190 400,170 390,190" fill="url(#goldGrad)"/>
+    <circle cx="360" cy="270" r="10" fill="#F06292"/> <!-- Lotus in hand -->
+  </g>
+
+  <!-- Right Murthi: Goddess Bhudevi -->
+  <g transform="translate(100, 30)">
+    <rect x="375" y="280" width="50" height="120" rx="8" fill="#D7CCC8"/>
+    <path d="M 370 320 Q 360 400 430 400 Q 440 320 370 320 Z" fill="#388E3C"/>
+    <polygon points="380,260 420,260 410,190 400,170 390,190" fill="url(#goldGrad)"/>
+    <circle cx="440" cy="270" r="10" fill="#81C784"/> <!-- Lily in hand -->
+  </g>
+
+  <!-- Flanking Utsava Torches (Koluva Deepams) -->
+  <g transform="translate(100, 310)">
+    <line x1="30" y1="160" x2="30" y2="40" stroke="url(#deepGold)" stroke-width="6"/>
+    <ellipse cx="30" cy="40" rx="18" ry="6" fill="url(#goldGrad)"/>
+    <path d="M 30 35 Q 36 15 30 5 Q 24 15 30 35 Z" fill="url(#flameGrad)" filter="url(#softGlow)"/>
+  </g>
+  <g transform="translate(640, 310)">
+    <line x1="30" y1="160" x2="30" y2="40" stroke="url(#deepGold)" stroke-width="6"/>
+    <ellipse cx="30" cy="40" rx="18" ry="6" fill="url(#goldGrad)"/>
+    <path d="M 30 35 Q 36 15 30 5 Q 24 15 30 35 Z" fill="url(#flameGrad)" filter="url(#softGlow)"/>
+  </g>
+
+  <!-- Pedestal Title Plate -->
+  <rect x="160" y="505" width="480" height="65" rx="14" fill="#31070C" stroke="url(#goldGrad)" stroke-width="2"/>
+  <text x="400" y="532" fill="#FFE082" font-family="serif" font-size="20" font-weight="bold" text-anchor="middle" letter-spacing="2">॥ శ్రీ మలయప్ప స్వామి &amp; ఉభయ నాంచారులు ॥</text>
+  <text x="400" y="555" fill="#FFD54F" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle" letter-spacing="3">SRI MALAYAPPA SWAMY WITH SRIDEVI &amp; BHUDEVI (UTSAVAR)</text>
+
+</svg>

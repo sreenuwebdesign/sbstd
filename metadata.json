@@ -1,0 +1,8 @@
+{
+  "name": "Sri Tirumalanadha Swami Temple",
+  "description": "Sacred devotional portal for Sri Tirumalanadha Swami Temple featuring daily darshan and pooja timings, festivals, devotional gallery, bhajans, and online donations with instant e-receipts in Telugu and English.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#240508"/>
+      <stop offset="50%" stop-color="#450A12"/>
+      <stop offset="100%" stop-color="#1A0205"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE082"/>
+      <stop offset="35%" stop-color="#FFD54F"/>
+      <stop offset="70%" stop-color="#FFA000"/>
+      <stop offset="100%" stop-color="#D4AF37"/>
+    </linearGradient>
+    <linearGradient id="deepGold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFF8E1"/>
+      <stop offset="40%" stop-color="#FFD54F"/>
+      <stop offset="100%" stop-color="#B8860B"/>
+    </linearGradient>
+    <linearGradient id="flameGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#D32F2F"/>
+      <stop offset="40%" stop-color="#FF9800"/>
+      <stop offset="80%" stop-color="#FFEB3B"/>
+      <stop offset="100%" stop-color="#FFFDE7"/>
+    </linearGradient>
+    <radialGradient id="haloGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFD54F" stop-opacity="0.6"/>
+      <stop offset="60%" stop-color="#D4AF37" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#3E070D" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="softGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  
+  <!-- Canvas Background -->
+  <rect width="800" height="600" fill="url(#bgGrad)"/>
+  
+  <!-- Subtle Ornamental Outer Border -->
+  <rect x="16" y="16" width="768" height="568" rx="16" fill="none" stroke="url(#goldGrad)" stroke-width="2" stroke-opacity="0.5"/>
+  <rect x="24" y="24" width="752" height="552" rx="12" fill="none" stroke="url(#goldGrad)" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="6,4"/>
+
+  <!-- Corner Cornerstones -->
+  <circle cx="24" cy="24" r="6" fill="#D4AF37"/>
+  <circle cx="776" cy="24" r="6" fill="#D4AF37"/>
+  <circle cx="24" cy="576" r="6" fill="#D4AF37"/>
+  <circle cx="776" cy="576" r="6" fill="#D4AF37"/>
+  
+  
+  <!-- Dusk Sky with Crescent Moon and Temple Stars -->
+  <circle cx="650" cy="110" r="28" fill="#FFE082" opacity="0.15"/>
+  <path d="M 645 95 A 20 20 0 0 0 665 115 A 24 24 0 1 1 645 95 Z" fill="#FFF9C4" filter="url(#softGlow)"/>
+  <circle cx="180" cy="120" r="2" fill="#FFF"/>
+  <circle cx="230" cy="90" r="1.5" fill="#FFF"/>
+  <circle cx="580" cy="70" r="2" fill="#FFF"/>
+  <circle cx="680" cy="180" r="1.5" fill="#FFF"/>
+
+  <!-- Golden 7 Kalashas atop Rajagopuram -->
+  <g transform="translate(400, 65)">
+    <!-- 7 Golden Spires -->
+    <path d="M -60 20 L -60 0 L -58 0 L -58 20" stroke="url(#goldGrad)" stroke-width="4"/>
+    <circle cx="-60" cy="0" r="4" fill="url(#deepGold)"/>
+    <path d="M -40 20 L -40 -5 L -38 -5 L -38 20" stroke="url(#goldGrad)" stroke-width="4"/>
+    <circle cx="-40" cy="-5" r="5" fill="url(#deepGold)"/>
+    <path d="M -20 20 L -20 -10 L -18 -10 L -18 20" stroke="url(#goldGrad)" stroke-width="4"/>
+    <circle cx="-20" cy="-10" r="5" fill="url(#deepGold)"/>
+    <path d="M 0 20 L 0 -15 L 2 -15 L 2 20" stroke="url(#goldGrad)" stroke-width="5" filter="url(#softGlow)"/>
+    <circle cx="0" cy="-15" r="7" fill="#FFE082"/>
+    <path d="M 20 20 L 20 -10 L 22 -10 L 22 20" stroke="url(#goldGrad)" stroke-width="4"/>
+    <circle cx="20" cy="-10" r="5" fill="url(#deepGold)"/>
+    <path d="M 40 20 L 40 -5 L 42 -5 L 42 20" stroke="url(#goldGrad)" stroke-width="4"/>
+    <circle cx="40" cy="-5" r="5" fill="url(#deepGold)"/>
+    <path d="M 60 20 L 60 0 L 62 0 L 62 20" stroke="url(#goldGrad)" stroke-width="4"/>
+    <circle cx="60" cy="0" r="4" fill="url(#deepGold)"/>
+  </g>
+
+  <!-- Multi-Tiered Pyramid Gopuram Levels -->
+  <!-- Tier 1 (Apex) -->
+  <polygon points="340,90 460,90 480,130 320,130" fill="url(#deepGold)" stroke="#3E080D" stroke-width="3"/>
+  <circle cx="400" cy="110" r="10" fill="#B71C1C"/>
+  <!-- Tier 2 -->
+  <polygon points="310,130 490,130 510,175 290,175" fill="#8D1724" stroke="url(#goldGrad)" stroke-width="2"/>
+  <rect x="350" y="140" width="100" height="25" rx="5" fill="url(#deepGold)"/>
+  <!-- Tier 3 -->
+  <polygon points="280,175 520,175 540,225 260,225" fill="#6B0F19" stroke="url(#goldGrad)" stroke-width="2"/>
+  <rect x="330" y="185" width="140" height="30" rx="5" fill="url(#deepGold)"/>
+  <!-- Tier 4 -->
+  <polygon points="250,225 550,225 570,280 230,280" fill="#540A13" stroke="url(#goldGrad)" stroke-width="2"/>
+  <rect x="310" y="235" width="180" height="35" rx="5" fill="url(#deepGold)"/>
+  <!-- Tier 5 -->
+  <polygon points="220,280 580,280 600,340 200,340" fill="#42060E" stroke="url(#goldGrad)" stroke-width="2"/>
+  <rect x="290" y="290" width="220" height="40" rx="5" fill="url(#deepGold)"/>
+
+  <!-- Grand Base & Sacred Temple Gateway (Dwaram) -->
+  <rect x="180" y="340" width="440" height="150" fill="#2E040A" stroke="url(#goldGrad)" stroke-width="3"/>
+  
+  <!-- Massive Brass & Wood Carved Temple Doorway -->
+  <path d="M 330 490 L 330 390 Q 400 350 470 390 L 470 490 Z" fill="#150204" stroke="url(#deepGold)" stroke-width="4"/>
+  <line x1="400" y1="365" x2="400" y2="490" stroke="url(#goldGrad)" stroke-width="3"/>
+  <!-- Door Brass Studs -->
+  <circle cx="365" cy="420" r="5" fill="url(#goldGrad)"/>
+  <circle cx="435" cy="420" r="5" fill="url(#goldGrad)"/>
+  <circle cx="365" cy="460" r="5" fill="url(#goldGrad)"/>
+  <circle cx="435" cy="460" r="5" fill="url(#goldGrad)"/>
+
+  <!-- Golden Dhwajasthambham (Flagstaff) in foreground -->
+  <g transform="translate(400, 290)">
+    <line x1="0" y1="200" x2="0" y2="0" stroke="url(#goldGrad)" stroke-width="8" filter="url(#softGlow)"/>
+    <polygon points="0,0 25,12 0,24" fill="#FFC107"/>
+    <circle cx="0" cy="0" r="8" fill="#D32F2F"/>
+  </g>
+
+  <!-- Title Plate -->
+  <rect x="180" y="505" width="440" height="65" rx="14" fill="#31070C" stroke="url(#goldGrad)" stroke-width="2"/>
+  <text x="400" y="532" fill="#FFE082" font-family="serif" font-size="20" font-weight="bold" text-anchor="middle" letter-spacing="2">॥ భవ్య రాజగోపురం &amp; క్షేత్ర ప్రాకారం ॥</text>
+  <text x="400" y="555" fill="#FFD54F" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle" letter-spacing="3">MAJESTIC DRAVIDIAN RAJAGOPURAM TOWER</text>
+
+</svg>

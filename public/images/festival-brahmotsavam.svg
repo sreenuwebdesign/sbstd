@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#240508"/>
+      <stop offset="50%" stop-color="#450A12"/>
+      <stop offset="100%" stop-color="#1A0205"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE082"/>
+      <stop offset="35%" stop-color="#FFD54F"/>
+      <stop offset="70%" stop-color="#FFA000"/>
+      <stop offset="100%" stop-color="#D4AF37"/>
+    </linearGradient>
+    <linearGradient id="deepGold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFF8E1"/>
+      <stop offset="40%" stop-color="#FFD54F"/>
+      <stop offset="100%" stop-color="#B8860B"/>
+    </linearGradient>
+    <linearGradient id="flameGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#D32F2F"/>
+      <stop offset="40%" stop-color="#FF9800"/>
+      <stop offset="80%" stop-color="#FFEB3B"/>
+      <stop offset="100%" stop-color="#FFFDE7"/>
+    </linearGradient>
+    <radialGradient id="haloGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFD54F" stop-opacity="0.6"/>
+      <stop offset="60%" stop-color="#D4AF37" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#3E070D" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="softGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  
+  <!-- Canvas Background -->
+  <rect width="800" height="600" fill="url(#bgGrad)"/>
+  
+  <!-- Subtle Ornamental Outer Border -->
+  <rect x="16" y="16" width="768" height="568" rx="16" fill="none" stroke="url(#goldGrad)" stroke-width="2" stroke-opacity="0.5"/>
+  <rect x="24" y="24" width="752" height="552" rx="12" fill="none" stroke="url(#goldGrad)" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="6,4"/>
+
+  <!-- Corner Cornerstones -->
+  <circle cx="24" cy="24" r="6" fill="#D4AF37"/>
+  <circle cx="776" cy="24" r="6" fill="#D4AF37"/>
+  <circle cx="24" cy="576" r="6" fill="#D4AF37"/>
+  <circle cx="776" cy="576" r="6" fill="#D4AF37"/>
+  
+  
+  <!-- Grand Wooden Temple Ratham (Chariot) -->
+  <!-- Chariot Pinnacle Kalasham -->
+  <circle cx="400" cy="80" r="8" fill="#FFE082"/>
+  <polygon points="380,120 420,120 400,85" fill="url(#deepGold)"/>
+
+  <!-- Chariot Pyramidal Canopy (Gopura Shikharam on Ratham) -->
+  <polygon points="320,200 480,200 440,120 360,120" fill="#C2185B" stroke="url(#goldGrad)" stroke-width="3"/>
+  <polygon points="260,290 540,290 500,200 300,200" fill="#B71C1C" stroke="url(#goldGrad)" stroke-width="3"/>
+
+  <!-- Deity Mandapam within Chariot -->
+  <rect x="280" y="290" width="240" height="90" fill="#1C0508" stroke="url(#deepGold)" stroke-width="4"/>
+  <!-- Murthi in Chariot -->
+  <circle cx="400" cy="330" r="24" fill="url(#haloGlow)"/>
+  <polygon points="390,325 410,325 400,300" fill="url(#deepGold)"/>
+  <!-- Thirunamam -->
+  <rect x="397" y="325" width="6" height="12" fill="#FFF"/>
+  <rect x="399" y="325" width="2" height="10" fill="#D50000"/>
+
+  <!-- Chariot Huge Carved Wooden Wheels (Chakras) -->
+  <g transform="translate(400, 420)">
+    <!-- Left Huge Wheel -->
+    <circle cx="-130" cy="20" r="45" fill="#4E342E" stroke="url(#goldGrad)" stroke-width="6"/>
+    <circle cx="-130" cy="20" r="14" fill="url(#deepGold)"/>
+    <line x1="-130" y1="-25" x2="-130" y2="65" stroke="#FFE082" stroke-width="3"/>
+    <line x1="-175" y1="20" x2="-85" y2="20" stroke="#FFE082" stroke-width="3"/>
+
+    <!-- Right Huge Wheel -->
+    <circle cx="130" cy="20" r="45" fill="#4E342E" stroke="url(#goldGrad)" stroke-width="6"/>
+    <circle cx="130" cy="20" r="14" fill="url(#deepGold)"/>
+    <line x1="130" y1="-25" x2="130" y2="65" stroke="#FFE082" stroke-width="3"/>
+    <line x1="85" y1="20" x2="175" y2="20" stroke="#FFE082" stroke-width="3"/>
+    
+    <!-- Chariot Ropes pulled by Devotees (Vada) -->
+    <path d="M -180 40 Q -240 60 -300 70" stroke="url(#goldGrad)" stroke-width="8" stroke-dasharray="8,4" fill="none"/>
+    <path d="M 180 40 Q 240 60 300 70" stroke="url(#goldGrad)" stroke-width="8" stroke-dasharray="8,4" fill="none"/>
+  </g>
+
+  <!-- Title Plate -->
+  <rect x="180" y="505" width="440" height="65" rx="14" fill="#31070C" stroke="url(#goldGrad)" stroke-width="2"/>
+  <text x="400" y="532" fill="#FFE082" font-family="serif" font-size="20" font-weight="bold" text-anchor="middle" letter-spacing="2">॥ శ్రీ బ్రహ్మోత్సవ రథోత్సవం ॥</text>
+  <text x="400" y="555" fill="#FFD54F" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle" letter-spacing="3">SRI BRAHMOTSAVAM RATHOTSAVAM CHARIOT</text>
+
+</svg>

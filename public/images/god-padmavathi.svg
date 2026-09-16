@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#240508"/>
+      <stop offset="50%" stop-color="#450A12"/>
+      <stop offset="100%" stop-color="#1A0205"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE082"/>
+      <stop offset="35%" stop-color="#FFD54F"/>
+      <stop offset="70%" stop-color="#FFA000"/>
+      <stop offset="100%" stop-color="#D4AF37"/>
+    </linearGradient>
+    <linearGradient id="deepGold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFF8E1"/>
+      <stop offset="40%" stop-color="#FFD54F"/>
+      <stop offset="100%" stop-color="#B8860B"/>
+    </linearGradient>
+    <linearGradient id="flameGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#D32F2F"/>
+      <stop offset="40%" stop-color="#FF9800"/>
+      <stop offset="80%" stop-color="#FFEB3B"/>
+      <stop offset="100%" stop-color="#FFFDE7"/>
+    </linearGradient>
+    <radialGradient id="haloGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFD54F" stop-opacity="0.6"/>
+      <stop offset="60%" stop-color="#D4AF37" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#3E070D" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="softGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  
+  <!-- Canvas Background -->
+  <rect width="800" height="600" fill="url(#bgGrad)"/>
+  
+  <!-- Subtle Ornamental Outer Border -->
+  <rect x="16" y="16" width="768" height="568" rx="16" fill="none" stroke="url(#goldGrad)" stroke-width="2" stroke-opacity="0.5"/>
+  <rect x="24" y="24" width="752" height="552" rx="12" fill="none" stroke="url(#goldGrad)" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="6,4"/>
+
+  <!-- Corner Cornerstones -->
+  <circle cx="24" cy="24" r="6" fill="#D4AF37"/>
+  <circle cx="776" cy="24" r="6" fill="#D4AF37"/>
+  <circle cx="24" cy="576" r="6" fill="#D4AF37"/>
+  <circle cx="776" cy="576" r="6" fill="#D4AF37"/>
+  
+  
+  <!-- Divine Golden Halo -->
+  <circle cx="400" cy="240" r="170" fill="url(#haloGlow)"/>
+  
+  <!-- Sacred Blooming Pink Lotus Throne (Padma Peetham) -->
+  <g transform="translate(400, 440)">
+    <!-- Base Petals -->
+    <path d="M 0 30 C -120 30, -180 -10, -120 -40 C -80 -10, 0 10, 0 30 Z" fill="#E91E63" opacity="0.85"/>
+    <path d="M 0 30 C 120 30, 180 -10, 120 -40 C 80 -10, 0 10, 0 30 Z" fill="#E91E63" opacity="0.85"/>
+    <path d="M 0 30 C -70 20, -100 -30, -50 -50 C -20 -20, 0 15, 0 30 Z" fill="#F06292"/>
+    <path d="M 0 30 C 70 20, 100 -30, 50 -50 C 20 -20, 0 15, 0 30 Z" fill="#F06292"/>
+    <path d="M 0 30 C -30 10, -40 -40, 0 -60 C 40 -40, 30 10, 0 30 Z" fill="#FF80AB"/>
+    <ellipse cx="0" cy="15" rx="140" ry="16" fill="url(#deepGold)"/>
+  </g>
+
+  <!-- Goddess Form (Graceful Silhouetted Devi) -->
+  <!-- Auspicious Red Silk Saree & Torso -->
+  <path d="M 345 420 Q 330 330 365 260 L 435 260 Q 470 330 455 420 Z" fill="#B71C1C"/>
+  <path d="M 370 260 L 430 260 L 420 235 L 380 235 Z" fill="#D7CCC8"/>
+
+  <!-- Divine Golden Mukuta Crown -->
+  <polygon points="370,225 430,225 415,120 400,90 385,120" fill="url(#deepGold)" filter="url(#softGlow)"/>
+  <circle cx="400" cy="150" r="7" fill="#E91E63"/>
+  <polygon points="400,105 405,116 400,112 395,116" fill="#FFF"/>
+
+  <!-- Kumkum Tilak & Nose Ring (Mukku Pudaka) -->
+  <circle cx="400" cy="235" r="5" fill="#D50000"/>
+  <circle cx="408" cy="242" r="2.5" fill="#FFF" filter="url(#softGlow)"/>
+
+  <!-- Upper Hands holding Sacred Lotuses -->
+  <!-- Left hand & lotus -->
+  <path d="M 355 280 Q 290 270 280 220" fill="none" stroke="#D7CCC8" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="275" cy="205" r="20" fill="#F06292"/>
+  <circle cx="275" cy="205" r="10" fill="#FF80AB"/>
+  <circle cx="275" cy="205" r="5" fill="#FFF"/>
+
+  <!-- Right hand & lotus -->
+  <path d="M 445 280 Q 510 270 520 220" fill="none" stroke="#D7CCC8" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="525" cy="205" r="20" fill="#F06292"/>
+  <circle cx="525" cy="205" r="10" fill="#FF80AB"/>
+  <circle cx="525" cy="205" r="5" fill="#FFF"/>
+
+  <!-- Lower Hands: Varada Mudra with Shower of Gold Coins (Swarna Vrishti) -->
+  <path d="M 360 320 Q 320 380 340 410" fill="none" stroke="#D7CCC8" stroke-width="12" stroke-linecap="round"/>
+  <path d="M 440 320 Q 480 380 460 410" fill="none" stroke="#D7CCC8" stroke-width="12" stroke-linecap="round"/>
+
+  <!-- Golden Coins Shower -->
+  <g fill="url(#goldGrad)" filter="url(#softGlow)">
+    <circle cx="340" cy="425" r="7"/>
+    <circle cx="330" cy="445" r="6"/>
+    <circle cx="350" cy="455" r="8"/>
+    <circle cx="335" cy="475" r="7"/>
+    <circle cx="355" cy="490" r="6"/>
+    <circle cx="325" cy="495" r="5"/>
+  </g>
+
+  <!-- Golden Kasumala & Ornaments -->
+  <path d="M 370 265 Q 400 320 430 265" fill="none" stroke="url(#goldGrad)" stroke-width="8"/>
+  <path d="M 365 290 Q 400 355 435 290" fill="none" stroke="url(#goldGrad)" stroke-width="6"/>
+
+  <!-- Sacred Kalashas flanking Devi -->
+  <g transform="translate(150, 360)">
+    <ellipse cx="40" cy="70" rx="30" ry="24" fill="url(#deepGold)"/>
+    <rect x="30" y="40" width="20" height="15" fill="url(#goldGrad)"/>
+    <!-- Coconut & Mango Leaves -->
+    <polygon points="20,42 40,15 40,42" fill="#2E7D32"/>
+    <polygon points="60,42 40,15 40,42" fill="#2E7D32"/>
+    <circle cx="40" cy="25" r="14" fill="#6D4C41"/>
+  </g>
+  <g transform="translate(610, 360)">
+    <ellipse cx="40" cy="70" rx="30" ry="24" fill="url(#deepGold)"/>
+    <rect x="30" y="40" width="20" height="15" fill="url(#goldGrad)"/>
+    <polygon points="20,42 40,15 40,42" fill="#2E7D32"/>
+    <polygon points="60,42 40,15 40,42" fill="#2E7D32"/>
+    <circle cx="40" cy="25" r="14" fill="#6D4C41"/>
+  </g>
+
+  <!-- Pedestal Title Plate -->
+  <rect x="180" y="505" width="440" height="65" rx="14" fill="#31070C" stroke="url(#goldGrad)" stroke-width="2"/>
+  <text x="400" y="532" fill="#FFE082" font-family="serif" font-size="20" font-weight="bold" text-anchor="middle" letter-spacing="2">॥ శ్రీ పద్మావతీ దేవి (అలమేలు మంగ) ॥</text>
+  <text x="400" y="555" fill="#FFD54F" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle" letter-spacing="3">GODDESS SRI PADMAVATHI DEVI (MAHALAKSHMI)</text>
+
+</svg>

@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#240508"/>
+      <stop offset="50%" stop-color="#450A12"/>
+      <stop offset="100%" stop-color="#1A0205"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE082"/>
+      <stop offset="35%" stop-color="#FFD54F"/>
+      <stop offset="70%" stop-color="#FFA000"/>
+      <stop offset="100%" stop-color="#D4AF37"/>
+    </linearGradient>
+    <linearGradient id="deepGold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFF8E1"/>
+      <stop offset="40%" stop-color="#FFD54F"/>
+      <stop offset="100%" stop-color="#B8860B"/>
+    </linearGradient>
+    <linearGradient id="flameGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#D32F2F"/>
+      <stop offset="40%" stop-color="#FF9800"/>
+      <stop offset="80%" stop-color="#FFEB3B"/>
+      <stop offset="100%" stop-color="#FFFDE7"/>
+    </linearGradient>
+    <radialGradient id="haloGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFD54F" stop-opacity="0.6"/>
+      <stop offset="60%" stop-color="#D4AF37" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#3E070D" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="softGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  
+  <!-- Canvas Background -->
+  <rect width="800" height="600" fill="url(#bgGrad)"/>
+  
+  <!-- Subtle Ornamental Outer Border -->
+  <rect x="16" y="16" width="768" height="568" rx="16" fill="none" stroke="url(#goldGrad)" stroke-width="2" stroke-opacity="0.5"/>
+  <rect x="24" y="24" width="752" height="552" rx="12" fill="none" stroke="url(#goldGrad)" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="6,4"/>
+
+  <!-- Corner Cornerstones -->
+  <circle cx="24" cy="24" r="6" fill="#D4AF37"/>
+  <circle cx="776" cy="24" r="6" fill="#D4AF37"/>
+  <circle cx="24" cy="576" r="6" fill="#D4AF37"/>
+  <circle cx="776" cy="576" r="6" fill="#D4AF37"/>
+  
+  
+  <!-- Perspective Dravidian Stone Pillars -->
+  <g stroke="url(#goldGrad)" stroke-width="2">
+    <!-- Pillar 1 (Left Fore) -->
+    <rect x="120" y="100" width="70" height="380" fill="#3E2723"/>
+    <rect x="105" y="90" width="100" height="25" fill="url(#deepGold)"/>
+    <rect x="105" y="460" width="100" height="25" fill="url(#deepGold)"/>
+    <circle cx="155" cy="200" r="14" fill="url(#goldGrad)"/> <!-- Carved relief -->
+    <circle cx="155" cy="340" r="14" fill="url(#goldGrad)"/>
+
+    <!-- Pillar 2 (Left Mid) -->
+    <rect x="250" y="140" width="50" height="320" fill="#2E1C1A"/>
+    <rect x="240" y="130" width="70" height="20" fill="url(#deepGold)"/>
+    <rect x="240" y="445" width="70" height="20" fill="url(#deepGold)"/>
+
+    <!-- Pillar 3 (Right Mid) -->
+    <rect x="500" y="140" width="50" height="320" fill="#2E1C1A"/>
+    <rect x="490" y="130" width="70" height="20" fill="url(#deepGold)"/>
+    <rect x="490" y="445" width="70" height="20" fill="url(#deepGold)"/>
+
+    <!-- Pillar 4 (Right Fore) -->
+    <rect x="610" y="100" width="70" height="380" fill="#3E2723"/>
+    <rect x="595" y="90" width="100" height="25" fill="url(#deepGold)"/>
+    <rect x="595" y="460" width="100" height="25" fill="url(#deepGold)"/>
+    <circle cx="645" cy="200" r="14" fill="url(#goldGrad)"/>
+    <circle cx="645" cy="340" r="14" fill="url(#goldGrad)"/>
+  </g>
+
+  <!-- Central Sanctum Vista illuminated by Lamps -->
+  <path d="M 330 460 L 330 240 Q 400 200 470 240 L 470 460 Z" fill="#1C060B" stroke="url(#goldGrad)" stroke-width="4"/>
+  <circle cx="400" cy="300" r="30" fill="url(#haloGlow)"/>
+  <!-- Central Brass Diya Tree (Deepastambham) -->
+  <line x1="400" y1="460" x2="400" y2="280" stroke="url(#goldGrad)" stroke-width="6"/>
+  <ellipse cx="400" cy="330" rx="40" ry="8" fill="url(#deepGold)"/>
+  <ellipse cx="400" cy="380" rx="60" ry="10" fill="url(#deepGold)"/>
+  <ellipse cx="400" cy="430" rx="80" ry="12" fill="url(#deepGold)"/>
+  <path d="M 400 270 Q 406 255 400 240 Q 394 255 400 270 Z" fill="url(#flameGrad)" filter="url(#softGlow)"/>
+
+  <!-- Title Plate -->
+  <rect x="180" y="505" width="440" height="65" rx="14" fill="#31070C" stroke="url(#goldGrad)" stroke-width="2"/>
+  <text x="400" y="532" fill="#FFE082" font-family="serif" font-size="20" font-weight="bold" text-anchor="middle" letter-spacing="2">॥ శిల్పకళా శోభిత రంగ మండపం ॥</text>
+  <text x="400" y="555" fill="#FFD54F" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle" letter-spacing="3">HERITAGE PILLARED RANGA MANDAPAM</text>
+
+</svg>

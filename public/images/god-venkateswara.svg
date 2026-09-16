@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#240508"/>
+      <stop offset="50%" stop-color="#450A12"/>
+      <stop offset="100%" stop-color="#1A0205"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE082"/>
+      <stop offset="35%" stop-color="#FFD54F"/>
+      <stop offset="70%" stop-color="#FFA000"/>
+      <stop offset="100%" stop-color="#D4AF37"/>
+    </linearGradient>
+    <linearGradient id="deepGold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFF8E1"/>
+      <stop offset="40%" stop-color="#FFD54F"/>
+      <stop offset="100%" stop-color="#B8860B"/>
+    </linearGradient>
+    <linearGradient id="flameGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#D32F2F"/>
+      <stop offset="40%" stop-color="#FF9800"/>
+      <stop offset="80%" stop-color="#FFEB3B"/>
+      <stop offset="100%" stop-color="#FFFDE7"/>
+    </linearGradient>
+    <radialGradient id="haloGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFD54F" stop-opacity="0.6"/>
+      <stop offset="60%" stop-color="#D4AF37" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#3E070D" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="softGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  
+  <!-- Canvas Background -->
+  <rect width="800" height="600" fill="url(#bgGrad)"/>
+  
+  <!-- Subtle Ornamental Outer Border -->
+  <rect x="16" y="16" width="768" height="568" rx="16" fill="none" stroke="url(#goldGrad)" stroke-width="2" stroke-opacity="0.5"/>
+  <rect x="24" y="24" width="752" height="552" rx="12" fill="none" stroke="url(#goldGrad)" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="6,4"/>
+
+  <!-- Corner Cornerstones -->
+  <circle cx="24" cy="24" r="6" fill="#D4AF37"/>
+  <circle cx="776" cy="24" r="6" fill="#D4AF37"/>
+  <circle cx="24" cy="576" r="6" fill="#D4AF37"/>
+  <circle cx="776" cy="576" r="6" fill="#D4AF37"/>
+  
+  
+  <!-- Divine Sanctum Halo Glow -->
+  <circle cx="400" cy="260" r="180" fill="url(#haloGlow)"/>
+  
+  <!-- Golden Prabhavali Arch -->
+  <path d="M 240 460 C 240 200, 310 100, 400 100 C 490 100, 560 200, 560 460" fill="none" stroke="url(#deepGold)" stroke-width="18" stroke-linecap="round"/>
+  <path d="M 255 460 C 255 220, 320 120, 400 120 C 480 120, 545 220, 545 460" fill="none" stroke="#FFD54F" stroke-width="4" stroke-opacity="0.8"/>
+  
+  <!-- Prabhavali Kirtimukha crest -->
+  <circle cx="400" cy="95" r="18" fill="url(#goldGrad)"/>
+  <polygon points="400,65 410,85 400,80 390,85" fill="#FFE082"/>
+
+  <!-- Sacred Deity Body Silhouette (Dark Shyamala Varna) -->
+  <!-- Shoulders and Torso -->
+  <path d="M 330 460 L 335 290 Q 340 260 360 250 L 375 240 L 425 240 L 440 250 Q 460 260 465 290 L 470 460 Z" fill="#151214"/>
+  
+  <!-- Divine Diamond Crown (Kireetam) -->
+  <polygon points="360,230 440,230 425,120 400,90 375,120" fill="url(#deepGold)" filter="url(#softGlow)"/>
+  <rect x="365" y="215" width="70" height="15" fill="#FFE082" rx="3"/>
+  <circle cx="400" cy="150" r="8" fill="#D32F2F"/>
+  <polygon points="400,105 406,120 400,116 394,120" fill="#FFF"/>
+
+  <!-- Holy Thirunamam (Sacred White & Red Forehead Mark) -->
+  <rect x="375" y="228" width="50" height="42" fill="#151214" rx="4"/>
+  <!-- White Shankha/Chakra white arms -->
+  <path d="M 382 232 L 388 260 L 396 260 L 392 232 Z" fill="#FFFFFF" filter="url(#softGlow)"/>
+  <path d="M 418 232 L 412 260 L 404 260 L 408 232 Z" fill="#FFFFFF" filter="url(#softGlow)"/>
+  <path d="M 388 260 Q 400 270 412 260 Z" fill="#FFFFFF"/>
+  <!-- Central Red Srichurnam -->
+  <rect x="398" y="230" width="4" height="36" fill="#D32F2F" rx="2" filter="url(#softGlow)"/>
+
+  <!-- Divine Upper Right Hand holding Golden Sudarshana Chakra -->
+  <path d="M 340 270 Q 280 260 270 210" fill="none" stroke="#151214" stroke-width="16" stroke-linecap="round"/>
+  <!-- Sudarshana Chakra with golden flames -->
+  <circle cx="265" cy="195" r="32" fill="none" stroke="url(#goldGrad)" stroke-width="6" filter="url(#softGlow)"/>
+  <circle cx="265" cy="195" r="14" fill="url(#deepGold)"/>
+  <circle cx="265" cy="195" r="6" fill="#D32F2F"/>
+  <line x1="265" y1="155" x2="265" y2="235" stroke="#FFE082" stroke-width="3"/>
+  <line x1="225" y1="195" x2="305" y2="195" stroke="#FFE082" stroke-width="3"/>
+
+  <!-- Divine Upper Left Hand holding Golden Panchajanya Shankha (Conch) -->
+  <path d="M 460 270 Q 520 260 530 210" fill="none" stroke="#151214" stroke-width="16" stroke-linecap="round"/>
+  <!-- Golden Shankha Conch -->
+  <path d="M 525 180 Q 545 190 540 215 Q 535 230 515 220 Q 510 200 525 180 Z" fill="url(#deepGold)" filter="url(#softGlow)"/>
+  <path d="M 525 180 Q 535 170 545 175 Q 550 185 540 200" fill="#FFF"/>
+
+  <!-- Lower Hands: Abhaya Hastha (Boon-giving right) & Kati Hastha (resting on hip left) -->
+  <path d="M 340 310 Q 320 370 360 400" fill="none" stroke="#151214" stroke-width="14" stroke-linecap="round"/>
+  <circle cx="360" cy="400" r="12" fill="url(#goldGrad)"/> <!-- Golden palm with lotus mark -->
+  <circle cx="360" cy="400" r="4" fill="#D32F2F"/>
+
+  <path d="M 460 310 Q 480 370 450 410" fill="none" stroke="#151214" stroke-width="14" stroke-linecap="round"/>
+  <circle cx="450" cy="410" r="10" fill="url(#goldGrad)"/>
+
+  <!-- Golden Pitambara Silks & Kasula Peru Necklace -->
+  <path d="M 350 280 Q 400 340 450 280" fill="none" stroke="url(#goldGrad)" stroke-width="10"/>
+  <path d="M 355 310 Q 400 370 445 310" fill="none" stroke="url(#goldGrad)" stroke-width="8"/>
+  <path d="M 360 350 Q 400 400 440 350" fill="none" stroke="url(#deepGold)" stroke-width="12"/>
+  <polygon points="385,380 415,380 400,430" fill="#FFC107"/> <!-- Kaustubha jewel -->
+
+  <!-- Sacred Flower & Tulasi Garlands (Vanamala) -->
+  <path d="M 330 250 C 310 360, 330 480, 400 480 C 470 480, 490 360, 470 250" fill="none" stroke="#C2185B" stroke-width="12" stroke-dasharray="8,6" stroke-linecap="round"/>
+  <path d="M 340 260 C 325 350, 340 460, 400 460 C 460 460, 475 350, 460 260" fill="none" stroke="#388E3C" stroke-width="8" stroke-dasharray="6,4" stroke-linecap="round"/>
+
+  <!-- Flanking Sacred Brass Oil Lamps (Diyas) -->
+  <g transform="translate(140, 360)">
+    <path d="M 30 100 L 50 100 L 45 40 L 55 40 L 40 10 L 25 40 L 35 40 Z" fill="url(#deepGold)"/>
+    <ellipse cx="40" cy="10" rx="20" ry="6" fill="url(#goldGrad)"/>
+    <path d="M 40 4 Q 46 -8 40 -16 Q 34 -8 40 4 Z" fill="url(#flameGrad)" filter="url(#softGlow)"/>
+  </g>
+  <g transform="translate(620, 360)">
+    <path d="M 30 100 L 50 100 L 45 40 L 55 40 L 40 10 L 25 40 L 35 40 Z" fill="url(#deepGold)"/>
+    <ellipse cx="40" cy="10" rx="20" ry="6" fill="url(#goldGrad)"/>
+    <path d="M 40 4 Q 46 -8 40 -16 Q 34 -8 40 4 Z" fill="url(#flameGrad)" filter="url(#softGlow)"/>
+  </g>
+
+  <!-- Divine Pedestal Title Plate -->
+  <rect x="180" y="505" width="440" height="65" rx="14" fill="#31070C" stroke="url(#goldGrad)" stroke-width="2"/>
+  <text x="400" y="532" fill="#FFE082" font-family="serif" font-size="20" font-weight="bold" text-anchor="middle" letter-spacing="2">॥ శ్రీ ప్రసన్న వేంకటేశ్వర స్వామి ॥</text>
+  <text x="400" y="555" fill="#FFD54F" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle" letter-spacing="3">LORD SRI VENKATESWARA SWAMY (MOOLA VIRAT)</text>
+
+</svg>

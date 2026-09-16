@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#240508"/>
+      <stop offset="50%" stop-color="#450A12"/>
+      <stop offset="100%" stop-color="#1A0205"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE082"/>
+      <stop offset="35%" stop-color="#FFD54F"/>
+      <stop offset="70%" stop-color="#FFA000"/>
+      <stop offset="100%" stop-color="#D4AF37"/>
+    </linearGradient>
+    <linearGradient id="deepGold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFF8E1"/>
+      <stop offset="40%" stop-color="#FFD54F"/>
+      <stop offset="100%" stop-color="#B8860B"/>
+    </linearGradient>
+    <linearGradient id="flameGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#D32F2F"/>
+      <stop offset="40%" stop-color="#FF9800"/>
+      <stop offset="80%" stop-color="#FFEB3B"/>
+      <stop offset="100%" stop-color="#FFFDE7"/>
+    </linearGradient>
+    <radialGradient id="haloGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFD54F" stop-opacity="0.6"/>
+      <stop offset="60%" stop-color="#D4AF37" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#3E070D" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="softGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  
+  <!-- Canvas Background -->
+  <rect width="800" height="600" fill="url(#bgGrad)"/>
+  
+  <!-- Subtle Ornamental Outer Border -->
+  <rect x="16" y="16" width="768" height="568" rx="16" fill="none" stroke="url(#goldGrad)" stroke-width="2" stroke-opacity="0.5"/>
+  <rect x="24" y="24" width="752" height="552" rx="12" fill="none" stroke="url(#goldGrad)" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="6,4"/>
+
+  <!-- Corner Cornerstones -->
+  <circle cx="24" cy="24" r="6" fill="#D4AF37"/>
+  <circle cx="776" cy="24" r="6" fill="#D4AF37"/>
+  <circle cx="24" cy="576" r="6" fill="#D4AF37"/>
+  <circle cx="776" cy="576" r="6" fill="#D4AF37"/>
+  
+  
+  <!-- Morning Dawn Aurora -->
+  <rect x="50" y="50" width="700" height="420" fill="url(#haloGlow)"/>
+  
+  <!-- Awakening Sunrise rays -->
+  <line x1="400" y1="200" x2="250" y2="80" stroke="#FFE082" stroke-width="2" stroke-opacity="0.5"/>
+  <line x1="400" y1="200" x2="400" y2="60" stroke="#FFE082" stroke-width="2" stroke-opacity="0.5"/>
+  <line x1="400" y1="200" x2="550" y2="80" stroke="#FFE082" stroke-width="2" stroke-opacity="0.5"/>
+
+  <!-- Sanctum Deity awakening profile -->
+  <g transform="translate(400, 260)">
+    <circle cx="0" cy="0" r="100" fill="#200508"/>
+    <polygon points="-25,0 25,0 15,-70 0,-90 -15,-70" fill="url(#deepGold)"/>
+    <!-- Sacred Thirunamam -->
+    <path d="M -8 -10 L -4 0 L 4 0 L 8 -10 Z" fill="#FFF"/>
+    <rect x="-1" y="-10" width="2" height="9" fill="#D50000"/>
+  </g>
+
+  <!-- Awakening Brass Suprabhata Bell & Morning Aradhana Lamp -->
+  <g transform="translate(240, 320)">
+    <path d="M 0 100 L 0 30 L -25 70 Z" fill="none"/>
+    <ellipse cx="0" cy="80" rx="35" ry="12" fill="url(#deepGold)"/>
+    <path d="M -30 80 L -15 20 L 15 20 L 30 80 Z" fill="url(#goldGrad)"/>
+    <circle cx="0" cy="15" r="10" fill="url(#deepGold)"/>
+    <line x1="0" y1="15" x2="0" y2="-60" stroke="url(#goldGrad)" stroke-width="4"/>
+  </g>
+
+  <!-- Fragrant Incense (Dhoopam) smoke coils -->
+  <g transform="translate(560, 360)">
+    <rect x="-20" y="40" width="40" height="20" fill="url(#deepGold)" rx="4"/>
+    <path d="M 0 40 Q -15 10 0 -10 Q 15 -30 0 -50 Q -15 -70 0 -90" stroke="#E0E0E0" stroke-width="4" fill="none" opacity="0.6"/>
+  </g>
+
+  <!-- Title Plate -->
+  <rect x="180" y="505" width="440" height="65" rx="14" fill="#31070C" stroke="url(#goldGrad)" stroke-width="2"/>
+  <text x="400" y="532" fill="#FFE082" font-family="serif" font-size="20" font-weight="bold" text-anchor="middle" letter-spacing="2">॥ సుప్రభాత సేవ ॥</text>
+  <text x="400" y="555" fill="#FFD54F" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle" letter-spacing="3">SUPRABHATA SEVA - AUSPICIOUS AWAKENING</text>
+
+</svg>
