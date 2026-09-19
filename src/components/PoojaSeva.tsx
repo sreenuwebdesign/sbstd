@@ -25,11 +25,11 @@ export const PoojaSeva: React.FC<PoojaSevaProps> = ({
             <DiyaIcon className="w-4 h-4" />
             <span>{currentLang === 'te' ? 'నిత్యార్చనలు & పూజా సేవలు' : 'Sacred Poojas & Seva Timings'}</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif-temple font-bold text-[#4A0E17] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-[32px] font-serif-temple font-bold text-[#4A0E17] tracking-tight">
             {currentLang === 'te' ? 'ఆలయ పూజలు & సేవలు' : 'Daily Pooja & Seva Schedule'}
           </h2>
           <OrnamentalDivider />
-          <p className="text-[#5D4037] text-base sm:text-lg leading-relaxed">
+          <p className="text-[#5D4037] text-xs sm:text-sm md:text-[14.5px] leading-relaxed">
             {currentLang === 'te'
               ? 'స్వామివారి అనుగ్రహం కొరకు భక్తులు వివిధ రకాల నిత్య పూజలు, అభిషేకాలు మరియు సహస్ర నామార్చనలలో పాల్గొనవచ్చు.'
               : 'Participate in divine rituals conducted according to sacred Shastras. Devotees may book individual sevas or sponsor sacred archanas for their family.'}

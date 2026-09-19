@@ -32,11 +32,11 @@ export const DevotionalContent: React.FC<DevotionalContentProps> = ({ currentLan
             <DiyaIcon className="w-4 h-4" />
             <span>{currentLang === 'te' ? 'నిత్య ధ్యానం & ఆధ్యాత్మిక సంపద' : 'Daily Devotional Treasury'}</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif-temple font-bold text-[#4A0E17] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-[32px] font-serif-temple font-bold text-[#4A0E17] tracking-tight">
             {currentLang === 'te' ? 'స్తోత్రాలు, భజనలు & ఆలయ ప్రకటనలు' : 'Slokas, Mantras & Bhajans'}
           </h2>
           <OrnamentalDivider />
-          <p className="text-[#5D4037] text-base sm:text-lg leading-relaxed">
+          <p className="text-[#5D4037] text-xs sm:text-sm md:text-[14.5px] leading-relaxed">
             {currentLang === 'te'
               ? 'ప్రతిరోజూ పారాయణ చేయవలసిన పవిత్ర శ్లోకాలు, భజనా గీతాలు మరియు ఆలయ తాజా సమాచారం.'
               : 'Enrich your spiritual journey with daily uplifting slokas, sanctified mantras, bhajans, and official temple updates.'}

@@ -68,11 +68,11 @@ export const Gallery: React.FC<GalleryProps> = ({ currentLang }) => {
             <DiyaIcon className="w-4 h-4" />
             <span>{currentLang === 'te' ? 'దివ్య చిత్రమాలిక' : 'Sacred Photo Gallery'}</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif-temple font-bold text-[#4A0E17] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-[32px] font-serif-temple font-bold text-[#4A0E17] tracking-tight">
             {currentLang === 'te' ? 'ఆలయ దర్శన చిత్రాలు' : 'Temple Darshan Gallery'}
           </h2>
           <OrnamentalDivider />
-          <p className="text-[#5D4037] text-base sm:text-lg leading-relaxed">
+          <p className="text-[#5D4037] text-xs sm:text-sm md:text-[14.5px] leading-relaxed">
             {currentLang === 'te'
               ? 'ఆలయ వాస్తు శిల్పకళ, మూలవిరాట్ దివ్య మంగళ స్వరూపం, ఉత్సవాలు మరియు భక్తుల సేవలకు సంబంధించిన పవిత్ర చిత్రాలు.'
               : 'Glimpses of sacred Sanctum Sanctorum, celestial Brahmotsavams, temple architecture, and soulful devotional moments.'}

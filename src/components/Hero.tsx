@@ -81,10 +81,10 @@ export const Hero: React.FC<HeroProps> = ({
           <DiyaIcon className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#FFE58F] shrink-0" />
         </div>
 
-        {/* Temple Name / Title - Balanced Proper Size (Not Big) */}
+        {/* Temple Name / Title - Balanced Proper Size */}
         <h1 
           id="hero-temple-heading"
-          className="text-lg sm:text-2xl md:text-3xl lg:text-[32px] font-serif-temple font-semibold text-white tracking-wide leading-snug mb-1.5 sm:mb-2 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]"
+          className="text-base sm:text-xl md:text-2xl lg:text-[26px] font-serif-temple font-semibold text-white tracking-wide leading-snug mb-1.5 sm:mb-2 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]"
         >
           <span className="block bg-gradient-to-b from-[#FFFDF7] via-[#FFEBB3] to-[#F3CE72] bg-clip-text text-transparent">
             {currentLang === 'te' ? TEMPLE_INFO.nameTe : TEMPLE_INFO.nameEn}
@@ -92,7 +92,7 @@ export const Hero: React.FC<HeroProps> = ({
         </h1>
 
         {/* Presiding Deity Subtitle with Classical Flourish */}
-        <div className="flex items-center justify-center gap-1.5 sm:gap-2 text-xs sm:text-sm md:text-[15px] font-serif-temple text-[#F3CE72] max-w-2xl mx-auto mb-1.5 font-medium tracking-wide">
+        <div className="flex items-center justify-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs md:text-[13.5px] font-serif-temple text-[#F3CE72] max-w-2xl mx-auto mb-1.5 font-medium tracking-wide">
           <span className="text-[#D4AF37] opacity-80 text-xs">꧁</span>
           <p className="drop-shadow-sm font-medium">
             {currentLang === 'te' ? TEMPLE_INFO.deityNameTe : TEMPLE_INFO.deityNameEn}
@@ -103,7 +103,7 @@ export const Hero: React.FC<HeroProps> = ({
         <OrnamentalDivider className="my-2.5 sm:my-3.5" />
 
         {/* Catchphrase & Spiritual Welcome */}
-        <p className="text-[#E5D7C2] text-xs sm:text-sm md:text-[14.5px] max-w-xl mx-auto mb-5 sm:mb-6 leading-relaxed font-normal drop-shadow-sm px-2">
+        <p className="text-[#E5D7C2] text-[11px] sm:text-xs md:text-[13.5px] max-w-xl mx-auto mb-5 sm:mb-6 leading-relaxed font-normal drop-shadow-sm px-2">
           {currentLang === 'te'
             ? 'శ్రీవారి దివ్య క్షేత్రానికి స్వాగతం. శతాబ్దాల ఆధ్యాత్మిక సంప్రదాయాలు, నిత్య పూజా కైంకర్యాలు మరియు అఖండ భక్తితో పునీతులవ్వండి.'
             : 'Welcome to the holy sanctuary of divine grace. Experience the transcendent serenity, Vedic rituals, and eternal blessings of the Lord.'}

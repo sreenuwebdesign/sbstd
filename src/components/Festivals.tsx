@@ -22,11 +22,11 @@ export const Festivals: React.FC<FestivalsProps> = ({ currentLang, onOpenDonate 
             <LotusIcon className="w-4 h-4 text-[#C25E00]" />
             <span>{currentLang === 'te' ? 'ఆలయ మహోత్సవాలు & పర్వదినాలు' : 'Sacred Utsavams & Celebrations'}</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif-temple font-bold text-[#4A0E17] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-[32px] font-serif-temple font-bold text-[#4A0E17] tracking-tight">
             {currentLang === 'te' ? 'రాబోయే పండుగలు & ఉత్సవాలు' : 'Upcoming Temple Festivals'}
           </h2>
           <OrnamentalDivider />
-          <p className="text-[#5D4037] text-base sm:text-lg leading-relaxed">
+          <p className="text-[#5D4037] text-xs sm:text-sm md:text-[14.5px] leading-relaxed">
             {currentLang === 'te'
               ? 'ఆలయంలో జరిగే వైభవోపేత బ్రహ్మోత్సవాలు, రథోత్సవాలు మరియు దివ్య తిరుకళ్యాణ మహోత్సవాలలో పాల్గొని పునీతులు కండి.'
               : 'Join in the timeless spiritual splendor of annual temple Brahmotsavams, divine chariot processions, and special celestial pujas.'}

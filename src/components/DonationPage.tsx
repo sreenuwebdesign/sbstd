@@ -266,17 +266,17 @@ export const DonationPage: React.FC<DonationPageProps> = ({
               </div>
 
               {/* User requested title */}
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif-temple font-extrabold text-[#FFF2C6] leading-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-[32px] font-serif-temple font-extrabold text-[#FFF2C6] leading-tight">
                 Donate to the Temple
               </h1>
 
               {/* User requested Telugu subtitle */}
-              <p className="text-xl sm:text-2xl font-telugu text-[#FFD54F] font-bold">
+              <p className="text-base sm:text-lg md:text-xl font-telugu text-[#FFD54F] font-bold">
                 "ఆలయ సేవకు మీ విరాళాన్ని సమర్పించండి"
               </p>
 
               {/* User requested Subtitle */}
-              <p className="text-[#E8DCC0] text-sm sm:text-base max-w-2xl leading-relaxed">
+              <p className="text-[#E8DCC0] text-xs sm:text-sm max-w-2xl leading-relaxed">
                 "Every contribution, big or small, becomes part of a sacred service."
               </p>
 

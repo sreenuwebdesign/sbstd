@@ -82,11 +82,11 @@ export const ContactPage: React.FC<ContactPageProps> = ({ currentLang, onSendMes
             <DiyaIcon className="w-4 h-4" />
             <span>{currentLang === 'te' ? 'ఆలయ సంప్రదింపులు & మార్గదర్శకత్వం' : 'Temple Location & Helpdesk'}</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif-temple font-bold text-[#4A0E17] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-[32px] font-serif-temple font-bold text-[#4A0E17] tracking-tight">
             {currentLang === 'te' ? 'ఆలయాన్ని సంప్రదించండి' : 'Contact The Temple'}
           </h2>
           <OrnamentalDivider />
-          <p className="text-[#5D4037] text-base sm:text-lg leading-relaxed">
+          <p className="text-[#5D4037] text-xs sm:text-sm md:text-[14.5px] leading-relaxed">
             {currentLang === 'te'
               ? 'దర్శనం, విశేష సేవల వివరాలు, వసతి మరియు విరాళాల సంబంధిత సమాచారం కొరకు ఆలయ కార్యాలయాన్ని సంప్రదించవచ్చు.'
               : 'Our devoted temple trust administrators and priests are here to assist you with pilgrimage planning, seva bookings, and devotional inquiries.'}

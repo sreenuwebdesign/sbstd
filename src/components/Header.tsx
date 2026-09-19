@@ -157,21 +157,6 @@ export const Header: React.FC<HeaderProps> = ({
             background: 'linear-gradient(135deg, #5b0b17 0%, var(--primary-red) 50%, #5b0b17 100%)',
           }}
         >
-          {/* Mobile Menu Logo Header */}
-          <div className="flex items-center gap-2.5 px-3 py-2 mb-2 bg-[#1A0205] rounded-lg border border-[#D4AF37]/25">
-            <div className="p-0.5 rounded-full bg-[#5B101D]/50 border border-[#D4AF37]/40 shrink-0">
-              <TempleEmblem className="w-9 h-9" />
-            </div>
-            <div className="flex flex-col min-w-0">
-              <span className="text-[#F3CE72] text-[10px] uppercase font-semibold tracking-wider truncate">
-                {currentLang === 'te' ? 'శ్రీ శ్రీదేవి భూదేవి సమేత' : 'Sri Sridevi Bhudevi Sametha'}
-              </span>
-              <span className="text-white text-xs uppercase font-bold tracking-wide truncate">
-                {currentLang === 'te' ? 'తిరుమలనాథ స్వామి దేవస్థానం' : 'Thirumalanadha Swamy'}
-              </span>
-            </div>
-          </div>
-
           {navItems.map((item) => {
             const isActive = activeTab === item.id;
             return (

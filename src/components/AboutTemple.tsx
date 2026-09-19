@@ -20,11 +20,11 @@ export const AboutTemple: React.FC<AboutTempleProps> = ({ currentLang }) => {
             <DiyaIcon className="w-4 h-4" />
             <span>{currentLang === 'te' ? 'ఆలయ చరిత్ర & వైభవం' : 'Sacred Heritage & History'}</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif-temple font-bold text-[#4A0E17] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-[32px] font-serif-temple font-bold text-[#4A0E17] tracking-tight">
             {currentLang === 'te' ? 'ఆలయ విశేషాలు & ప్రాశస్త్యం' : 'About The Sacred Temple'}
           </h2>
           <OrnamentalDivider />
-          <p className="text-[#5D4037] text-base sm:text-lg leading-relaxed">
+          <p className="text-[#5D4037] text-xs sm:text-sm md:text-[14.5px] leading-relaxed">
             {currentLang === 'te' 
               ? `${TEMPLE_INFO.nameTe} శతాబ్దాల నాటి దివ్య సంప్రదాయాలకు, వేద మంత్రోచ్ఛారణలకు మరియు భక్తుల నిశ్చల విశ్వాసానికి పవిత్ర నిలయం.`
               : `${TEMPLE_INFO.nameEn} stands as an eternal beacon of Sanatana Dharma, welcoming millions of devotees into an oasis of serenity and divine grace.`}

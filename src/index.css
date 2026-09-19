@@ -1,43 +1,54 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: 'Poppins', 'Noto Serif Telugu', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Poppins', 'Noto Serif Telugu', serif;
+  --font-display: 'Poppins', 'Noto Serif Telugu', sans-serif;
+  --font-heading: 'Poppins', 'Noto Serif Telugu', sans-serif;
+}
+
 @layer base {
   :root {
     --primary-red: #8b1021;
     --temple-red-gradient: linear-gradient(135deg, #5b0b17 0%, var(--primary-red) 50%, #5b0b17 100%);
-    --font-display: 'Poppins', 'Marcellus', 'Cinzel', sans-serif;
-    --font-heading: 'Poppins', 'Marcellus', 'Cinzel', sans-serif;
-    --font-ornate: 'Cinzel Decorative', 'Cinzel', serif;
-    --font-telugu: 'Noto Serif Telugu', 'Gautami', serif;
-    --font-body: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-display: 'Poppins', 'Noto Serif Telugu', sans-serif;
+    --font-heading: 'Poppins', 'Noto Serif Telugu', sans-serif;
+    --font-ornate: 'Poppins', 'Noto Serif Telugu', sans-serif;
+    --font-telugu: 'Poppins', 'Noto Serif Telugu', 'Gautami', sans-serif;
+    --font-body: 'Poppins', 'Noto Serif Telugu', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
   
-  body {
-    font-family: var(--font-body);
+  html, body {
+    font-family: 'Poppins', 'Noto Serif Telugu', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background-color: #FAF6EE;
     color: #261614;
     overflow-x: hidden;
   }
 
+  button, input, textarea, select {
+    font-family: 'Poppins', 'Noto Serif Telugu', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
+    font-family: 'Poppins', 'Noto Serif Telugu', sans-serif;
     letter-spacing: 0.01em;
   }
 
   .font-serif-temple {
-    font-family: 'Marcellus', 'Cinzel', 'Poppins', serif;
-    letter-spacing: 0.02em;
+    font-family: 'Poppins', 'Noto Serif Telugu', sans-serif !important;
+    letter-spacing: 0.01em;
   }
 
   .font-poppins {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', sans-serif !important;
   }
 
   .font-ornate {
-    font-family: var(--font-ornate);
+    font-family: 'Poppins', 'Noto Serif Telugu', sans-serif !important;
   }
 
   .font-telugu {
-    font-family: var(--font-telugu);
+    font-family: 'Poppins', 'Noto Serif Telugu', sans-serif;
   }
 }
 

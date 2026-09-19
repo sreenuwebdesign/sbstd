@@ -28,17 +28,17 @@ export const DonationSection: React.FC<DonationSectionProps> = ({
               <span>{currentLang === 'te' ? 'ఆలయ పుణ్య కార్యములు' : 'Sacred Giving'}</span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl font-serif-temple font-bold text-[#FFF2C6] leading-tight">
+            <h2 className="text-2xl sm:text-3xl font-serif-temple font-bold text-[#FFF2C6] leading-tight">
               {currentLang === 'te' ? 'Support the Temple (ఆలయ సేవ)' : 'Support the Temple'}
             </h2>
 
             {/* User Requested Telugu Heading */}
-            <p className="text-xl sm:text-2xl font-telugu text-[#FFD54F] font-bold">
+            <p className="text-base sm:text-lg md:text-xl font-telugu text-[#FFD54F] font-bold">
               "మీ భక్తి సమర్పణ ఆలయ సేవకు తోడ్పడుతుంది"
             </p>
 
             {/* User Requested English Description */}
-            <p className="text-[#E8DCC0] text-sm sm:text-base max-w-2xl leading-relaxed">
+            <p className="text-[#E8DCC0] text-xs sm:text-sm max-w-2xl leading-relaxed">
               {currentLang === 'te'
                 ? 'మీ ఉదార సమర్పణ ఆలయ నిర్వహణ, నిత్య పూజలు, అన్నదానం, ఆధ్యాత్మిక కార్యక్రమాలు, ఉత్సవాలు మరియు సేవా కార్యక్రమాలకు తోడ్పడుతుంది.'
                 : 'Your generous contribution helps support temple maintenance, daily poojas, annadanam, spiritual activities, festivals and charitable initiatives.'}

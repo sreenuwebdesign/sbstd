@@ -32,11 +32,11 @@ export const DeitySection: React.FC<DeitySectionProps> = ({
             <LotusIcon className="w-4 h-4 text-[#FF80AB]" />
             <span>{currentLang === 'te' ? 'దేవతామూర్తుల దివ్య దర్శనం' : 'Sacred Deity Sanctum'}</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif-temple font-bold text-[#FFF2C6] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-[32px] font-serif-temple font-bold text-[#FFF2C6] tracking-tight">
             {currentLang === 'te' ? `శ్రీ ${TEMPLE_INFO.deityNameTe} క్షేత్రం` : `Sri ${TEMPLE_INFO.deityNameEn}`}
           </h2>
           <OrnamentalDivider />
-          <p className="text-[#E8DCC0] text-base sm:text-lg leading-relaxed">
+          <p className="text-[#E8DCC0] text-xs sm:text-sm md:text-[14.5px] leading-relaxed">
             {currentLang === 'te'
               ? 'కలియుగ ప్రత్యక్ష దైవమైన శ్రీ వేంకటేశ్వర స్వామి మరియు జగన్మాత శ్రీ పద్మావతి దేవి దివ్య మంగళ స్వరూపాల దర్శన భాగ్యం.'
               : 'Revered as the supreme benevolent guardians, granting peace, protection, and prosperity upon all devout seekers who surrender with a pure heart.'}
