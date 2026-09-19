@@ -110,8 +110,8 @@ export const Header: React.FC<HeaderProps> = ({
                   onClick={() => handleNavClick(item)}
                   className={`font-poppins px-2.5 xl:px-3.5 py-1.5 rounded-lg text-xs xl:text-[13px] font-medium tracking-normal transition-all duration-200 whitespace-nowrap ${
                     isActive
-                      ? 'bg-[#5B101D] text-[#FFE58F] border border-[#D4AF37]/50 shadow-inner'
-                      : 'text-[#F5EDE0] hover:text-[#FFE58F] hover:bg-[#5B101D]/50'
+                      ? 'bg-[#5B101D] text-[#f3d47a] border border-[#f3d47a]/60 shadow-inner'
+                      : 'text-[#f3d47a] hover:text-[#fff0be] hover:bg-[#5B101D]/50'
                   }`}
                 >
                   {currentLang === 'te' ? item.labelTe : item.labelEn}
@@ -181,12 +181,12 @@ export const Header: React.FC<HeaderProps> = ({
                 onClick={() => handleNavClick(item)}
                 className={`font-poppins w-full text-left px-3 py-2 rounded-lg text-[11.5px] sm:text-xs font-medium transition-colors flex items-center justify-between ${
                   isActive
-                    ? 'bg-[#5B101D] text-[#FFE58F] border-l-4 border-[#D4AF37]'
-                    : 'text-[#F5EDE0] hover:bg-[#5B101D]/60 hover:text-[#FFE58F]'
+                    ? 'bg-[#5B101D] text-[#f3d47a] border-l-4 border-[#f3d47a]'
+                    : 'text-[#f3d47a] hover:bg-[#5B101D]/60 hover:text-[#fff0be]'
                 }`}
               >
                 <span>{currentLang === 'te' ? item.labelTe : item.labelEn}</span>
-                {isActive && <span className="text-[9px] text-[#FFE58F]">●</span>}
+                {isActive && <span className="text-[9px] text-[#f3d47a]">●</span>}
               </button>
             );
           })}
