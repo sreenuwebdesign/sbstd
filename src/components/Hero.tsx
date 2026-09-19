@@ -81,10 +81,10 @@ export const Hero: React.FC<HeroProps> = ({
           <DiyaIcon className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#FFE58F] shrink-0" />
         </div>
 
-        {/* Temple Name / Title - Balanced Proper Size */}
+        {/* Temple Name / Title - Same size as other section headings */}
         <h1 
           id="hero-temple-heading"
-          className="text-base sm:text-xl md:text-2xl lg:text-[26px] font-serif-temple font-semibold text-white tracking-wide leading-snug mb-1.5 sm:mb-2 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]"
+          className="text-2xl sm:text-3xl md:text-[32px] font-serif-temple font-bold text-white tracking-tight leading-snug mb-1.5 sm:mb-2 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]"
         >
           <span className="block bg-gradient-to-b from-[#FFFDF7] via-[#FFEBB3] to-[#F3CE72] bg-clip-text text-transparent">
             {currentLang === 'te' ? TEMPLE_INFO.nameTe : TEMPLE_INFO.nameEn}

@@ -82,7 +82,7 @@ export const AboutTemple: React.FC<AboutTempleProps> = ({ currentLang }) => {
                   <h3 className="text-lg font-serif-temple font-bold text-[#4A0E17] mb-2">
                     {currentLang === 'te' ? 'ఆలయ పురాతన చరిత్ర' : 'Temple History & Origin'}
                   </h3>
-                  <p className="text-[#5D4037] text-sm sm:text-base leading-relaxed">
+                  <p className="text-[#5D4037] text-xs sm:text-sm md:text-[14.5px] leading-relaxed">
                     {currentLang === 'te'
                       ? `పూర్వీకులచే ప్రతిష్ఠించబడిన ${TEMPLE_INFO.nameTe}, రాజాస్థానాల నుండి ప్రస్తుత తరం వరకు భక్తి ప్రపత్తులతో సంరక్షించబడుతున్న మహోన్నత ఆలయం. ఇక్కడ పూజలు అందుకుంటున్న దేవతామూర్తి భక్తుల కోర్కెలను ఈడేర్చే కల్పవృక్షంగా ఖ్యాతి పొందారు.`
                       : `Erected with profound devotion and consecrated by venerable sages of antiquity, ${TEMPLE_INFO.nameEn} has preserved unbroken sacred rituals for generations. Devotees from far and wide revere the temple as a sanctified haven where silent prayers manifest as divine blessings.`}
@@ -101,7 +101,7 @@ export const AboutTemple: React.FC<AboutTempleProps> = ({ currentLang }) => {
                   <h3 className="text-lg font-serif-temple font-bold text-[#4A0E17] mb-2">
                     {currentLang === 'te' ? 'ఆధ్యాత్మిక ప్రాధాన్యత' : 'Spiritual Significance'}
                   </h3>
-                  <p className="text-[#5D4037] text-sm sm:text-base leading-relaxed">
+                  <p className="text-[#5D4037] text-xs sm:text-sm md:text-[14.5px] leading-relaxed">
                     {currentLang === 'te'
                       ? 'ఈ పుణ్యభూమిలో అడుగుపెట్టగానే మనస్సు ప్రశాంతతను పొందుతుంది. క్షేత్రపాలకుని అనుగ్రహం ద్వారా నవగ్రహ దోషాలు, మానసిక ఆందోళనలు తొలగి సకల ఐశ్వర్యాలు లభిస్తాయని భక్తుల దృఢ విశ్వాసం.'
                       : 'The sanctum is charged with centuries of continuous Vedic vibration. devotions offered here are believed to dispel mental distress, bestow spiritual enlightenment, and bring harmony to households.'}
@@ -120,7 +120,7 @@ export const AboutTemple: React.FC<AboutTempleProps> = ({ currentLang }) => {
                   <h3 className="text-lg font-serif-temple font-bold text-[#4A0E17] mb-2">
                     {currentLang === 'te' ? 'నిత్య సాంప్రదాయాలు & ఆగమ విధి' : 'Temple Traditions & Sacred Agama'}
                   </h3>
-                  <p className="text-[#5D4037] text-sm sm:text-base leading-relaxed">
+                  <p className="text-[#5D4037] text-xs sm:text-sm md:text-[14.5px] leading-relaxed">
                     {currentLang === 'te'
                       ? 'శ్రీక్షేత్రంలో ఉదయం సుప్రభాత సేవ నుండి రాత్రి ఏకాంత సేవ వరకు అన్ని ఆచారాలు నిర్దిష్ట ఆగమ శాస్త్రాల ప్రకారం వేద పండితులచే సమర్పించబడతాయి.'
                       : 'From the dawn Suprabhatam to the serene Ekanta Seva at nightfall, all six-fold daily worships (Shatkala Pooja) are executed with immaculate adherence to authentic Vedic traditions.'}
@@ -235,12 +235,12 @@ export const AboutTemple: React.FC<AboutTempleProps> = ({ currentLang }) => {
                 {currentLang === 'te' ? 'భక్తులకు ఆలయ ప్రాముఖ్యత' : 'Importance to Devotees'}
               </h3>
             </div>
-            <p className="text-[#5D4037] text-sm sm:text-base leading-relaxed mb-4">
+            <p className="text-[#5D4037] text-xs sm:text-sm md:text-[14.5px] leading-relaxed mb-4">
               {currentLang === 'te'
                 ? 'కుటుంబ క్షేమం, వివాహ సాఫల్యం, విద్య, ఉద్యోగ ప్రాప్తి కొరకు భక్తులు శ్రీ స్వామివారిని దర్శించుకుంటారు. ఇక్కడ సమర్పించే ప్రతి పూజ భక్తుల హృదయాలను భగవత్ సన్నిధికి చేరుస్తుంది.'
                 : 'For thousands of families, the temple is an anchor of faith during times of celebration and solace during life trials. Special prayers for health, children prosperity, and gratitude bring devotees together in unified devotion.'}
             </p>
-            <ul className="space-y-2 text-xs sm:text-sm text-[#4A0E17] font-medium">
+            <ul className="space-y-2 text-xs sm:text-sm md:text-[14.5px] text-[#4A0E17] font-medium">
               <li className="flex items-center gap-2">
                 <span className="text-[#C25E00]">✦</span>
                 <span>{currentLang === 'te' ? 'అన్నార్తులకు నిత్యాన్నదాన ప్రసాద వితరణ' : 'Nitya Annadanam serving free daily meals'}
@@ -264,12 +264,12 @@ export const AboutTemple: React.FC<AboutTempleProps> = ({ currentLang }) => {
                 {currentLang === 'te' ? 'ఆలయ ధ్యేయం & సమాజ సేవ' : "The Temple's Mission"}
               </h3>
             </div>
-            <p className="text-[#5D4037] text-sm sm:text-base leading-relaxed mb-4">
+            <p className="text-[#5D4037] text-xs sm:text-sm md:text-[14.5px] leading-relaxed mb-4">
               {currentLang === 'te'
                 ? 'భారతీయ వేద సంస్కృతిని కాపాడుతూ, పేదలకు ఉచిత అన్నదానం, వేద విద్యార్థులకు ఆశ్రయం, దేశీ ఆవుల సంరక్షణ మరియు సేవా కార్యక్రమాలను నిరంతరం కొనసాగించడమే మా లక్ష్యం.'
                 : 'Our sacred mission is to uphold Sanatana Dharma, preserve Vedic learning through our Veda Patashala, provide loving shelter to sacred Desi cows (Go Seva), and feed the hungry with compassionate Annadanam.'}
             </p>
-            <ul className="space-y-2 text-xs sm:text-sm text-[#4A0E17] font-medium">
+            <ul className="space-y-2 text-xs sm:text-sm md:text-[14.5px] text-[#4A0E17] font-medium">
               <li className="flex items-center gap-2">
                 <span className="text-[#C25E00]">✦</span>
                 <span>{currentLang === 'te' ? 'ఆలయ గోశాలలో 100+ దేశీ గోవుల పోషణ' : 'Active Gosala protecting 100+ sacred Desi cows'}
