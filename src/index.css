@@ -2,6 +2,8 @@
 
 @layer base {
   :root {
+    --primary-red: #8b1021;
+    --temple-red-gradient: linear-gradient(135deg, #5b0b17 0%, var(--primary-red) 50%, #5b0b17 100%);
     --font-display: 'Poppins', 'Marcellus', 'Cinzel', sans-serif;
     --font-heading: 'Poppins', 'Marcellus', 'Cinzel', sans-serif;
     --font-ornate: 'Cinzel Decorative', 'Cinzel', serif;

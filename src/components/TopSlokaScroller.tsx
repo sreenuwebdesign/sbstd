@@ -96,7 +96,10 @@ export const TopSlokaScroller: React.FC<TopSlokaScrollerProps> = ({ currentLang 
   return (
     <div 
       id="top-sloka-scroller"
-      className="relative z-40 bg-gradient-to-r from-[#170204] via-[#280509] to-[#170204] border-b border-[#D4AF37]/20 text-[#E8DCC0] select-none py-0.5 sm:py-1 overflow-hidden"
+      className="relative z-40 border-b border-[#D4AF37]/25 text-[#E8DCC0] select-none py-0.5 sm:py-1 overflow-hidden"
+      style={{
+        background: 'linear-gradient(135deg, #5b0b17 0%, var(--primary-red) 50%, #5b0b17 100%)',
+      }}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       role="region"

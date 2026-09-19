@@ -31,7 +31,10 @@ export const Hero: React.FC<HeroProps> = ({
   return (
     <section 
       id="hero-section" 
-      className="relative min-h-[75vh] sm:min-h-[80vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#1E0306] via-[#35070D] to-[#180205] text-white py-8 sm:py-14"
+      className="relative min-h-[75vh] sm:min-h-[80vh] flex items-center justify-center overflow-hidden text-white py-8 sm:py-14"
+      style={{
+        background: 'linear-gradient(135deg, #5b0b17 0%, var(--primary-red) 50%, #5b0b17 100%)',
+      }}
     >
       {/* Background Lord Sri Venkateswara Swamy Divine Sanctum Image */}
       <div 
@@ -39,13 +42,18 @@ export const Hero: React.FC<HeroProps> = ({
         style={{
           backgroundImage: `url('/images/venkateswara-hero-bg.png')`,
           filter: 'saturate(1.2) contrast(1.08)',
-          opacity: 0.52,
+          opacity: 0.50,
         }}
       />
 
-      {/* Atmospheric Sacred Gradients ensuring High Legibility */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#180205]/85 via-[#260408]/65 to-[#160205]/92 pointer-events-none" />
-      <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_center,rgba(40,5,10,0.35)_0%,rgba(18,2,4,0.82)_80%)] pointer-events-none" />
+      {/* Atmospheric Sacred Gradients ensuring High Legibility with rich temple red tone */}
+      <div 
+        className="absolute inset-0 z-0 pointer-events-none opacity-80"
+        style={{
+          background: 'linear-gradient(135deg, rgba(91,11,23,0.85) 0%, rgba(139,16,33,0.65) 50%, rgba(91,11,23,0.9) 100%)',
+        }}
+      />
+      <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_center,rgba(40,5,10,0.3)_0%,rgba(18,2,4,0.8)_85%)] pointer-events-none" />
 
       {/* Divine Golden Sanctum Radial Aura & Rays */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[550px] h-[300px] sm:h-[550px] bg-[radial-gradient(circle,rgba(243,206,114,0.18)_0%,rgba(180,30,45,0.14)_45%,transparent_70%)] rounded-full blur-3xl pointer-events-none" />

@@ -49,11 +49,12 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <header
       id="main-temple-header"
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-[#2B060A]/95 backdrop-blur-md shadow-2xl border-b border-[#D4AF37]/40'
-          : 'bg-gradient-to-r from-[#2B060A] via-[#3D0A10] to-[#200407] border-b border-[#D4AF37]/30'
+      className={`sticky top-0 z-50 transition-all duration-300 border-b border-[#D4AF37]/35 ${
+        isScrolled ? 'shadow-2xl' : 'shadow-lg'
       }`}
+      style={{
+        background: 'linear-gradient(135deg, #5b0b17 0%, var(--primary-red) 50%, #5b0b17 100%)',
+      }}
     >
       {/* Venkateswara Swamy Sloka Top Scroller (One by One with Swamy Icons) */}
       <TopSlokaScroller currentLang={currentLang} />
@@ -150,7 +151,12 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Mobile & Tablet Drawer Menu with Smaller Responsive Font Size */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#240407] border-t border-[#D4AF37]/30 px-3 py-2.5 space-y-1 shadow-2xl animate-in slide-in-from-top-2 duration-200">
+        <div 
+          className="lg:hidden border-t border-[#D4AF37]/30 px-3 py-2.5 space-y-1 shadow-2xl animate-in slide-in-from-top-2 duration-200"
+          style={{
+            background: 'linear-gradient(135deg, #5b0b17 0%, var(--primary-red) 50%, #5b0b17 100%)',
+          }}
+        >
           {/* Mobile Menu Logo Header */}
           <div className="flex items-center gap-2.5 px-3 py-2 mb-2 bg-[#1A0205] rounded-lg border border-[#D4AF37]/25">
             <div className="p-0.5 rounded-full bg-[#5B101D]/50 border border-[#D4AF37]/40 shrink-0">
