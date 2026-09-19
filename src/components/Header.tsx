@@ -98,8 +98,8 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
           </button>
 
-          {/* Desktop Navigation Links (Compact Font Size & Refined Spacing) */}
-          <nav className="hidden lg:flex items-center space-x-1" aria-label="Main Navigation">
+          {/* Desktop Navigation Links (Spacious, Breathable Spacing Between Menu Links) */}
+          <nav className="hidden lg:flex items-center gap-2 xl:gap-3.5 2xl:gap-5" aria-label="Main Navigation">
             {navItems.map((item) => {
               const isActive = activeTab === item.id;
               return (
@@ -107,7 +107,7 @@ export const Header: React.FC<HeaderProps> = ({
                   key={item.id}
                   id={`nav-link-${item.id}`}
                   onClick={() => handleNavClick(item)}
-                  className={`px-2.5 py-1.5 rounded-lg text-[11.5px] xl:text-xs font-semibold tracking-wide transition-all duration-200 whitespace-nowrap ${
+                  className={`px-2.5 xl:px-3.5 py-1.5 rounded-lg text-xs xl:text-[13px] font-semibold tracking-wide transition-all duration-200 whitespace-nowrap ${
                     isActive
                       ? 'bg-[#5B101D] text-[#FFE58F] border border-[#D4AF37]/50 shadow-inner'
                       : 'text-[#F5EDE0] hover:text-[#FFE58F] hover:bg-[#5B101D]/50'
