@@ -33,14 +33,19 @@ export const Hero: React.FC<HeroProps> = ({
       id="hero-section" 
       className="relative min-h-[75vh] sm:min-h-[80vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#1E0306] via-[#35070D] to-[#180205] text-white py-8 sm:py-14"
     >
-      {/* Background Architectural Watermark with Warm Temple Tint */}
+      {/* Background Lord Sri Venkateswara Swamy Divine Sanctum Image */}
       <div 
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-25 pointer-events-none"
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat pointer-events-none transition-opacity duration-700"
         style={{
-          backgroundImage: `url('/images/temple-gopuram.svg')`,
-          filter: 'brightness(0.45) saturate(1.3)'
+          backgroundImage: `url('/images/venkateswara-hero-bg.png')`,
+          filter: 'saturate(1.2) contrast(1.08)',
+          opacity: 0.52,
         }}
       />
+
+      {/* Atmospheric Sacred Gradients ensuring High Legibility */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#180205]/85 via-[#260408]/65 to-[#160205]/92 pointer-events-none" />
+      <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_center,rgba(40,5,10,0.35)_0%,rgba(18,2,4,0.82)_80%)] pointer-events-none" />
 
       {/* Divine Golden Sanctum Radial Aura & Rays */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[550px] h-[300px] sm:h-[550px] bg-[radial-gradient(circle,rgba(243,206,114,0.18)_0%,rgba(180,30,45,0.14)_45%,transparent_70%)] rounded-full blur-3xl pointer-events-none" />

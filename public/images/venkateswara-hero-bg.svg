@@ -1,0 +1,313 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%">
+  <defs>
+    <!-- Deep Temple Sanctum Gradient -->
+    <radialGradient id="sanctumGlow" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#4A0C14" stop-opacity="1"/>
+      <stop offset="25%" stop-color="#34070D" stop-opacity="1"/>
+      <stop offset="55%" stop-color="#200306" stop-opacity="1"/>
+      <stop offset="85%" stop-color="#120103" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#080002" stop-opacity="1"/>
+    </radialGradient>
+
+    <!-- Divine Golden Light Radiance -->
+    <radialGradient id="divineAura" cx="50%" cy="40%" r="42%">
+      <stop offset="0%" stop-color="#FFE57F" stop-opacity="0.8"/>
+      <stop offset="25%" stop-color="#FFB300" stop-opacity="0.5"/>
+      <stop offset="55%" stop-color="#FF6F00" stop-opacity="0.25"/>
+      <stop offset="80%" stop-color="#B71C1C" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Master Gold Gradients -->
+    <linearGradient id="deepGold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFF8E1"/>
+      <stop offset="25%" stop-color="#FFE082"/>
+      <stop offset="60%" stop-color="#FFB300"/>
+      <stop offset="85%" stop-color="#C67D0A"/>
+      <stop offset="100%" stop-color="#7B4702"/>
+    </linearGradient>
+
+    <linearGradient id="brightGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="30%" stop-color="#FFE57F"/>
+      <stop offset="60%" stop-color="#FFC107"/>
+      <stop offset="100%" stop-color="#B36B00"/>
+    </linearGradient>
+
+    <linearGradient id="flameGlow" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#D50000"/>
+      <stop offset="35%" stop-color="#FF6D00"/>
+      <stop offset="70%" stop-color="#FFEA00"/>
+      <stop offset="100%" stop-color="#FFFFFF"/>
+    </linearGradient>
+
+    <!-- Filters -->
+    <filter id="divineGlow" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur stdDeviation="16" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <filter id="softGlow" x="-15%" y="-15%" width="130%" height="130%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <filter id="lampGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Base Sanctum Dark Wall -->
+  <rect width="1920" height="1080" fill="url(#sanctumGlow)"/>
+
+  <!-- Subtle Temple Architecture Pillars on Outer Edges -->
+  <!-- Left Grand Sanctum Pillar -->
+  <g opacity="0.45">
+    <rect x="80" y="0" width="120" height="1080" fill="#1C0407"/>
+    <rect x="95" y="0" width="90" height="1080" fill="#28060B"/>
+    <line x1="80" y1="0" x2="80" y2="1080" stroke="#FFD54F" stroke-width="1.5" stroke-opacity="0.3"/>
+    <line x1="200" y1="0" x2="200" y2="1080" stroke="#FFD54F" stroke-width="1.5" stroke-opacity="0.3"/>
+    <!-- Pillar carvings -->
+    <path d="M 80,180 L 200,180 M 80,200 L 200,200 M 80,480 L 200,480 M 80,500 L 200,500 M 80,820 L 200,820 M 80,840 L 200,840" stroke="#FFD54F" stroke-width="2" stroke-opacity="0.35"/>
+  </g>
+
+  <!-- Right Grand Sanctum Pillar -->
+  <g opacity="0.45">
+    <rect x="1720" y="0" width="120" height="1080" fill="#1C0407"/>
+    <rect x="1735" y="0" width="90" height="1080" fill="#28060B"/>
+    <line x1="1720" y1="0" x2="1720" y2="1080" stroke="#FFD54F" stroke-width="1.5" stroke-opacity="0.3"/>
+    <line x1="1840" y1="0" x2="1840" y2="1080" stroke="#FFD54F" stroke-width="1.5" stroke-opacity="0.3"/>
+    <path d="M 1720,180 L 1840,180 M 1720,200 L 1840,200 M 1720,480 L 1840,480 M 1720,500 L 1840,500 M 1720,820 L 1840,820 M 1720,840 L 1840,840" stroke="#FFD54F" stroke-width="2" stroke-opacity="0.35"/>
+  </g>
+
+  <!-- Divine Sunburst Rays radiating from behind Lord Venkateswara -->
+  <g opacity="0.28">
+    <circle cx="960" cy="460" r="480" fill="url(#divineAura)"/>
+    <!-- Sunbeams -->
+    <path d="M 960,460 L 500,-100 L 560,-100 Z" fill="#FFE082" opacity="0.25"/>
+    <path d="M 960,460 L 750,-100 L 820,-100 Z" fill="#FFE082" opacity="0.35"/>
+    <path d="M 960,460 L 1100,-100 L 1170,-100 Z" fill="#FFE082" opacity="0.35"/>
+    <path d="M 960,460 L 1360,-100 L 1420,-100 Z" fill="#FFE082" opacity="0.25"/>
+    <path d="M 960,460 L 1650,150 L 1700,200 Z" fill="#FFE082" opacity="0.2"/>
+    <path d="M 960,460 L 220,150 L 270,200 Z" fill="#FFE082" opacity="0.2"/>
+    <path d="M 960,460 L 1750,450 L 1750,520 Z" fill="#FFE082" opacity="0.25"/>
+    <path d="M 960,460 L 170,450 L 170,520 Z" fill="#FFE082" opacity="0.25"/>
+  </g>
+
+  <!-- ==================== CENTRAL SANCTUM: LORD SRI VENKATESWARA SWAMY ==================== -->
+  <g transform="translate(0, 20)">
+
+    <!-- 1. GRAND GOLDEN PRABHAVALI (ARCH OF GLORY / MAKARATORANA) -->
+    <!-- Outer Radiant Halo behind Prabhavali -->
+    <circle cx="960" cy="440" r="320" fill="url(#divineAura)" filter="url(#divineGlow)"/>
+
+    <!-- Sculpted Prabhavali Pillars -->
+    <!-- Left Pillar -->
+    <path d="M 640,940 L 640,520 Q 640,490 660,480 L 675,480 Q 655,520 655,940 Z" fill="url(#deepGold)"/>
+    <rect x="625" y="520" width="40" height="420" rx="6" fill="url(#brightGold)" stroke="#674102" stroke-width="2"/>
+    <circle cx="645" cy="560" r="8" fill="#C21834"/>
+    <circle cx="645" cy="680" r="8" fill="#1B5E20"/>
+    <circle cx="645" cy="800" r="8" fill="#C21834"/>
+
+    <!-- Right Pillar -->
+    <path d="M 1280,940 L 1280,520 Q 1280,490 1260,480 L 1245,480 Q 1265,520 1265,940 Z" fill="url(#deepGold)"/>
+    <rect x="1255" y="520" width="40" height="420" rx="6" fill="url(#brightGold)" stroke="#674102" stroke-width="2"/>
+    <circle cx="1275" cy="560" r="8" fill="#C21834"/>
+    <circle cx="1275" cy="680" r="8" fill="#1B5E20"/>
+    <circle cx="1275" cy="800" r="8" fill="#C21834"/>
+
+    <!-- Master Golden Arch Horseshoe (Prabhavali Arch) -->
+    <path d="M 625,540 C 625,180 770,110 960,110 C 1150,110 1295,180 1295,540" fill="none" stroke="url(#deepGold)" stroke-width="42" stroke-linecap="round" filter="url(#softGlow)"/>
+    <path d="M 645,540 C 645,210 780,145 960,145 C 1140,145 1275,210 1275,540" fill="none" stroke="#FFF7C2" stroke-width="8" stroke-dasharray="16 10"/>
+    <path d="M 610,540 C 610,160 760,85 960,85 C 1160,85 1310,160 1310,540" fill="none" stroke="#FFA000" stroke-width="6"/>
+
+    <!-- Prabhavali Flaming Rays around arch -->
+    <g fill="#FFD54F" opacity="0.8">
+      <circle cx="730" cy="280" r="14" fill="#FFE57F"/>
+      <circle cx="810" cy="200" r="15" fill="#FFE57F"/>
+      <circle cx="900" cy="145" r="16" fill="#FFE57F"/>
+      <circle cx="1020" cy="145" r="16" fill="#FFE57F"/>
+      <circle cx="1110" cy="200" r="15" fill="#FFE57F"/>
+      <circle cx="1190" cy="280" r="14" fill="#FFE57F"/>
+    </g>
+
+    <!-- Prabhavali Kirtimukha Supreme Crest at Peak -->
+    <g transform="translate(960, 95)" filter="url(#softGlow)">
+      <circle cx="0" cy="0" r="32" fill="url(#brightGold)" stroke="#674102" stroke-width="3"/>
+      <circle cx="0" cy="0" r="16" fill="#C21834" stroke="#FFF" stroke-width="2"/>
+      <polygon points="0,-48 18,-24 0,-18 -18,-24" fill="#FFE082"/>
+      <path d="M -24,8 Q 0,28 24,8" stroke="#784C07" stroke-width="4" fill="none"/>
+    </g>
+
+    <!-- 2. SACRED DEITY BODY (SHYAMALA THIRUMENI - DIVINE BLACK STONE) -->
+    <!-- Broad Stately Torso and Robes -->
+    <path d="M 830,940 L 840,600 Q 845,500 875,470 L 900,450 L 1020,450 L 1045,470 Q 1075,500 1080,600 L 1090,940 Z" fill="#0D0E14" stroke="#252A35" stroke-width="3"/>
+
+    <!-- 3. GOLDEN PITAMBARA SILKS, WAIST BANDS (ODDIYANAM) & JEWELED NECKLACES -->
+    <!-- Gold Pitha Silk Wrap -->
+    <path d="M 850,720 Q 960,780 1070,720 L 1080,940 L 840,940 Z" fill="url(#deepGold)" stroke="#8A5A00" stroke-width="3"/>
+    <!-- Kasula Peru (Long Golden Coin Malas) -->
+    <path d="M 870,480 Q 960,620 1050,480" fill="none" stroke="url(#brightGold)" stroke-width="14" filter="url(#softGlow)"/>
+    <path d="M 880,520 Q 960,670 1040,520" fill="none" stroke="url(#brightGold)" stroke-width="12"/>
+    <path d="M 890,560 Q 960,730 1030,560" fill="none" stroke="url(#brightGold)" stroke-width="16" stroke-dasharray="10 6"/>
+    
+    <!-- Central Kaustubha Jewel & Makara Kanti Pendant -->
+    <g transform="translate(960, 640)" filter="url(#softGlow)">
+      <polygon points="0,-22 24,0 0,26 -24,0" fill="#E51E2B" stroke="#FFF7C2" stroke-width="3"/>
+      <circle cx="0" cy="0" r="9" fill="#1B5E20" stroke="#FFF" stroke-width="1.5"/>
+    </g>
+
+    <!-- 4. SACRED FLORAL & TULASI MALAS (GARLANDS) -->
+    <!-- Outer Lotus Blossom Garland (Vanamala) -->
+    <path d="M 825,460 C 785,640 820,860 960,860 C 1100,860 1135,640 1095,460" fill="none" stroke="#E91E63" stroke-width="20" stroke-dasharray="14 10" stroke-linecap="round"/>
+    <path d="M 825,460 C 785,640 820,860 960,860 C 1100,860 1135,640 1095,460" fill="none" stroke="#FFF" stroke-width="8" stroke-dasharray="14 10" stroke-linecap="round"/>
+    <!-- Inner Sacred Tulasi Foliage Garland -->
+    <path d="M 845,470 C 815,620 840,820 960,820 C 1080,820 1105,620 1075,470" fill="none" stroke="#2E7D32" stroke-width="14" stroke-dasharray="10 8" stroke-linecap="round"/>
+
+    <!-- 5. FOUR SACRED HANDS (CHATURBHUJA) -->
+    <!-- Upper Right Arm holding Divine Flaming Sudarshana Chakra -->
+    <path d="M 850,490 Q 750,470 735,390" fill="none" stroke="#0D0E14" stroke-width="26" stroke-linecap="round"/>
+    <!-- Sudarshana Chakra -->
+    <g transform="translate(730, 360)" filter="url(#softGlow)">
+      <circle cx="0" cy="0" r="54" fill="#FFC107" opacity="0.3"/>
+      <!-- Flaming Diamond Points -->
+      <path d="M 0,-56 L 8,-40 L -8,-40 Z" fill="#FF8F00"/>
+      <path d="M 0,56 L 8,40 L -8,40 Z" fill="#FF8F00"/>
+      <path d="M -56,0 L -40,8 L -40,-8 Z" fill="#FF8F00"/>
+      <path d="M 56,0 L 40,8 L 40,-8 Z" fill="#FF8F00"/>
+      <path d="M -38,-38 L -33,-24 L -24,-33 Z" fill="#FFA000"/>
+      <path d="M 38,-38 L 33,-24 L 24,-33 Z" fill="#FFA000"/>
+      <path d="M -38,38 L -33,24 L -24,33 Z" fill="#FFA000"/>
+      <path d="M 38,38 L 33,24 L 24,33 Z" fill="#FFA000"/>
+      <!-- Golden Wheel Rim -->
+      <circle cx="0" cy="0" r="44" fill="url(#deepGold)" stroke="#674102" stroke-width="3"/>
+      <circle cx="0" cy="0" r="28" fill="#FF8F00" stroke="#FFF7C2" stroke-width="2.5"/>
+      <circle cx="0" cy="0" r="16" fill="#C21834" stroke="#FFE57F" stroke-width="2.5"/>
+    </g>
+
+    <!-- Upper Left Arm holding Divine Panchajanya Shankha (Conch Shell) -->
+    <path d="M 1070,490 Q 1170,470 1185,390" fill="none" stroke="#0D0E14" stroke-width="26" stroke-linecap="round"/>
+    <!-- Panchajanya Shankha -->
+    <g transform="translate(1190, 360)" filter="url(#softGlow)">
+      <circle cx="0" cy="0" r="54" fill="#FFC107" opacity="0.3"/>
+      <!-- Flaming Points -->
+      <path d="M 0,-56 L 8,-40 L -8,-40 Z" fill="#FF8F00"/>
+      <path d="M 0,56 L 8,40 L -8,40 Z" fill="#FF8F00"/>
+      <path d="M -56,0 L -40,8 L -40,-8 Z" fill="#FF8F00"/>
+      <path d="M 56,0 L 40,8 L 40,-8 Z" fill="#FF8F00"/>
+      <!-- Golden Base Shell -->
+      <circle cx="0" cy="0" r="44" fill="url(#deepGold)" stroke="#674102" stroke-width="3"/>
+      <!-- White Conch Spiral -->
+      <path d="M -14,-26 C 12,-30 28,-18 28,2 C 28,18 14,28 -3,25 C -17,22 -24,10 -20,-6 C -17,-20 -5,-23 -14,-26 Z" fill="#FFFCEB" stroke="#D4AF37" stroke-width="2.5"/>
+      <circle cx="0" cy="0" r="15" fill="#C21834" stroke="#FFE57F" stroke-width="2"/>
+    </g>
+
+    <!-- Lower Right Arm: Varada / Abhaya Hastha (Golden Palm facing devotees) -->
+    <path d="M 855,540 Q 820,630 885,680" fill="none" stroke="#0D0E14" stroke-width="24" stroke-linecap="round"/>
+    <g transform="translate(885, 680)" filter="url(#softGlow)">
+      <circle cx="0" cy="0" r="22" fill="url(#brightGold)" stroke="#784C07" stroke-width="2"/>
+      <circle cx="0" cy="0" r="8" fill="#C21834"/>
+    </g>
+
+    <!-- Lower Left Arm: Kati Hastha (Resting on hip, pointing to divine feet) -->
+    <path d="M 1065,540 Q 1100,630 1035,690" fill="none" stroke="#0D0E14" stroke-width="24" stroke-linecap="round"/>
+    <g transform="translate(1035, 690)" filter="url(#softGlow)">
+      <circle cx="0" cy="0" r="20" fill="url(#brightGold)" stroke="#784C07" stroke-width="2"/>
+      <circle cx="0" cy="0" r="7" fill="#C21834"/>
+    </g>
+
+    <!-- 6. THE SACRED COUNTENANCE (DIVINE FACE & EARS) -->
+    <g transform="translate(960, 420)">
+      <!-- Face Contour -->
+      <path d="M -54,-24 C -56,36 -38,78 0,80 C 38,78 56,36 54,-24 C 28,-14 -28,-14 -54,-24 Z" fill="#0E1017" stroke="#1D2028" stroke-width="3"/>
+      
+      <!-- Makara Kundalas (Golden Ear Ornaments) -->
+      <!-- Left Earring -->
+      <g transform="translate(-62, 20)">
+        <circle cx="0" cy="0" r="18" fill="url(#brightGold)" stroke="#674102" stroke-width="2"/>
+        <circle cx="0" cy="0" r="8" fill="#C21834"/>
+        <path d="M -4,18 L 0,26 L 4,18 Z" fill="#FFF7C2"/>
+      </g>
+      <!-- Right Earring -->
+      <g transform="translate(62, 20)">
+        <circle cx="0" cy="0" r="18" fill="url(#brightGold)" stroke="#674102" stroke-width="2"/>
+        <circle cx="0" cy="0" r="8" fill="#C21834"/>
+        <path d="M -4,18 L 0,26 L 4,18 Z" fill="#FFF7C2"/>
+      </g>
+
+      <!-- SACRED VAISHNAVA TIRUNAMAM (WHITE & VERMILION FOREHEAD MARK) -->
+      <!-- White U-wings -->
+      <g filter="url(#softGlow)">
+        <path d="M -24,-30 L -13,-30 L -3,28 L -13,28 L -19,4 Z" fill="#FFFFFF"/>
+        <path d="M 24,-30 L 13,-30 L 3,28 L 13,28 L 19,4 Z" fill="#FFFFFF"/>
+        <path d="M -13,24 C -5,34 5,34 13,24 L 13,30 C 5,39 -5,39 -13,30 Z" fill="#FFFFFF"/>
+        <!-- Radiant Central Kasturi / Srichurnam (Bright Sacred Red) -->
+        <path d="M -5,-32 L 5,-32 L 4,36 L -4,36 Z" fill="#E51E2B"/>
+        <polygon points="0,48 -5,36 5,36" fill="#E51E2B"/>
+      </g>
+
+      <!-- Divine Gentle Smile & Chin Pearl -->
+      <path d="M -12,58 Q 0,65 12,58" stroke="#FFE082" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <circle cx="0" cy="68" r="3.5" fill="#FFE082"/>
+    </g>
+
+    <!-- 7. TALL TOWERING GOLDEN KIREETAM (DIAMOND-JEWELED CROWN) -->
+    <g transform="translate(960, 410)" filter="url(#softGlow)">
+      <!-- Finial Kalasha Peak -->
+      <polygon points="0,-270 -8,-250 8,-250" fill="#FFFDE7"/>
+      <circle cx="0" cy="-242" r="10" fill="#FFD54F" stroke="#784C07" stroke-width="2"/>
+      <circle cx="0" cy="-242" r="4.5" fill="#C21834"/>
+
+      <!-- Crown Tier 1 (Cone Top) -->
+      <path d="M -22,-190 L 22,-190 L 15,-232 L -15,-232 Z" fill="url(#deepGold)" stroke="#674102" stroke-width="2"/>
+      <circle cx="0" cy="-210" r="5" fill="#C21834"/>
+
+      <!-- Crown Tier 2 (Middle Gem Tier) -->
+      <path d="M -36,-138 L 36,-138 L 26,-190 L -26,-190 Z" fill="url(#deepGold)" stroke="#674102" stroke-width="2.5"/>
+      <circle cx="0" cy="-164" r="7" fill="#1B5E20" stroke="#FFF" stroke-width="1.2"/>
+      <circle cx="-18" cy="-164" r="4.5" fill="#FFF"/>
+      <circle cx="18" cy="-164" r="4.5" fill="#FFF"/>
+
+      <!-- Crown Tier 3 (Broad Diamond Band) -->
+      <path d="M -52,-86 L 52,-86 L 40,-138 L -40,-138 Z" fill="url(#deepGold)" stroke="#674102" stroke-width="2.5"/>
+      <circle cx="-32" cy="-112" r="6" fill="#C21834"/>
+      <circle cx="-16" cy="-112" r="6" fill="#1B5E20"/>
+      <circle cx="0" cy="-112" r="8" fill="#C21834" stroke="#FFF" stroke-width="1.5"/>
+      <circle cx="16" cy="-112" r="6" fill="#1B5E20"/>
+      <circle cx="32" cy="-112" r="6" fill="#C21834"/>
+
+      <!-- Crown Tier 4 (Base Ornate Band with Pearls) -->
+      <path d="M -64,-34 L 64,-34 L 56,-86 L -56,-86 Z" fill="url(#brightGold)" stroke="#674102" stroke-width="3"/>
+      <line x1="-54" y1="-60" x2="54" y2="-60" stroke="#FFFDE7" stroke-width="4" stroke-dasharray="4 4"/>
+      <!-- Bottom Rim Arch over Visage -->
+      <path d="M -66,-34 C -34,-20 34,-20 66,-34 L 68,-22 C 34,-8 -34,-8 -68,-22 Z" fill="#FFE57F" stroke="#784C07" stroke-width="2.2"/>
+    </g>
+
+    <!-- 8. FLANKING BRASS OIL LAMPS (AKHANDA DEEPAS / DIYAS) -->
+    <!-- Left Deepam -->
+    <g transform="translate(480, 680)" filter="url(#lampGlow)">
+      <!-- Pedestal Stand -->
+      <path d="M 0,260 L 60,260 L 50,140 L 65,140 L 45,60 L 15,60 L -5,140 L 10,140 Z" fill="url(#deepGold)" stroke="#674102" stroke-width="2"/>
+      <ellipse cx="30" cy="60" rx="42" ry="14" fill="url(#brightGold)" stroke="#8A5A00" stroke-width="2"/>
+      <!-- Burning Golden Sacred Flame -->
+      <path d="M 30,50 Q 42,20 30,-10 Q 18,20 30,50 Z" fill="url(#flameGlow)"/>
+      <circle cx="30" cy="18" r="14" fill="#FFE57F" opacity="0.4"/>
+    </g>
+
+    <!-- Right Deepam -->
+    <g transform="translate(1380, 680)" filter="url(#lampGlow)">
+      <!-- Pedestal Stand -->
+      <path d="M 0,260 L 60,260 L 50,140 L 65,140 L 45,60 L 15,60 L -5,140 L 10,140 Z" fill="url(#deepGold)" stroke="#674102" stroke-width="2"/>
+      <ellipse cx="30" cy="60" rx="42" ry="14" fill="url(#brightGold)" stroke="#8A5A00" stroke-width="2"/>
+      <!-- Burning Golden Sacred Flame -->
+      <path d="M 30,50 Q 42,20 30,-10 Q 18,20 30,50 Z" fill="url(#flameGlow)"/>
+      <circle cx="30" cy="18" r="14" fill="#FFE57F" opacity="0.4"/>
+    </g>
+
+  </g>
+
+  <!-- Divine Golden Temple Floor Reflections at Bottom -->
+  <rect x="0" y="980" width="1920" height="100" fill="#080102" opacity="0.8"/>
+  <line x1="0" y1="980" x2="1920" y2="980" stroke="#FFD54F" stroke-width="2" stroke-opacity="0.3"/>
+</svg>
