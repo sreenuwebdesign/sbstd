@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Globe } from 'lucide-react';
+import { Menu, X, Globe, Volume2, VolumeX } from 'lucide-react';
 import { Language } from '../types';
 import { TempleEmblem } from './TempleMotifs';
 import { TopSlokaScroller } from './TopSlokaScroller';
+import { chantAudio } from '../utils/chantAudio';
 
 interface HeaderProps {
   currentLang?: Language;
@@ -19,6 +20,15 @@ export const Header: React.FC<HeaderProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeTab, setActiveTab] = useState('home');
+  const [isChantPlaying, setIsChantPlaying] = useState(false);
+
+  useEffect(() => {
+    setIsChantPlaying(chantAudio.isChantPlaying());
+    const unsub = chantAudio.addListener((playing) => {
+      setIsChantPlaying(playing);
+    });
+    return unsub;
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -78,19 +88,19 @@ export const Header: React.FC<HeaderProps> = ({
             {/* 3-Tier Devasthanam Typographic Lockup */}
             <div className="flex flex-col justify-center min-w-0">
               {/* Line 1: Sri Sridevi Bhudevi Sametha */}
-              <span className="font-poppins text-[#F3CE72] font-semibold text-[8px] sm:text-[10px] md:text-xs lg:text-[13px] tracking-[0.05em] sm:tracking-[0.08em] uppercase leading-tight truncate">
+              <span className="font-poppins text-[#F3CE72] font-semibold text-[10px] sm:text-[10px] md:text-xs lg:text-[13px] tracking-[0.05em] sm:tracking-[0.08em] uppercase leading-tight truncate">
                 {currentLang === 'te' ? 'శ్రీ శ్రీదేవి భూదేవి సమేత' : 'Sri Sridevi Bhudevi Sametha'}
               </span>
 
               {/* Line 2: Thirumalanadha Swamy (middle - white color) */}
-              <span className="font-poppins font-black text-white text-[11px] sm:text-base md:text-lg lg:text-xl tracking-[0.03em] sm:tracking-[0.05em] uppercase leading-tight my-0.5 drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)] truncate">
+              <span className="font-poppins font-black text-white text-[13px] sm:text-base md:text-lg lg:text-xl tracking-[0.03em] sm:tracking-[0.05em] uppercase leading-tight my-0.5 drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)] truncate">
                 {currentLang === 'te' ? 'తిరుమలనాథ స్వామి' : 'Thirumalanadha Swamy'}
               </span>
 
               {/* Line 3: Devasthanam */}
               <div className="flex items-center gap-1 sm:gap-1.5">
                 <div className="h-[1px] w-2.5 sm:w-5 lg:w-7 bg-gradient-to-r from-transparent via-[#D4AF37] to-[#F3CE72]" />
-                <span className="font-poppins font-bold text-[#F3CE72] text-[7.5px] sm:text-[9px] md:text-[10.5px] tracking-[0.14em] sm:tracking-[0.2em] uppercase whitespace-nowrap">
+                <span className="font-poppins font-bold text-[#F3CE72] text-[9.5px] sm:text-[9.5px] md:text-[10.5px] tracking-[0.14em] sm:tracking-[0.2em] uppercase whitespace-nowrap">
                   {currentLang === 'te' ? 'దేవస్థానం' : 'Devasthanam'}
                 </span>
                 <div className="h-[1px] w-2.5 sm:w-5 lg:w-7 bg-gradient-to-l from-transparent via-[#D4AF37] to-[#F3CE72]" />
@@ -119,8 +129,37 @@ export const Header: React.FC<HeaderProps> = ({
             })}
           </nav>
 
-          {/* Right Action Controls: Language Switcher & Mobile Toggle (Bell Removed as Requested) */}
+          {/* Right Action Controls: BG Music Chant Toggle, Language Switcher & Mobile Toggle */}
           <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            {/* Om Namo Venkatesaya Chant Music (Low Sound) Toggle */}
+            <button
+              id="header-bg-chant-toggle"
+              onClick={() => chantAudio.toggleChant()}
+              className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-1 sm:py-1.5 rounded-lg border transition-all shadow-md active:scale-95 ${
+                isChantPlaying
+                  ? 'bg-[#5B101D] border-[#FFE58F]/70 text-[#FFE58F]'
+                  : 'bg-[#4A0E17]/80 hover:bg-[#5B101D] border-[#D4AF37]/40 text-[#F5EDE0]'
+              }`}
+              title={isChantPlaying ? 'Pause Chant Music' : 'Play Om Namo Venkatesaya Chant (Low Sound)'}
+              aria-label="Toggle Om Namo Venkatesaya Background Chant Music"
+            >
+              {isChantPlaying ? (
+                <>
+                  <Volume2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#E5B839] animate-pulse shrink-0" />
+                  <span className="text-[10px] sm:text-xs font-semibold hidden md:inline">
+                    {currentLang === 'te' ? 'జపం చాలు' : 'Chant On'}
+                  </span>
+                </>
+              ) : (
+                <>
+                  <VolumeX className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#D4AF37]/70 shrink-0" />
+                  <span className="text-[10px] sm:text-xs font-semibold hidden md:inline">
+                    {currentLang === 'te' ? 'జప సంగీతం' : 'BG Chant'}
+                  </span>
+                </>
+              )}
+            </button>
+
             {/* Language Switcher */}
             {onToggleLang && (
               <button
