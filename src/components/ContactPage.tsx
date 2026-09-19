@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { 
-  MapPin, Phone, Mail, Clock, Send, CheckCircle, AlertCircle, 
-  ExternalLink, ShieldCheck, Compass, MessageSquare 
+  MapPin, Phone, Clock, Send, CheckCircle, AlertCircle, 
+  ExternalLink, ShieldCheck, MessageSquare 
 } from 'lucide-react';
 import { Language, ContactMessage } from '../types';
 import { TEMPLE_INFO } from '../data/templeData';
@@ -93,8 +93,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({ currentLang, onSendMes
           </p>
         </div>
 
-        {/* Info Cards Grid: Address, Phone, Email, Timings */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-10 sm:mb-14">
+        {/* Info Cards Grid: Address, Phone, Timings (3 Cards) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-10 sm:mb-14">
           
           {/* 1. Temple Address */}
           <div className="p-6 rounded-2xl bg-white border border-[#E8DCC0] shadow-sm hover:shadow-md transition-shadow">
@@ -124,21 +124,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ currentLang, onSendMes
             </p>
           </div>
 
-          {/* 3. Email Inquiries */}
-          <div className="p-6 rounded-2xl bg-white border border-[#E8DCC0] shadow-sm hover:shadow-md transition-shadow">
-            <div className="w-10 h-10 rounded-xl bg-[#FAF2E1] border border-[#D4AF37] flex items-center justify-center text-[#5B101D] mb-4">
-              <Mail className="w-5 h-5 text-[#C25E00]" />
-            </div>
-            <h3 className="font-serif-temple text-base font-bold text-[#4A0E17] mb-1">
-              {currentLang === 'te' ? 'ఇమెయిల్ చిరునామా' : 'Email Inquiries'}
-            </h3>
-            <p className="text-xs sm:text-sm text-[#5D4037] leading-relaxed break-words">
-              {TEMPLE_INFO.email}<br />
-              donations@{TEMPLE_INFO.email.replace(/.*@/, '')}
-            </p>
-          </div>
-
-          {/* 4. Temple Timings */}
+          {/* 3. Temple Timings */}
           <div className="p-6 rounded-2xl bg-white border border-[#E8DCC0] shadow-sm hover:shadow-md transition-shadow">
             <div className="w-10 h-10 rounded-xl bg-[#FAF2E1] border border-[#D4AF37] flex items-center justify-center text-[#5B101D] mb-4">
               <Clock className="w-5 h-5 text-[#C25E00]" />
@@ -214,15 +200,6 @@ export const ContactPage: React.FC<ContactPageProps> = ({ currentLang, onSendMes
                     <ExternalLink className="w-3 h-3" />
                   </a>
                 </div>
-              </div>
-
-              <div className="mt-4 text-xs text-[#5D4037] flex items-center gap-2">
-                <Compass className="w-4 h-4 text-[#C25E00] shrink-0" />
-                <span>
-                  {currentLang === 'te'
-                    ? 'రైల్వే స్టేషన్ నుండి 3 కి.మీ, బస్ స్టేషన్ నుండి 1.5 కి.మీ దూరం. ఆటోలు, బస్సులు నిరంతరం అందుబాటులో ఉంటాయి.'
-                    : 'Located 3 km from nearest Railway Station & 1.5 km from Central Bus Station. Continuous public & local transport available.'}
-                </span>
               </div>
             </div>
           </div>

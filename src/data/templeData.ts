@@ -16,8 +16,8 @@ export const TEMPLE_INFO = {
     mahaMangalaHarathi: '12:00 PM & 08:30 PM',
   },
   panNumber: 'AAATS1234F',
-  trustNameEn: 'Sri Sridivya Bhudevi Sametha Thirumalavasa Sevasesvaseva Trust (SBST)',
-  trustNameTe: 'శ్రీ శ్రీదివ్య భూదేవి సమేత తిరుమలవాస సేవాసేవసేవ ట్రస్ట్ (SBST)',
+  trustNameEn: 'Sri Sridevi Bhudevi Sametha Sri Thirumalanadha Devasthanam (SBSTD)',
+  trustNameTe: 'శ్రీ శ్రీదేవి భూదేవి సమేత శ్రీ తిరుమలనాథ దేవస్థానం (SBSTD)',
   logoUrl: '/images/logo-new.png',
 };
 
