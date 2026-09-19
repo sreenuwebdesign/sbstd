@@ -151,6 +151,21 @@ export const Header: React.FC<HeaderProps> = ({
       {/* Mobile & Tablet Drawer Menu with Smaller Responsive Font Size */}
       {mobileMenuOpen && (
         <div className="lg:hidden bg-[#240407] border-t border-[#D4AF37]/30 px-3 py-2.5 space-y-1 shadow-2xl animate-in slide-in-from-top-2 duration-200">
+          {/* Mobile Menu Logo Header */}
+          <div className="flex items-center gap-2.5 px-3 py-2 mb-2 bg-[#1A0205] rounded-lg border border-[#D4AF37]/25">
+            <div className="p-0.5 rounded-full bg-[#5B101D]/50 border border-[#D4AF37]/40 shrink-0">
+              <TempleEmblem className="w-9 h-9" />
+            </div>
+            <div className="flex flex-col min-w-0">
+              <span className="text-[#F3CE72] text-[10px] uppercase font-semibold tracking-wider truncate">
+                {currentLang === 'te' ? 'శ్రీ శ్రీదేవి భూదేవి సమేత' : 'Sri Sridevi Bhudevi Sametha'}
+              </span>
+              <span className="text-white text-xs uppercase font-bold tracking-wide truncate">
+                {currentLang === 'te' ? 'తిరుమలనాథ స్వామి దేవస్థానం' : 'Thirumalanadha Swamy'}
+              </span>
+            </div>
+          </div>
+
           {navItems.map((item) => {
             const isActive = activeTab === item.id;
             return (

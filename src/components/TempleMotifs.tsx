@@ -129,10 +129,13 @@ export const LotusIcon: React.FC<{ className?: string }> = ({ className = 'w-6 h
 
 export const TempleEmblem: React.FC<{ className?: string; alt?: string }> = ({ 
   className = 'w-10 h-10', 
-  alt = 'Sri Tirumalanadha Swami Temple SBST Logo' 
+  alt = 'Sri Sridevi Bhudevi Sametha Sri Thirumalanadha Swamy Devasthanam Logo' 
 }) => (
   <img 
-    src="/images/sbst-logo.svg" 
+    src="/images/logo-new.png" 
+    onError={(e) => {
+      (e.target as HTMLImageElement).src = '/images/sbst-logo.svg';
+    }}
     alt={alt} 
     className={`${className} object-contain filter drop-shadow-md select-none`}
     referrerPolicy="no-referrer"

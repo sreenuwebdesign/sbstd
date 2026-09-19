@@ -1,4 +1,7 @@
-<svg viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+import fs from 'fs';
+import sharp from 'sharp';
+
+const svgContent = `<svg viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
   <defs>
     <!-- Master Lotus Gold Gradients -->
     <linearGradient id="goldPetalBase" x1="512" y1="20" x2="512" y2="300" gradientUnits="userSpaceOnUse">
@@ -342,4 +345,27 @@
     </g>
 
   </g>
-</svg>
+</svg>`;
+
+async function run() {
+  // Save master SVG
+  fs.writeFileSync('public/images/sbst-logo.svg', svgContent, 'utf-8');
+  fs.writeFileSync('public/images/temple-logo.svg', svgContent, 'utf-8');
+
+  // Convert to high-resolution PNGs with sharp
+  const buffer = Buffer.from(svgContent);
+
+  // 1024x1024 high resolution PNG
+  await sharp(buffer)
+    .resize(1024, 1024)
+    .png({ quality: 100 })
+    .toFile('public/images/logo-new.png');
+
+  // Copy to public/logo-new.png as well so both paths resolve
+  fs.copyFileSync('public/images/logo-new.png', 'public/logo-new.png');
+  fs.copyFileSync('public/images/logo-new.png', 'public/images/sbst-logo.png');
+
+  console.log('Successfully generated logo-new.png and sbst-logo.svg!');
+}
+
+run().catch(console.error);
