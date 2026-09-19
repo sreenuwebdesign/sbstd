@@ -5,8 +5,8 @@ export const TEMPLE_INFO = {
   nameTe: 'శ్రీ తిరుమలనాథ స్వామి దేవాలయం',
   deityNameEn: 'Lord Sri Tirumalanadha Swamy & Goddess Padmavathi Devi',
   deityNameTe: 'శ్రీ తిరుమలనాథ స్వామి & శ్రీ పద్మావతి దేవి',
-  addressEn: 'Temple Hill Road, Ananda Nilayam, Tirupati District, Andhra Pradesh - 517501, India',
-  addressTe: 'ఆలయ కొండ మార్గం, ఆనంద నిలయం, తిరుపతి జిల్లా, ఆంధ్రప్రదేశ్ - 517501',
+  addressEn: 'Thirumalakonda, Ayyalurivari Palle, C. S. Puram Mandal, Prakasam District, Andhra Pradesh - 523112, India',
+  addressTe: 'తిరుమలకొండ, అయ్యలూరివారి పల్లె, సి.ఎస్. పురం మండలం, ప్రకాశం జిల్లా, ఆంధ్రప్రదేశ్ - 523112',
   phone: '+91 877 222 5555',
   email: 'contact@sritirumalanadhaswami.org',
   upiId: 'tirumalanadha@upi',
@@ -16,8 +16,9 @@ export const TEMPLE_INFO = {
     mahaMangalaHarathi: '12:00 PM & 08:30 PM',
   },
   panNumber: 'AAATS1234F',
-  trustNameEn: 'Sri Tirumalanadha Swami Temple Religious & Charitable Trust',
-  trustNameTe: 'శ్రీ తిరుమలనాథ స్వామి ధార్మిక సేవా ట్రస్ట్',
+  trustNameEn: 'Sri Sridivya Bhudevi Sametha Thirumalavasa Sevasesvaseva Trust (SBST)',
+  trustNameTe: 'శ్రీ శ్రీదివ్య భూదేవి సమేత తిరుమలవాస సేవాసేవసేవ ట్రస్ట్ (SBST)',
+  logoUrl: '/images/sbst-logo.svg',
 };
 
 export interface DeityProfile {

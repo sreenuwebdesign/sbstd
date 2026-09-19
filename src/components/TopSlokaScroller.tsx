@@ -1,0 +1,120 @@
+import React, { useState, useEffect } from 'react';
+import { Language } from '../types';
+import { 
+  VaishnavaTirunamam, 
+  SankhaIcon, 
+  ChakraIcon, 
+  LotusIcon, 
+  DiyaIcon 
+} from './TempleMotifs';
+
+interface TopSlokaScrollerProps {
+  currentLang: Language;
+}
+
+interface SlokaItem {
+  id: number;
+  slokaEn: string;
+  slokaTe: string;
+  iconType: 'tirunamam' | 'sankha' | 'chakra' | 'lotus' | 'diya';
+}
+
+const VENKATESWARA_SLOKAS: SlokaItem[] = [
+  {
+    id: 1,
+    slokaEn: 'kalyanadbhuta gatraya kamitartha pradayine | srimad venkatanathaya srinivasaya te namah ||',
+    slokaTe: 'కల్యాణాద్భుత గాత్రాయ కామితార్థ ప్రదాయినే | శ్రీమద్ వేంకటనాథాయ శ్రీనివాసాయ తే నమః ||',
+    iconType: 'tirunamam',
+  },
+  {
+    id: 2,
+    slokaEn: 'suklambaradharam vishnum sasivarnam chaturbhujam | prasanna vadanam dhyayet sarva vighnopa santaye ||',
+    slokaTe: 'శుక్లాంబరధరం విష్ణుం శశివర్ణం చతుర్భుజం | ప్రసన్నవదనం ధ్యాయేత్ సర్వవిఘ్నోపశాంతయే ||',
+    iconType: 'sankha',
+  },
+  {
+    id: 3,
+    slokaEn: 'vina venkatesam na natho na nathah | sada venkatesam smarami smarami ||',
+    slokaTe: 'వినా వేంకటేశం న నాథో న నాథః | సదా వేంకటేశం స్మరామి స్మరామి ||',
+    iconType: 'chakra',
+  },
+  {
+    id: 4,
+    slokaEn: 'venkateso samo devo na bhuto na bhavishyati | sarva papa vinirmukto vishnu lokam sa gacchati ||',
+    slokaTe: 'వేంకటేశో సమో దేవో న భూతో న భవిష్యతి | సర్వపాప వినిర్ముక్తో విష్ణులోకం స గచ్ఛతి ||',
+    iconType: 'lotus',
+  },
+  {
+    id: 5,
+    slokaEn: "sriyah kantaya kalyana nidhaye nidhaye'rthinam | sri venkatanivasaya srinivasaya mangalam ||",
+    slokaTe: 'శ్రియః కాంతాయ కళ్యాణనిధయే నిధయేఽర్థినామ్ | శ్రీవేంకటనివాసాయ శ్రీనివాసాయ మంగళమ్ ||',
+    iconType: 'diya',
+  },
+  {
+    id: 6,
+    slokaEn: 'om niranjanaya vidmahe nirabhasaya dhimahi | tanno venkatesah prachodayat ||',
+    slokaTe: 'ఓం నిరంజనాయ విద్మహే నిరాభాసాయ ధీమహి | తన్నో వేంకటేశః ప్రచోదయాత్ ||',
+    iconType: 'tirunamam',
+  },
+];
+
+export const TopSlokaScroller: React.FC<TopSlokaScrollerProps> = ({ currentLang }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Auto-scroll one by one every 4.5 seconds
+  useEffect(() => {
+    if (isPaused) return;
+
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % VENKATESWARA_SLOKAS.length);
+    }, 4500);
+
+    return () => clearInterval(timer);
+  }, [isPaused]);
+
+  const activeSloka = VENKATESWARA_SLOKAS[currentIndex];
+
+  const renderIcon = (type: SlokaItem['iconType']) => {
+    switch (type) {
+      case 'tirunamam':
+        return <VaishnavaTirunamam className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0 opacity-90" />;
+      case 'sankha':
+        return <SankhaIcon className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0 opacity-90" />;
+      case 'chakra':
+        return <ChakraIcon className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0 opacity-90" />;
+      case 'lotus':
+        return <LotusIcon className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0 opacity-90" />;
+      case 'diya':
+        return <DiyaIcon className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0 opacity-90" />;
+      default:
+        return <VaishnavaTirunamam className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0 opacity-90" />;
+    }
+  };
+
+  return (
+    <div 
+      id="top-sloka-scroller"
+      className="relative z-40 bg-gradient-to-r from-[#170204] via-[#280509] to-[#170204] border-b border-[#D4AF37]/20 text-[#E8DCC0] select-none py-0.5 sm:py-1 overflow-hidden"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      role="region"
+      aria-label="Venkateswara Swamy Sloka"
+    >
+      <div className="max-w-5xl mx-auto px-2 sm:px-4 flex items-center justify-center">
+        {/* Center: Sloka in very small letters, regular font, icon beside sloka, no arrows, no slide numbers */}
+        <div className="w-full text-center overflow-hidden">
+          <div 
+            key={activeSloka.id}
+            className="inline-flex items-center justify-center gap-1.5 animate-sloka-fade transition-all duration-300 max-w-full px-2"
+          >
+            {renderIcon(activeSloka.iconType)}
+            <p className="font-poppins font-normal lowercase text-[9.5px] xs:text-[10px] sm:text-[11px] text-[#EDE0CB] tracking-normal leading-tight truncate sm:whitespace-normal">
+              {currentLang === 'te' ? activeSloka.slokaTe : activeSloka.slokaEn}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};

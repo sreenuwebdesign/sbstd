@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Sparkles, Clock, ChevronRight, Image as ImageIcon, MapPin } from 'lucide-react';
+import React from 'react';
+import { Clock, ChevronRight, Image as ImageIcon, MapPin, Sparkles } from 'lucide-react';
 import { Language } from '../types';
 import { TEMPLE_INFO } from '../data/templeData';
-import { TempleBellIcon, DiyaIcon, LotusIcon } from './TempleMotifs';
-import { templeAudio } from '../utils/audio';
+import { DiyaIcon, OrnamentalDivider, VaishnavaTirunamam } from './TempleMotifs';
+import { HangingBell } from './HangingBell';
 
 interface HeroProps {
   currentLang?: Language;
@@ -17,10 +17,8 @@ export const Hero: React.FC<HeroProps> = ({
   currentLang = 'en',
   onExploreAbout,
   onExploreGallery,
-  onExploreDarshan,
 }) => {
-  const [bellRinging, setBellRinging] = useState(false);
-  const handleAboutAction = onExploreAbout || onExploreDarshan || (() => {
+  const handleAboutAction = onExploreAbout || (() => {
     const el = document.getElementById('about');
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   });
@@ -30,169 +28,152 @@ export const Hero: React.FC<HeroProps> = ({
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   });
 
-  const handleHeroBellRing = () => {
-    setBellRinging(true);
-    templeAudio.playTempleBell();
-    setTimeout(() => setBellRinging(false), 2500);
-  };
-
   return (
-    <section id="hero-section" className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#2D060B]">
-      {/* Background Sacred Architecture Image with Rich Maroon & Golden Vignette */}
+    <section 
+      id="hero-section" 
+      className="relative min-h-[75vh] sm:min-h-[80vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#1E0306] via-[#35070D] to-[#180205] text-white py-8 sm:py-14"
+    >
+      {/* Background Architectural Watermark with Warm Temple Tint */}
       <div 
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 scale-105"
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-25 pointer-events-none"
         style={{
           backgroundImage: `url('/images/temple-gopuram.svg')`,
-          filter: 'brightness(0.38) saturate(1.2)'
+          filter: 'brightness(0.45) saturate(1.3)'
         }}
       />
 
-      {/* Divine Aura & Soft Radial Golden Halo Glow */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-t from-[#280408] via-[#4A0E17]/65 to-[#280408]/85" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-gradient-to-r from-[#D4AF37]/15 to-[#FF9800]/10 rounded-full blur-3xl pointer-events-none" />
+      {/* Divine Golden Sanctum Radial Aura & Rays */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[550px] h-[300px] sm:h-[550px] bg-[radial-gradient(circle,rgba(243,206,114,0.18)_0%,rgba(180,30,45,0.14)_45%,transparent_70%)] rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(212,175,55,0.14)_0%,transparent_60%)] pointer-events-none" />
 
-      {/* Floating Divine Sparkles / Light Particles */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/4 left-[15%] text-[#FFE58F] text-xl animate-sparkle opacity-60">✦</div>
-        <div className="absolute top-1/3 right-[18%] text-[#FFE58F] text-sm animate-sparkle opacity-40 delay-700">✦</div>
-        <div className="absolute bottom-1/4 left-[25%] text-[#E5B839] text-2xl animate-sparkle opacity-75 delay-1000">✦</div>
-        <div className="absolute top-1/2 right-[12%] text-[#FFD54F] text-base animate-sparkle opacity-50 delay-500">✦</div>
-        <div className="absolute bottom-1/3 right-[28%] text-[#FFE58F] text-xs animate-sparkle opacity-80 delay-1200">✦</div>
-      </div>
+      {/* Hanging Sacred Temple Bells on Left and Right (Compact Responsive Sizing) */}
+      <HangingBell position="left" currentLang={currentLang} />
+      <HangingBell position="right" currentLang={currentLang} />
 
-      {/* Flanking Temple Bells (hanging from the heavens) */}
-      <div className="absolute top-0 left-6 sm:left-14 z-10 hidden sm:flex flex-col items-center cursor-pointer group" onClick={handleHeroBellRing}>
-        <div className="w-[1.5px] h-20 bg-gradient-to-b from-[#8A5A00] to-[#E5B839]" />
-        <div className="p-2 rounded-full bg-[#3D0A11]/60 group-hover:bg-[#5E141F] transition-all">
-          <TempleBellIcon className="w-8 h-8 text-[#FFE58F]" animated={bellRinging} />
-        </div>
-        <span className="text-[10px] text-[#E5B839]/80 uppercase tracking-widest mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
-          {currentLang === 'te' ? 'మోగించండి' : 'Ring'}
-        </span>
-      </div>
-
-      <div className="absolute top-0 right-6 sm:right-14 z-10 hidden sm:flex flex-col items-center cursor-pointer group" onClick={handleHeroBellRing}>
-        <div className="w-[1.5px] h-24 bg-gradient-to-b from-[#8A5A00] to-[#E5B839]" />
-        <div className="p-2 rounded-full bg-[#3D0A11]/60 group-hover:bg-[#5E141F] transition-all">
-          <TempleBellIcon className="w-9 h-9 text-[#FFE58F]" animated={bellRinging} />
-        </div>
-        <span className="text-[10px] text-[#E5B839]/80 uppercase tracking-widest mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
-          {currentLang === 'te' ? 'మోగించండి' : 'Ring'}
-        </span>
-      </div>
-
-      {/* Hero Content Box */}
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center flex flex-col items-center">
+      {/* Main Content Container */}
+      <div className="relative z-10 max-w-4xl mx-auto px-3.5 sm:px-6 text-center pt-1 sm:pt-2">
         
-        {/* Sacred Deity Medallion / Consecrated Darshan Frame */}
-        <div className="relative mb-5 group cursor-pointer" onClick={handleAboutAction}>
-          <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full p-1 bg-gradient-to-tr from-[#D4AF37] via-[#FFF2C6] to-[#E5B839] shadow-2xl ring-4 ring-[#D4AF37]/35 group-hover:scale-105 transition-transform duration-500">
-            <div className="w-full h-full rounded-full overflow-hidden relative bg-[#200407]">
-              <img
-                src="/images/god-venkateswara.svg"
-                alt={`Divine Sanctum ${TEMPLE_INFO.deityNameEn}`}
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover object-center filter brightness-105 contrast-105 group-hover:scale-110 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#200407]/60 via-transparent to-transparent" />
-            </div>
-          </div>
-
-          {/* Floating Auspicious Badge */}
-          <div className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-[#3D0A11] border border-[#FFE58F] text-[10px] sm:text-xs font-semibold text-[#FFE58F] whitespace-nowrap shadow-lg flex items-center gap-1">
-            <Sparkles className="w-3 h-3 text-[#FFE58F]" />
-            <span>{currentLang === 'te' ? 'దివ్య దర్శనం' : 'Divine Sanctum'}</span>
+        {/* Sacred Vaishnava Tirunamam Motif with Golden Radiance */}
+        <div className="flex flex-col items-center justify-center mb-2 sm:mb-2.5">
+          <div className="relative group">
+            <div className="absolute -inset-1.5 bg-[#F3CE72]/20 rounded-full blur-md opacity-70 group-hover:opacity-100 transition-opacity" />
+            <VaishnavaTirunamam className="w-9 h-9 sm:w-11 sm:h-11 drop-shadow-[0_3px_10px_rgba(0,0,0,0.6)]" />
           </div>
         </div>
 
-        {/* Sacred Chanting Mantra Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#56131D]/85 border border-[#D4AF37]/50 text-[#FFE58F] text-xs sm:text-sm font-medium shadow-md mb-6 backdrop-blur-sm">
-          <DiyaIcon className="w-4 h-4 text-[#FFE58F]" />
-          <span>
-            {currentLang === 'te' 
-              ? '॥ నమో భగవతే తిరుమలనాథాయ ॥ శ్రీక్షేత్ర దర్శనం'
-              : '॥ Om Namo Bhagavate Tirumalanadhaya ॥ Divine Sanctum'}
-          </span>
-          <LotusIcon className="w-4 h-4 text-[#FF80AB]" />
+        {/* Sacred Invocation Badge */}
+        <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-0.5 sm:py-1 rounded-full bg-gradient-to-r from-[#4A0B14]/90 via-[#68101E]/90 to-[#4A0B14]/90 border border-[#F3CE72]/50 text-[#FFE58F] text-[10px] sm:text-xs font-medium tracking-[0.12em] sm:tracking-[0.15em] uppercase mb-3 sm:mb-4 shadow-md backdrop-blur-sm">
+          <DiyaIcon className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#FFE58F] shrink-0" />
+          <span>{currentLang === 'te' ? 'ఓం నమో వేంకటేశాయ' : 'OM NAMO VENKATESAYA'}</span>
+          <DiyaIcon className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#FFE58F] shrink-0" />
         </div>
 
-        {/* Hero Main Heading with Gold Gradient */}
+        {/* Temple Name / Title - Balanced Proper Size (Not Big) */}
         <h1 
-          id="hero-temple-title"
-          className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-serif-temple font-extrabold text-white tracking-wide leading-tight mb-4 drop-shadow-lg"
+          id="hero-temple-heading"
+          className="text-lg sm:text-2xl md:text-3xl lg:text-[32px] font-serif-temple font-semibold text-white tracking-wide leading-snug mb-1.5 sm:mb-2 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]"
         >
-          {currentLang === 'te' ? (
-            <span className="text-[#FFF2C6] block">{TEMPLE_INFO.nameTe}</span>
-          ) : (
-            <span className="text-[#FFF2C6] block">{TEMPLE_INFO.nameEn}</span>
-          )}
+          <span className="block bg-gradient-to-b from-[#FFFDF7] via-[#FFEBB3] to-[#F3CE72] bg-clip-text text-transparent">
+            {currentLang === 'te' ? TEMPLE_INFO.nameTe : TEMPLE_INFO.nameEn}
+          </span>
         </h1>
 
-        {/* Traditional Devotional Quotation (Requested by user) */}
-        <p className="text-xl sm:text-2xl md:text-3xl font-telugu text-[#FFD54F] font-semibold tracking-wide mb-3 max-w-3xl drop-shadow">
-          "భక్తితో పిలిస్తే... భగవంతుడు తప్పక పలుకుతాడు"
+        {/* Presiding Deity Subtitle with Classical Flourish */}
+        <div className="flex items-center justify-center gap-1.5 sm:gap-2 text-xs sm:text-sm md:text-[15px] font-serif-temple text-[#F3CE72] max-w-2xl mx-auto mb-1.5 font-medium tracking-wide">
+          <span className="text-[#D4AF37] opacity-80 text-xs">꧁</span>
+          <p className="drop-shadow-sm font-medium">
+            {currentLang === 'te' ? TEMPLE_INFO.deityNameTe : TEMPLE_INFO.deityNameEn}
+          </p>
+          <span className="text-[#D4AF37] opacity-80 text-xs">꧂</span>
+        </div>
+
+        <OrnamentalDivider className="my-2.5 sm:my-3.5" />
+
+        {/* Catchphrase & Spiritual Welcome */}
+        <p className="text-[#E5D7C2] text-xs sm:text-sm md:text-[14.5px] max-w-xl mx-auto mb-5 sm:mb-6 leading-relaxed font-normal drop-shadow-sm px-2">
+          {currentLang === 'te'
+            ? 'శ్రీవారి దివ్య క్షేత్రానికి స్వాగతం. శతాబ్దాల ఆధ్యాత్మిక సంప్రదాయాలు, నిత్య పూజా కైంకర్యాలు మరియు అఖండ భక్తితో పునీతులవ్వండి.'
+            : 'Welcome to the holy sanctuary of divine grace. Experience the transcendent serenity, Vedic rituals, and eternal blessings of the Lord.'}
         </p>
 
-        {/* English Subtitle (Requested by user) */}
-        <p className="text-base sm:text-xl text-[#F5EDE0]/90 font-light tracking-wide max-w-2xl mb-8 leading-relaxed">
-          Experience Divine Grace, Devotion & Peace
-        </p>
-
-        {/* Action Buttons: "ఆలయ విశేషాలు" & "చిత్రమాలిక" */}
-        <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-          {/* About Temple Button */}
+        {/* Call-to-Action Buttons */}
+        <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5 mb-6 sm:mb-8">
           <button
-            id="hero-about-details-btn"
+            id="hero-explore-about-btn"
             onClick={handleAboutAction}
-            className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-gradient-to-r from-[#D4AF37] via-[#E5B839] to-[#D48806] hover:from-[#FFE29F] hover:to-[#C58000] text-[#360910] font-bold text-base shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-0.5 flex items-center justify-center gap-2.5 border border-[#FFF5CC]"
+            className="px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg bg-gradient-to-r from-[#F3C472] via-[#E5B839] to-[#C9971D] hover:from-[#FFE082] hover:to-[#D4A325] text-[#28050A] font-serif-temple font-semibold text-xs sm:text-sm shadow-md border border-[#FFECA8] transition-all duration-200 flex items-center gap-1.5 group active:scale-95"
           >
-            <Clock className="w-5 h-5 text-[#360910]" />
-            <span>{currentLang === 'te' ? 'ఆలయ విశేషాలు & దర్శనం' : 'About Temple & Darshan'}</span>
-            <ChevronRight className="w-4 h-4 text-[#360910]" />
+            <span>{currentLang === 'te' ? 'ఆలయ విశేషాలు & చరిత్ర' : 'Explore Temple History'}</span>
+            <ChevronRight className="w-3.5 h-3.5 text-[#28050A] group-hover:translate-x-0.5 transition-transform" />
           </button>
 
-          {/* Photo Gallery Button */}
           <button
-            id="hero-gallery-btn"
+            id="hero-explore-gallery-btn"
             onClick={handleGalleryAction}
-            className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-[#420B12]/80 hover:bg-[#5E141F] text-[#FFE29F] border-2 border-[#D4AF37] font-semibold text-base shadow-lg hover:shadow-[#D4AF37]/20 transition-all duration-300 flex items-center justify-center gap-2 group backdrop-blur-sm"
+            className="px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg bg-[#4A0E17]/85 hover:bg-[#631420] border border-[#F3CE72]/60 text-[#FFE58F] font-serif-temple font-medium text-xs sm:text-sm shadow-md transition-all duration-200 flex items-center gap-1.5 active:scale-95 hover:border-[#FFE58F]"
           >
-            <ImageIcon className="w-5 h-5 text-[#E5B839] group-hover:scale-110 transition-transform" />
+            <ImageIcon className="w-3.5 h-3.5 text-[#FFE58F]" />
             <span>{currentLang === 'te' ? 'దివ్య చిత్రమాలిక' : 'Sacred Photo Gallery'}</span>
           </button>
         </div>
 
-        {/* Quick Auspicious Info Strip */}
-        <div className="mt-12 pt-6 border-t border-[#D4AF37]/25 w-full max-w-4xl grid grid-cols-1 sm:grid-cols-3 gap-4 text-[#F3E5AB] text-xs sm:text-sm">
-          <div className="flex items-center justify-center gap-2.5 p-2 rounded-lg bg-[#380A11]/60">
-            <Clock className="w-4 h-4 text-[#E5B839]" />
-            <span>
-              {currentLang === 'te' ? 'నిత్య దర్శనం:' : 'Daily Darshan:'}{' '}
-              <strong className="text-white">05:30 AM - 09:00 PM</strong>
-            </span>
-          </div>
+        {/* Quick Highlights / Darshan Info Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3.5 max-w-3xl mx-auto">
           
-          <div className="flex items-center justify-center gap-2.5 p-2 rounded-lg bg-[#380A11]/60">
-            <span className="text-base">🍚</span>
-            <span>
-              {currentLang === 'te' ? 'నిత్య అన్నదానం:' : 'Nitya Annadanam:'}{' '}
-              <strong className="text-white">12:30 PM - 03:00 PM</strong>
-            </span>
+          {/* Card 1: Darshan Timings */}
+          <div className="p-3 sm:p-3.5 rounded-xl bg-[#2D060B]/85 backdrop-blur-md border border-[#D4AF37]/30 hover:border-[#F3CE72]/60 text-left shadow-sm transition-all duration-200">
+            <div className="flex items-center gap-1.5 text-[#FFE58F] mb-1">
+              <div className="p-1 rounded bg-[#5B101D]/70 border border-[#D4AF37]/25 text-[#F3CE72]">
+                <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+              </div>
+              <span className="font-serif-temple font-semibold text-xs sm:text-[13px] text-[#F3CE72]">
+                {currentLang === 'te' ? 'దర్శన వేళలు' : 'Daily Darshan'}
+              </span>
+            </div>
+            <p className="text-[11px] sm:text-xs text-[#E0D3BC] leading-snug">
+              {TEMPLE_INFO.darshanTimings.morning} <br />
+              {TEMPLE_INFO.darshanTimings.evening}
+            </p>
           </div>
 
-          <div className="flex items-center justify-center gap-2.5 p-2 rounded-lg bg-[#380A11]/60">
-            <MapPin className="w-4 h-4 text-[#E5B839]" />
-            <span>
-              {currentLang === 'te' ? 'పవిత్ర క్షేత్రం:' : 'Sacred Kshetram:'}{' '}
-              <strong className="text-white">Tirupati District</strong>
-            </span>
+          {/* Card 2: Maha Mangala Harathi */}
+          <div className="p-3 sm:p-3.5 rounded-xl bg-[#2D060B]/85 backdrop-blur-md border border-[#D4AF37]/30 hover:border-[#F3CE72]/60 text-left shadow-sm transition-all duration-200">
+            <div className="flex items-center gap-1.5 text-[#FFE58F] mb-1">
+              <div className="p-1 rounded bg-[#5B101D]/70 border border-[#D4AF37]/25 text-[#F3CE72]">
+                <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+              </div>
+              <span className="font-serif-temple font-semibold text-xs sm:text-[13px] text-[#F3CE72]">
+                {currentLang === 'te' ? 'మంగళ హారతి' : 'Mangala Harathi'}
+              </span>
+            </div>
+            <p className="text-[11px] sm:text-xs text-[#E0D3BC] leading-snug">
+              {TEMPLE_INFO.darshanTimings.mahaMangalaHarathi} <br />
+              {currentLang === 'te' ? 'నిత్య సహస్రనామార్చన' : 'Daily Sahasranamarchana'}
+            </p>
           </div>
+
+          {/* Card 3: Holy Sanctum Location */}
+          <div className="p-3 sm:p-3.5 rounded-xl bg-[#2D060B]/85 backdrop-blur-md border border-[#D4AF37]/30 hover:border-[#F3CE72]/60 text-left shadow-sm transition-all duration-200">
+            <div className="flex items-center gap-1.5 text-[#FFE58F] mb-1">
+              <div className="p-1 rounded bg-[#5B101D]/70 border border-[#D4AF37]/25 text-[#F3CE72]">
+                <MapPin className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+              </div>
+              <span className="font-serif-temple font-semibold text-xs sm:text-[13px] text-[#F3CE72]">
+                {currentLang === 'te' ? 'పుణ్యక్షేత్రం' : 'Sacred Location'}
+              </span>
+            </div>
+            <p className="text-[11px] sm:text-xs text-[#E0D3BC] leading-snug">
+              {currentLang === 'te' ? 'తిరుమలకొండ, అయ్యలూరివారి పల్లె' : 'Thirumalakonda, Ayyalurivari Palle'} <br />
+              {currentLang === 'te' ? 'సి.ఎస్. పురం మండలం, ప్రకాశం జిల్లా - 523112' : 'C. S. Puram Mandal, Prakasam Dt - 523112'}
+            </p>
+          </div>
+
         </div>
 
       </div>
 
-      {/* Decorative Bottom Arch Transition */}
-      <div className="absolute bottom-0 inset-x-0 h-8 bg-gradient-to-t from-[#FAF6EE] to-transparent z-10" />
+      {/* Bottom Gold Border Accent */}
+      <div className="absolute bottom-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37]/70 to-transparent" />
     </section>
   );
 };

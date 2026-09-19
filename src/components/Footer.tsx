@@ -30,18 +30,18 @@ export const Footer: React.FC<FooterProps> = ({
         {/* Top Footer Banner: Deity & Temple Identity */}
         <div className="pb-12 border-b border-[#5B101D] flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
           <div className="flex flex-col md:flex-row items-center gap-4">
-            <div className="p-2 rounded-full bg-[#5B101D]/40 border border-[#D4AF37]/30">
-              <TempleEmblem className="w-14 h-14" />
+            <div className="p-1 rounded-full bg-[#5B101D]/40 border border-[#D4AF37]/30">
+              <TempleEmblem className="w-16 h-16" />
             </div>
             <div>
               <span className="text-xs uppercase tracking-widest text-[#E5B839] font-bold">
-                {currentLang === 'te' ? 'దివ్య పుణ్యక్షేత్రం' : 'Sacred Hindu Devasthanam'}
+                {currentLang === 'te' ? 'దివ్య పుణ్యక్షేత్రం & ధర్మ సంస్థానం' : 'Sacred Devasthanam & Trust'}
               </span>
               <h3 className="text-2xl sm:text-3xl font-serif-temple font-bold text-[#FFF2C6]">
                 {currentLang === 'te' ? TEMPLE_INFO.nameTe : TEMPLE_INFO.nameEn}
               </h3>
-              <p className="text-xs text-[#E8DCC0]">
-                {currentLang === 'te' ? `మూలవిరాట్: ${TEMPLE_INFO.deityNameTe}` : `Presiding Deity: ${TEMPLE_INFO.deityNameEn}`}
+              <p className="text-xs text-[#E8DCC0] font-medium">
+                {currentLang === 'te' ? TEMPLE_INFO.trustNameTe : TEMPLE_INFO.trustNameEn}
               </p>
             </div>
           </div>

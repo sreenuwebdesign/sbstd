@@ -205,12 +205,12 @@ export const ContactPage: React.FC<ContactPageProps> = ({ currentLang, onSendMes
                     {currentLang === 'te' ? TEMPLE_INFO.addressTe : TEMPLE_INFO.addressEn}
                   </p>
                   <a
-                    href="https://maps.google.com"
+                    href="https://maps.google.com/?q=Thirumalakonda,+Ayyalurivari+Palle,+C.+S.+Puram,+Prakasam+District,+Andhra+Pradesh+523112"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-[#C25E00] hover:underline"
                   >
-                    <span>Get Driving Directions</span>
+                    <span>{currentLang === 'te' ? 'గూగుల్ మ్యాప్స్ దిశానిర్దేశం' : 'Get Driving Directions'}</span>
                     <ExternalLink className="w-3 h-3" />
                   </a>
                 </div>

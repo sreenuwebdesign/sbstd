@@ -127,40 +127,134 @@ export const LotusIcon: React.FC<{ className?: string }> = ({ className = 'w-6 h
   </svg>
 );
 
-export const TempleEmblem: React.FC<{ className?: string }> = ({ className = 'w-10 h-10' }) => (
-  <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-    {/* Sacred Circle with Sun Rays */}
-    <circle cx="32" cy="32" r="30" stroke="#D4AF37" strokeWidth="1.5" strokeDasharray="3 2" />
-    <circle cx="32" cy="32" r="27" fill="#4A0E17" stroke="#E5B839" strokeWidth="1.5" />
-    
-    {/* Gopuram Silhouette in Gold */}
-    {/* Kalasha crest */}
-    <path d="M32 10L33 13H31L32 10Z" fill="#FFE58F" />
-    <circle cx="32" cy="13.5" r="1.5" fill="#FFE58F" />
-    {/* Tier 1 */}
-    <path d="M28 15H36L35 19H29L28 15Z" fill="#D4AF37" />
-    {/* Tier 2 */}
-    <path d="M25 19H39L38 24H26L25 19Z" fill="#E5B839" />
-    {/* Tier 3 */}
-    <path d="M22 24H42L41 30H23L22 24Z" fill="#D4AF37" />
-    {/* Tier 4 */}
-    <path d="M19 30H45L44 38H20L19 30Z" fill="#C59B27" />
-    {/* Gateway arch */}
-    <path d="M16 38H48V50H16V38Z" fill="#B8860B" />
-    <path d="M27 50V43C27 40.5 29.5 39 32 39C34.5 39 37 40.5 37 43V50H27Z" fill="#36080F" />
-
-    {/* Flanking Namam / Conches symbol */}
-    <circle cx="21" cy="44" r="1.5" fill="#FFE58F" />
-    <circle cx="43" cy="44" r="1.5" fill="#FFE58F" />
-  </svg>
+export const TempleEmblem: React.FC<{ className?: string; alt?: string }> = ({ 
+  className = 'w-10 h-10', 
+  alt = 'Sri Tirumalanadha Swami Temple SBST Logo' 
+}) => (
+  <img 
+    src="/images/sbst-logo.svg" 
+    alt={alt} 
+    className={`${className} object-contain filter drop-shadow-md select-none`}
+    referrerPolicy="no-referrer"
+    loading="eager"
+  />
 );
 
 export const OrnamentalDivider: React.FC<{ className?: string }> = ({ className = '' }) => (
   <div className={`flex items-center justify-center gap-3 my-4 ${className}`}>
-    <div className="h-[1px] w-12 sm:w-20 bg-gradient-to-r from-transparent to-[#D4AF37]" />
-    <span className="text-[#D4AF37] text-sm">✦</span>
+    <div className="h-[1px] w-12 sm:w-24 bg-gradient-to-r from-transparent to-[#D4AF37]" />
+    <span className="text-[#F3CE72] text-xs">✦</span>
     <DiyaIcon className="w-5 h-5 text-[#D4AF37]" />
-    <span className="text-[#D4AF37] text-sm">✦</span>
-    <div className="h-[1px] w-12 sm:w-20 bg-gradient-to-l from-transparent to-[#D4AF37]" />
+    <span className="text-[#F3CE72] text-xs">✦</span>
+    <div className="h-[1px] w-12 sm:w-24 bg-gradient-to-l from-transparent to-[#D4AF37]" />
   </div>
+);
+
+export const VaishnavaTirunamam: React.FC<{ className?: string }> = ({ className = 'w-10 h-10' }) => (
+  <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    {/* Golden Halo Behind */}
+    <circle cx="50" cy="50" r="42" fill="url(#haloGrad)" opacity="0.25" />
+    
+    {/* Left White Sacred Urdhva Pundra Streak */}
+    <path 
+      d="M32 18 C32 18 26 36 28 58 C30 68 38 78 44 82 L44 68 C39 65 35 58 35 48 C35 36 38 24 38 20 Z" 
+      fill="url(#sacredWhiteGrad)" 
+      stroke="#D4AF37" 
+      strokeWidth="1.2" 
+    />
+
+    {/* Right White Sacred Urdhva Pundra Streak */}
+    <path 
+      d="M68 18 C68 18 74 36 72 58 C70 68 62 78 56 82 L56 68 C61 65 65 58 65 48 C65 36 62 24 62 20 Z" 
+      fill="url(#sacredWhiteGrad)" 
+      stroke="#D4AF37" 
+      strokeWidth="1.2" 
+    />
+
+    {/* Center Sacred Sri Lakshmi Kasturi Red Tilak (సిందూర తిలకం) */}
+    <path 
+      d="M48 24 C48 24 46 45 47 62 C48 72 50 86 50 86 C50 86 52 72 53 62 C54 45 52 24 52 24 Z" 
+      fill="url(#sindoorRedGrad)" 
+      stroke="#FFD54F" 
+      strokeWidth="0.8" 
+    />
+
+    {/* Gold Base Lotus Paduka */}
+    <path 
+      d="M42 82 Q50 88 58 82 L55 86 Q50 90 45 86 Z" 
+      fill="#F3CE72" 
+      stroke="#AA820A" 
+      strokeWidth="1" 
+    />
+
+    <defs>
+      <radialGradient id="haloGrad" cx="50" cy="50" r="40" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#FFE082" />
+        <stop offset="1" stopColor="#B8860B" stopOpacity="0" />
+      </radialGradient>
+      <linearGradient id="sacredWhiteGrad" x1="0" y1="20" x2="0" y2="80" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#FFFFFF" />
+        <stop offset="0.8" stopColor="#F5EDE0" />
+        <stop offset="1" stopColor="#E6D3B3" />
+      </linearGradient>
+      <linearGradient id="sindoorRedGrad" x1="50" y1="24" x2="50" y2="86" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#FF1744" />
+        <stop offset="0.5" stopColor="#D50000" />
+        <stop offset="1" stopColor="#8A0010" />
+      </linearGradient>
+    </defs>
+  </svg>
+);
+
+export const SankhaIcon: React.FC<{ className?: string }> = ({ className = 'w-6 h-6' }) => (
+  <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    {/* Sacred Panchajanya Conch Shell */}
+    <ellipse cx="24" cy="24" rx="16" ry="16" fill="url(#sankhaGlow)" opacity="0.25" />
+    <path
+      d="M14 26 C12 21 16 13 24 11 C31 9 37 13 37 19 C37 25 32 30 26 34 C21 37 15 37 12 34 C10 32 10 29 12 27 C14 25 18 25 21 27 C24 29 27 28 29 26 C31 23 31 19 28 17 C25 15 20 16 17 19 C15 21 14 24 14 26 Z"
+      fill="url(#sankhaGrad)"
+      stroke="#D4AF37"
+      strokeWidth="1.2"
+    />
+    <path d="M24 11 C26 14 28 18 29 23" stroke="#F3CE72" strokeWidth="1" strokeLinecap="round" />
+    <path d="M19 16 C22 19 23 23 23 28" stroke="#F3CE72" strokeWidth="0.8" strokeLinecap="round" />
+    <circle cx="36" cy="18" r="1.5" fill="#FFE58F" />
+    <defs>
+      <radialGradient id="sankhaGlow" cx="24" cy="24" r="16" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#FFE082" />
+        <stop offset="1" stopColor="#B8860B" stopOpacity="0" />
+      </radialGradient>
+      <linearGradient id="sankhaGrad" x1="12" y1="11" x2="36" y2="35" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#FFFFFF" />
+        <stop offset="0.6" stopColor="#FFF4D6" />
+        <stop offset="1" stopColor="#E0B85C" />
+      </linearGradient>
+    </defs>
+  </svg>
+);
+
+export const ChakraIcon: React.FC<{ className?: string }> = ({ className = 'w-6 h-6' }) => (
+  <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    {/* Sudarshana Chakra */}
+    <circle cx="24" cy="24" r="18" stroke="#D4AF37" strokeWidth="1.5" strokeDasharray="3 2" />
+    <circle cx="24" cy="24" r="14" fill="url(#chakraGrad)" stroke="#FFE58F" strokeWidth="1.2" />
+    <circle cx="24" cy="24" r="5" fill="#5B101D" stroke="#FFE58F" strokeWidth="1" />
+    <circle cx="24" cy="24" r="2" fill="#FFE58F" />
+    {/* Flame Spokes / Serrations */}
+    <path d="M24 6 L26 10 L24 10 Z" fill="#FFC107" />
+    <path d="M24 42 L22 38 L24 38 Z" fill="#FFC107" />
+    <path d="M6 24 L10 22 L10 24 Z" fill="#FFC107" />
+    <path d="M42 24 L38 26 L38 24 Z" fill="#FFC107" />
+    <path d="M11 11 L15 13 L13 15 Z" fill="#FFC107" />
+    <path d="M37 37 L33 35 L35 33 Z" fill="#FFC107" />
+    <path d="M37 11 L35 15 L33 13 Z" fill="#FFC107" />
+    <path d="M11 37 L13 33 L15 35 Z" fill="#FFC107" />
+    <defs>
+      <radialGradient id="chakraGrad" cx="24" cy="24" r="14" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#FFF59D" />
+        <stop offset="0.6" stopColor="#F5B041" />
+        <stop offset="1" stopColor="#B7791F" />
+      </radialGradient>
+    </defs>
+  </svg>
 );
