@@ -84,7 +84,7 @@ export const Header: React.FC<HeaderProps> = ({
               </span>
 
               {/* Line 2: Thirumalanadha Swamy (middle - white color) */}
-              <span className="font-poppins font-black text-white text-[13px] sm:text-base md:text-lg lg:text-xl tracking-[0.03em] sm:tracking-[0.05em] uppercase leading-tight my-0.5 drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)] truncate">
+              <span className="font-poppins font-black text-white text-[13px] sm:text-base md:text-lg lg:text-xl tracking-[0.03em] sm:tracking-[0.05em] uppercase leading-tight my-0.5 truncate">
                 {currentLang === 'te' ? 'తిరుమలనాథ స్వామి' : 'Thirumalanadha Swamy'}
               </span>
 
