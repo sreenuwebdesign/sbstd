@@ -134,7 +134,7 @@ export const TempleEmblem: React.FC<{ className?: string; alt?: string }> = ({
   <img 
     src="/images/logo-new.png" 
     onError={(e) => {
-      (e.target as HTMLImageElement).src = '/images/sbst-logo.svg';
+      (e.target as HTMLImageElement).src = '/images/sbst-logo.png';
     }}
     alt={alt} 
     className={`${className} object-contain filter drop-shadow-md select-none`}

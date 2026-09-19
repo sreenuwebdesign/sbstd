@@ -18,7 +18,7 @@ export const TEMPLE_INFO = {
   panNumber: 'AAATS1234F',
   trustNameEn: 'Sri Sridivya Bhudevi Sametha Thirumalavasa Sevasesvaseva Trust (SBST)',
   trustNameTe: 'శ్రీ శ్రీదివ్య భూదేవి సమేత తిరుమలవాస సేవాసేవసేవ ట్రస్ట్ (SBST)',
-  logoUrl: '/images/sbst-logo.svg',
+  logoUrl: '/images/logo-new.png',
 };
 
 export interface DeityProfile {
