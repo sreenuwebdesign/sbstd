@@ -97,14 +97,14 @@ export const Gallery: React.FC<GalleryProps> = ({ currentLang }) => {
           ))}
         </div>
 
-        {/* Gallery Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {/* Gallery Grid - 2 columns on mobile, 2 on sm, 3 on md, 4 on lg */}
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-4 lg:gap-5">
           {filteredItems.map((item, index) => (
             <div
               key={item.id}
               id={`gallery-thumb-${item.id}`}
               onClick={() => openLightbox(index)}
-              className="relative group rounded-2xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer bg-white border border-[#E8DCC0] aspect-[4/3] sm:aspect-square"
+              className="relative group rounded-xl sm:rounded-2xl overflow-hidden shadow-sm hover:shadow-xl cursor-pointer bg-white border border-[#E8DCC0] aspect-square"
             >
               <img
                 src={item.imageUrl}
@@ -115,21 +115,21 @@ export const Gallery: React.FC<GalleryProps> = ({ currentLang }) => {
               />
 
               {/* Gradient Vignette Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#2E070B]/90 via-[#2E070B]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 text-white">
-                <span className="text-[10px] uppercase font-bold tracking-widest text-[#FFE58F] mb-1">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#2E070B]/90 via-[#2E070B]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-2 sm:p-4 text-white">
+                <span className="text-[9px] sm:text-[10px] uppercase font-bold tracking-widest text-[#FFE58F] mb-0.5 sm:mb-1">
                   {currentLang === 'te' ? 'వివరంగా వీక్షించండి' : 'Click to View'}
                 </span>
-                <h4 className="font-serif-temple text-sm sm:text-base font-bold text-white line-clamp-2">
+                <h4 className="font-serif-temple text-xs sm:text-base font-bold text-white line-clamp-1 sm:line-clamp-2">
                   {currentLang === 'te' ? item.titleTe : item.titleEn}
                 </h4>
-                <div className="mt-2 flex items-center justify-between text-xs text-[#E8DCC0]">
+                <div className="mt-1 sm:mt-2 flex items-center justify-between text-[10px] sm:text-xs text-[#E8DCC0]">
                   <span className="capitalize">{item.category}</span>
-                  <Maximize2 className="w-4 h-4 text-[#FFE58F]" />
+                  <Maximize2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#FFE58F]" />
                 </div>
               </div>
 
               {/* Corner Auspicious Tag */}
-              <div className="absolute top-3 left-3 px-2 py-0.5 rounded bg-black/40 backdrop-blur-sm text-[10px] text-white/90 font-medium">
+              <div className="absolute top-2 left-2 sm:top-3 sm:left-3 px-1.5 sm:px-2 py-0.5 rounded bg-black/45 backdrop-blur-sm text-[8.5px] sm:text-[10px] text-white/90 font-medium truncate max-w-[85%]">
                 {currentLang === 'te' ? item.titleTe : item.titleEn}
               </div>
             </div>
