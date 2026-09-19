@@ -40,7 +40,7 @@ export const Footer: React.FC<FooterProps> = ({
               <h3 className="text-sm font-serif-temple font-bold text-[#FFF2C6] tracking-wide mt-0.5">
                 {currentLang === 'te' ? TEMPLE_INFO.nameTe : TEMPLE_INFO.nameEn}
               </h3>
-              <p className="text-sm text-[#E8DCC0] font-medium">
+              <p className="text-sm text-[#E8DCC0]">
                 {currentLang === 'te' ? TEMPLE_INFO.trustNameTe : TEMPLE_INFO.trustNameEn}
               </p>
             </div>
