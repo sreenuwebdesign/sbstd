@@ -31,16 +31,16 @@ export const Footer: React.FC<FooterProps> = ({
         <div className="pb-12 border-b border-[#5B101D] flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
           <div className="flex flex-col md:flex-row items-center gap-4">
             <div className="p-1 rounded-full bg-[#5B101D]/40 border border-[#D4AF37]/30">
-              <TempleEmblem className="w-16 h-16" />
+              <TempleEmblem className="w-14 h-14 sm:w-16 sm:h-16" />
             </div>
             <div>
               <span className="text-xs uppercase tracking-widest text-[#E5B839] font-bold">
                 {currentLang === 'te' ? 'దివ్య పుణ్యక్షేత్రం & ధర్మ సంస్థానం' : 'Sacred Devasthanam & Trust'}
               </span>
-              <h3 className="text-2xl sm:text-3xl font-serif-temple font-bold text-[#FFF2C6]">
+              <h3 className="text-sm font-serif-temple font-bold text-[#FFF2C6] tracking-wide mt-0.5">
                 {currentLang === 'te' ? TEMPLE_INFO.nameTe : TEMPLE_INFO.nameEn}
               </h3>
-              <p className="text-xs text-[#E8DCC0] font-medium">
+              <p className="text-sm text-[#E8DCC0] font-medium">
                 {currentLang === 'te' ? TEMPLE_INFO.trustNameTe : TEMPLE_INFO.trustNameEn}
               </p>
             </div>
@@ -57,14 +57,14 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* 4-Column Grid: Quick Links, Timings, Contact, Social / Trust */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 py-12 text-xs sm:text-sm">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 py-12 text-sm">
           
           {/* Column 1: Quick Links */}
           <div className="space-y-4">
-            <h4 className="font-serif-temple text-base font-bold text-[#FFE58F] border-b border-[#D4AF37]/30 pb-2">
+            <h4 className="font-serif-temple text-sm font-bold text-[#FFE58F] border-b border-[#D4AF37]/30 pb-2">
               {currentLang === 'te' ? 'ముఖ్య లింకులు' : 'Quick Links'}
             </h4>
-            <ul className="space-y-2 text-[#E8DCC0]">
+            <ul className="space-y-2 text-[#E8DCC0] text-sm">
               {[
                 { id: 'about', labelEn: 'About Temple & History', labelTe: 'ఆలయ విశేషాలు & చరిత్ర' },
                 { id: 'gallery', labelEn: 'Sacred Photo Gallery', labelTe: 'దివ్య చిత్రమాలిక' },
@@ -85,11 +85,11 @@ export const Footer: React.FC<FooterProps> = ({
 
           {/* Column 2: Daily Pooja Timings Summary */}
           <div className="space-y-4">
-            <h4 className="font-serif-temple text-base font-bold text-[#FFE58F] border-b border-[#D4AF37]/30 pb-2 flex items-center gap-1.5">
+            <h4 className="font-serif-temple text-sm font-bold text-[#FFE58F] border-b border-[#D4AF37]/30 pb-2 flex items-center gap-1.5">
               <Clock className="w-4 h-4 text-[#E5B839]" />
               <span>{currentLang === 'te' ? 'నిత్య సమయ పట్టిక' : 'Daily Pooja Timings'}</span>
             </h4>
-            <ul className="space-y-2 text-[#E8DCC0]">
+            <ul className="space-y-2 text-[#E8DCC0] text-sm">
               <li className="flex justify-between border-b border-[#5B101D]/50 pb-1">
                 <span>{currentLang === 'te' ? 'సుప్రభాత సేవ:' : 'Suprabhatam:'}</span>
                 <strong className="text-white">05:30 AM</strong>
@@ -119,10 +119,10 @@ export const Footer: React.FC<FooterProps> = ({
 
           {/* Column 3: Contact Details */}
           <div className="space-y-4">
-            <h4 className="font-serif-temple text-base font-bold text-[#FFE58F] border-b border-[#D4AF37]/30 pb-2">
+            <h4 className="font-serif-temple text-sm font-bold text-[#FFE58F] border-b border-[#D4AF37]/30 pb-2">
               {currentLang === 'te' ? 'ఆలయ కార్యాలయం' : 'Devasthanam Office'}
             </h4>
-            <div className="space-y-3 text-[#E8DCC0]">
+            <div className="space-y-3 text-[#E8DCC0] text-sm">
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-[#D4AF37] shrink-0 mt-0.5" />
                 <span>{currentLang === 'te' ? TEMPLE_INFO.addressTe : TEMPLE_INFO.addressEn}</span>
@@ -135,7 +135,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <Mail className="w-4 h-4 text-[#D4AF37] shrink-0" />
                 <span className="break-all">{TEMPLE_INFO.email}</span>
               </div>
-              <div className="pt-2 text-xs text-[#E5B839]">
+              <div className="pt-2 text-sm text-[#E5B839]">
                 <strong>Trust PAN:</strong> <span className="font-mono">{TEMPLE_INFO.panNumber}</span>
               </div>
             </div>
@@ -143,10 +143,10 @@ export const Footer: React.FC<FooterProps> = ({
 
           {/* Column 4: WhatsApp / Social / Trust Statement */}
           <div className="space-y-4">
-            <h4 className="font-serif-temple text-base font-bold text-[#FFE58F] border-b border-[#D4AF37]/30 pb-2">
+            <h4 className="font-serif-temple text-sm font-bold text-[#FFE58F] border-b border-[#D4AF37]/30 pb-2">
               {currentLang === 'te' ? 'భక్త బృందం & సమాచారం' : 'Devotee Connect'}
             </h4>
-            <p className="text-xs text-[#E8DCC0] leading-relaxed">
+            <p className="text-sm text-[#E8DCC0] leading-relaxed">
               {currentLang === 'te'
                 ? 'ఆలయ సమాచారం, నిత్య పూజల విశేషాలు మరియు పండుగల ముహూర్తాల నోటిఫికేషన్లు పొందడానికి వాట్సాప్ గ్రూపులో చేరండి.'
                 : 'Receive daily suprabhatam slokas, sankalpam reminders, and upcoming festival schedules via our official channel.'}
@@ -165,8 +165,8 @@ export const Footer: React.FC<FooterProps> = ({
 
             {/* Trust Statement */}
             <div className="pt-2">
-              <div className="p-3 rounded-xl bg-[#3B090F] border border-[#D4AF37]/30 text-[11px] text-[#E8DCC0]">
-                <span className="text-[#FFE58F] font-bold block mb-1">
+              <div className="p-3 rounded-xl bg-[#3B090F] border border-[#D4AF37]/30 text-xs sm:text-sm text-[#E8DCC0]">
+                <span className="text-[#FFE58F] font-bold block mb-1 text-sm">
                   {currentLang === 'te' ? 'విశ్వసనీయత & పవిత్రత' : 'Divine Trust Statement'}
                 </span>
                 {currentLang === 'te'
