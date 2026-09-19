@@ -72,25 +72,25 @@ export const Header: React.FC<HeaderProps> = ({
           >
             {/* Sacred Temple Emblem */}
             <div className="p-0.5 sm:p-1 rounded-full bg-[#5B101D]/40 border border-[#D4AF37]/40 shrink-0 shadow-md">
-              <TempleEmblem className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 transition-transform duration-300 group-hover:scale-105" />
+              <TempleEmblem className="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 transition-transform duration-300 group-hover:scale-105" />
             </div>
 
             {/* 3-Tier Devasthanam Typographic Lockup */}
             <div className="flex flex-col justify-center min-w-0">
               {/* Line 1: Sri Sridevi Bhudevi Sametha */}
-              <span className="font-poppins text-[#F3CE72] font-semibold text-[8px] sm:text-[10px] md:text-xs lg:text-[13px] tracking-[0.05em] sm:tracking-[0.08em] uppercase leading-tight truncate">
+              <span className="font-poppins text-[#F3CE72] font-semibold text-[11px] sm:text-xs md:text-xs lg:text-[13px] tracking-[0.04em] sm:tracking-[0.08em] uppercase leading-tight truncate">
                 {currentLang === 'te' ? 'శ్రీ శ్రీదేవి భూదేవి సమేత' : 'Sri Sridevi Bhudevi Sametha'}
               </span>
 
               {/* Line 2: Thirumalanadha Swamy (middle - white color) */}
-              <span className="font-poppins font-black text-white text-[11px] sm:text-base md:text-lg lg:text-xl tracking-[0.03em] sm:tracking-[0.05em] uppercase leading-tight my-0.5 drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)] truncate">
+              <span className="font-poppins font-black text-white text-[15px] sm:text-base md:text-lg lg:text-xl tracking-[0.02em] sm:tracking-[0.05em] uppercase leading-tight my-0.5 drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)] truncate">
                 {currentLang === 'te' ? 'తిరుమలనాథ స్వామి' : 'Thirumalanadha Swamy'}
               </span>
 
               {/* Line 3: Devasthanam */}
               <div className="flex items-center gap-1 sm:gap-1.5">
                 <div className="h-[1px] w-2.5 sm:w-5 lg:w-7 bg-gradient-to-r from-transparent via-[#D4AF37] to-[#F3CE72]" />
-                <span className="font-poppins font-bold text-[#F3CE72] text-[7.5px] sm:text-[9px] md:text-[10.5px] tracking-[0.14em] sm:tracking-[0.2em] uppercase whitespace-nowrap">
+                <span className="font-poppins font-bold text-[#F3CE72] text-[11px] sm:text-[11px] md:text-[11.5px] tracking-[0.14em] sm:tracking-[0.2em] uppercase whitespace-nowrap">
                   {currentLang === 'te' ? 'దేవస్థానం' : 'Devasthanam'}
                 </span>
                 <div className="h-[1px] w-2.5 sm:w-5 lg:w-7 bg-gradient-to-l from-transparent via-[#D4AF37] to-[#F3CE72]" />
