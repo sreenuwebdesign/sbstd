@@ -89,30 +89,30 @@ export const Footer: React.FC<FooterProps> = ({
               <Clock className="w-4 h-4 text-[#E5B839]" />
               <span>{currentLang === 'te' ? 'నిత్య సమయ పట్టిక' : 'Daily Pooja Timings'}</span>
             </h4>
-            <ul className="space-y-2 text-[#E8DCC0] text-xs">
+            <ul className="space-y-2 text-white text-xs">
               <li className="flex justify-between border-b border-[#5B101D]/50 pb-1">
-                <span>{currentLang === 'te' ? 'సుప్రభాత సేవ:' : 'Suprabhatam:'}</span>
-                <strong className="text-white">05:30 AM</strong>
+                <span className="text-white/90">{currentLang === 'te' ? 'సుప్రభాత సేవ:' : 'Suprabhatam:'}</span>
+                <strong className="text-white font-semibold">05:30 AM</strong>
               </li>
               <li className="flex justify-between border-b border-[#5B101D]/50 pb-1">
-                <span>{currentLang === 'te' ? 'నిత్య అభిషేకం:' : 'Nitya Abhishekam:'}</span>
-                <strong className="text-white">06:30 AM</strong>
+                <span className="text-white/90">{currentLang === 'te' ? 'నిత్య అభిషేకం:' : 'Nitya Abhishekam:'}</span>
+                <strong className="text-white font-semibold">06:30 AM</strong>
               </li>
               <li className="flex justify-between border-b border-[#5B101D]/50 pb-1">
-                <span>{currentLang === 'te' ? 'సర్వదర్శనం (ఉదయం):' : 'Sarva Darshanam:'}</span>
-                <strong className="text-white">{TEMPLE_INFO.darshanTimings.morning}</strong>
+                <span className="text-white/90">{currentLang === 'te' ? 'సర్వదర్శనం (ఉదయం):' : 'Sarva Darshanam:'}</span>
+                <strong className="text-white font-semibold">{TEMPLE_INFO.darshanTimings.morning}</strong>
               </li>
               <li className="flex justify-between border-b border-[#5B101D]/50 pb-1">
-                <span>{currentLang === 'te' ? 'మధ్యాహ్న నివేదన:' : 'Madhyahna Naivedyam:'}</span>
-                <strong className="text-white">12:30 PM</strong>
+                <span className="text-white/90">{currentLang === 'te' ? 'మధ్యాహ్న నివేదన:' : 'Madhyahna Naivedyam:'}</span>
+                <strong className="text-white font-semibold">12:30 PM</strong>
               </li>
               <li className="flex justify-between border-b border-[#5B101D]/50 pb-1">
-                <span>{currentLang === 'te' ? 'సాయంకాల దర్శనం:' : 'Evening Darshan:'}</span>
-                <strong className="text-white">{TEMPLE_INFO.darshanTimings.evening}</strong>
+                <span className="text-white/90">{currentLang === 'te' ? 'సాయంకాల దర్శనం:' : 'Evening Darshan:'}</span>
+                <strong className="text-white font-semibold">{TEMPLE_INFO.darshanTimings.evening}</strong>
               </li>
               <li className="flex justify-between">
-                <span>{currentLang === 'te' ? 'ఏకాంత సేవ / ద్వారబంధం:' : 'Ekanta Seva / Closing:'}</span>
-                <strong className="text-white">08:45 PM</strong>
+                <span className="text-white/90">{currentLang === 'te' ? 'ఏకాంత సేవ / ద్వారబంధం:' : 'Ekanta Seva / Closing:'}</span>
+                <strong className="text-white font-semibold">08:45 PM</strong>
               </li>
             </ul>
           </div>
