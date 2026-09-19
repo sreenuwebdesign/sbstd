@@ -1,5 +1,5 @@
 import React from 'react';
-import { Clock, ChevronRight, Image as ImageIcon, MapPin, Sparkles } from 'lucide-react';
+import { ChevronRight, Image as ImageIcon } from 'lucide-react';
 import { Language } from '../types';
 import { TEMPLE_INFO } from '../data/templeData';
 import { DiyaIcon, OrnamentalDivider, VaishnavaTirunamam } from './TempleMotifs';
@@ -102,7 +102,7 @@ export const Hero: React.FC<HeroProps> = ({
         </p>
 
         {/* Call-to-Action Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5 mb-6 sm:mb-8">
+        <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5 mb-2 sm:mb-3">
           <button
             id="hero-explore-about-btn"
             onClick={handleAboutAction}
@@ -121,60 +121,6 @@ export const Hero: React.FC<HeroProps> = ({
             <span>{currentLang === 'te' ? 'దివ్య చిత్రమాలిక' : 'Sacred Photo Gallery'}</span>
           </button>
         </div>
-
-        {/* Quick Highlights / Darshan Info Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3.5 max-w-3xl mx-auto">
-          
-          {/* Card 1: Darshan Timings */}
-          <div className="p-3 sm:p-3.5 rounded-xl bg-[#2D060B]/85 backdrop-blur-md border border-[#D4AF37]/30 hover:border-[#F3CE72]/60 text-left shadow-sm transition-all duration-200">
-            <div className="flex items-center gap-1.5 text-[#FFE58F] mb-1">
-              <div className="p-1 rounded bg-[#5B101D]/70 border border-[#D4AF37]/25 text-[#F3CE72]">
-                <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-              </div>
-              <span className="font-serif-temple font-semibold text-xs sm:text-[13px] text-[#F3CE72]">
-                {currentLang === 'te' ? 'దర్శన వేళలు' : 'Daily Darshan'}
-              </span>
-            </div>
-            <p className="text-[11px] sm:text-xs text-[#E0D3BC] leading-snug">
-              {TEMPLE_INFO.darshanTimings.morning} <br />
-              {TEMPLE_INFO.darshanTimings.evening}
-            </p>
-          </div>
-
-          {/* Card 2: Maha Mangala Harathi */}
-          <div className="p-3 sm:p-3.5 rounded-xl bg-[#2D060B]/85 backdrop-blur-md border border-[#D4AF37]/30 hover:border-[#F3CE72]/60 text-left shadow-sm transition-all duration-200">
-            <div className="flex items-center gap-1.5 text-[#FFE58F] mb-1">
-              <div className="p-1 rounded bg-[#5B101D]/70 border border-[#D4AF37]/25 text-[#F3CE72]">
-                <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-              </div>
-              <span className="font-serif-temple font-semibold text-xs sm:text-[13px] text-[#F3CE72]">
-                {currentLang === 'te' ? 'మంగళ హారతి' : 'Mangala Harathi'}
-              </span>
-            </div>
-            <p className="text-[11px] sm:text-xs text-[#E0D3BC] leading-snug">
-              {TEMPLE_INFO.darshanTimings.mahaMangalaHarathi} <br />
-              {currentLang === 'te' ? 'నిత్య సహస్రనామార్చన' : 'Daily Sahasranamarchana'}
-            </p>
-          </div>
-
-          {/* Card 3: Holy Sanctum Location */}
-          <div className="p-3 sm:p-3.5 rounded-xl bg-[#2D060B]/85 backdrop-blur-md border border-[#D4AF37]/30 hover:border-[#F3CE72]/60 text-left shadow-sm transition-all duration-200">
-            <div className="flex items-center gap-1.5 text-[#FFE58F] mb-1">
-              <div className="p-1 rounded bg-[#5B101D]/70 border border-[#D4AF37]/25 text-[#F3CE72]">
-                <MapPin className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-              </div>
-              <span className="font-serif-temple font-semibold text-xs sm:text-[13px] text-[#F3CE72]">
-                {currentLang === 'te' ? 'పుణ్యక్షేత్రం' : 'Sacred Location'}
-              </span>
-            </div>
-            <p className="text-[11px] sm:text-xs text-[#E0D3BC] leading-snug">
-              {currentLang === 'te' ? 'తిరుమలకొండ, అయ్యలూరివారి పల్లె' : 'Thirumalakonda, Ayyalurivari Palle'} <br />
-              {currentLang === 'te' ? 'సి.ఎస్. పురం మండలం, ప్రకాశం జిల్లా - 523112' : 'C. S. Puram Mandal, Prakasam Dt - 523112'}
-            </p>
-          </div>
-
-        </div>
-
       </div>
 
       {/* Bottom Gold Border Accent */}
