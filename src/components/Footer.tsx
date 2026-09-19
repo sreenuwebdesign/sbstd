@@ -57,14 +57,14 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* 4-Column Grid: Quick Links, Timings, Contact, Social / Trust */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 py-12 text-sm">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 py-12 text-xs">
           
           {/* Column 1: Quick Links */}
           <div className="space-y-4">
             <h4 className="font-serif-temple text-sm font-bold text-[#FFE58F] border-b border-[#D4AF37]/30 pb-2">
               {currentLang === 'te' ? 'ముఖ్య లింకులు' : 'Quick Links'}
             </h4>
-            <ul className="space-y-2 text-[#E8DCC0] text-sm">
+            <ul className="space-y-2 text-[#E8DCC0] text-xs">
               {[
                 { id: 'about', labelEn: 'About Temple & History', labelTe: 'ఆలయ విశేషాలు & చరిత్ర' },
                 { id: 'gallery', labelEn: 'Sacred Photo Gallery', labelTe: 'దివ్య చిత్రమాలిక' },
@@ -73,7 +73,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <li key={link.id}>
                   <button
                     onClick={() => onNavigate(link.id)}
-                    className="hover:text-[#FFE58F] transition-colors flex items-center gap-1.5 text-left py-0.5"
+                    className="hover:text-[#FFE58F] transition-colors flex items-center gap-1.5 text-left py-0.5 text-xs"
                   >
                     <ChevronRight className="w-3.5 h-3.5 text-[#D4AF37]" />
                     <span>{currentLang === 'te' ? link.labelTe : link.labelEn}</span>
@@ -89,7 +89,7 @@ export const Footer: React.FC<FooterProps> = ({
               <Clock className="w-4 h-4 text-[#E5B839]" />
               <span>{currentLang === 'te' ? 'నిత్య సమయ పట్టిక' : 'Daily Pooja Timings'}</span>
             </h4>
-            <ul className="space-y-2 text-[#E8DCC0] text-sm">
+            <ul className="space-y-2 text-[#E8DCC0] text-xs">
               <li className="flex justify-between border-b border-[#5B101D]/50 pb-1">
                 <span>{currentLang === 'te' ? 'సుప్రభాత సేవ:' : 'Suprabhatam:'}</span>
                 <strong className="text-white">05:30 AM</strong>
@@ -122,7 +122,7 @@ export const Footer: React.FC<FooterProps> = ({
             <h4 className="font-serif-temple text-sm font-bold text-[#FFE58F] border-b border-[#D4AF37]/30 pb-2">
               {currentLang === 'te' ? 'ఆలయ కార్యాలయం' : 'Devasthanam Office'}
             </h4>
-            <div className="space-y-3 text-[#E8DCC0] text-sm">
+            <div className="space-y-3 text-[#E8DCC0] text-xs">
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-[#D4AF37] shrink-0 mt-0.5" />
                 <span>{currentLang === 'te' ? TEMPLE_INFO.addressTe : TEMPLE_INFO.addressEn}</span>
@@ -135,7 +135,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <Mail className="w-4 h-4 text-[#D4AF37] shrink-0" />
                 <span className="break-all">{TEMPLE_INFO.email}</span>
               </div>
-              <div className="pt-2 text-sm text-[#E5B839]">
+              <div className="pt-2 text-xs text-[#E5B839]">
                 <strong>Trust PAN:</strong> <span className="font-mono">{TEMPLE_INFO.panNumber}</span>
               </div>
             </div>
@@ -146,7 +146,7 @@ export const Footer: React.FC<FooterProps> = ({
             <h4 className="font-serif-temple text-sm font-bold text-[#FFE58F] border-b border-[#D4AF37]/30 pb-2">
               {currentLang === 'te' ? 'భక్త బృందం & సమాచారం' : 'Devotee Connect'}
             </h4>
-            <p className="text-sm text-[#E8DCC0] leading-relaxed">
+            <p className="text-xs text-[#E8DCC0] leading-relaxed">
               {currentLang === 'te'
                 ? 'ఆలయ సమాచారం, నిత్య పూజల విశేషాలు మరియు పండుగల ముహూర్తాల నోటిఫికేషన్లు పొందడానికి వాట్సాప్ గ్రూపులో చేరండి.'
                 : 'Receive daily suprabhatam slokas, sankalpam reminders, and upcoming festival schedules via our official channel.'}
@@ -165,8 +165,8 @@ export const Footer: React.FC<FooterProps> = ({
 
             {/* Trust Statement */}
             <div className="pt-2">
-              <div className="p-3 rounded-xl bg-[#3B090F] border border-[#D4AF37]/30 text-xs sm:text-sm text-[#E8DCC0]">
-                <span className="text-[#FFE58F] font-bold block mb-1 text-sm">
+              <div className="p-3 rounded-xl bg-[#3B090F] border border-[#D4AF37]/30 text-xs text-[#E8DCC0]">
+                <span className="text-[#FFE58F] font-bold block mb-1 text-xs">
                   {currentLang === 'te' ? 'విశ్వసనీయత & పవిత్రత' : 'Divine Trust Statement'}
                 </span>
                 {currentLang === 'te'
