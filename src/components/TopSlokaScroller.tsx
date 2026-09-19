@@ -96,7 +96,7 @@ export const TopSlokaScroller: React.FC<TopSlokaScrollerProps> = ({ currentLang 
   return (
     <div 
       id="top-sloka-scroller"
-      className="relative z-40 border-b border-[#D4AF37]/25 text-[#f3d47a] select-none py-0.5 sm:py-1 overflow-hidden"
+      className="relative z-40 border-b border-[#D4AF37]/25 text-white sm:text-[#f3d47a] select-none py-0.5 sm:py-1 overflow-hidden"
       style={{
         background: 'linear-gradient(135deg, #5b0b17 0%, var(--primary-red) 50%, #5b0b17 100%)',
       }}
@@ -113,7 +113,7 @@ export const TopSlokaScroller: React.FC<TopSlokaScrollerProps> = ({ currentLang 
             className="inline-flex items-center justify-center gap-1.5 animate-sloka-fade transition-all duration-300 max-w-full px-2"
           >
             {renderIcon(activeSloka.iconType)}
-            <p className="font-poppins font-normal lowercase text-[9.5px] xs:text-[10px] sm:text-[11px] text-[#f3d47a] tracking-normal leading-tight truncate sm:whitespace-normal">
+            <p className="font-poppins font-normal lowercase text-[9.5px] xs:text-[10px] sm:text-[11px] text-white sm:text-[#f3d47a] tracking-normal leading-tight truncate sm:whitespace-normal">
               {currentLang === 'te' ? activeSloka.slokaTe : activeSloka.slokaEn}
             </p>
           </div>
