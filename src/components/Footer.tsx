@@ -68,6 +68,7 @@ export const Footer: React.FC<FooterProps> = ({
               {[
                 { id: 'about', labelEn: 'About Temple & History', labelTe: 'ఆలయ విశేషాలు & చరిత్ర' },
                 { id: 'gallery', labelEn: 'Sacred Photo Gallery', labelTe: 'దివ్య చిత్రమాలిక' },
+                { id: 'donation', labelEn: 'Sacred Donations (విరాళం)', labelTe: 'ఆలయ విరాళాలు (విరాళం)' },
                 { id: 'contact', labelEn: 'Timings & Directions', labelTe: 'సమయాలు & మార్గదర్శకత్వం' },
               ].map((link) => (
                 <li key={link.id}>

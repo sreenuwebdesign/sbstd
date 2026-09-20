@@ -1,8 +1,9 @@
-import React, { useRef } from 'react';
-import { X, Printer, Download, CheckCircle, ShieldCheck, Heart, Sparkles } from 'lucide-react';
+import React, { useRef, useState } from 'react';
+import { X, Printer, Download, CheckCircle, ShieldCheck, Heart, Sparkles, Loader2, FileText } from 'lucide-react';
 import { DonationRecord, Language } from '../types';
 import { TEMPLE_INFO } from '../data/templeData';
 import { TempleEmblem, DiyaIcon, LotusIcon } from './TempleMotifs';
+import { downloadReceiptAsPdf } from '../utils/pdfGenerator';
 
 interface ReceiptModalProps {
   receipt: DonationRecord;
@@ -16,50 +17,36 @@ export const ReceiptModal: React.FC<ReceiptModalProps> = ({
   onClose,
 }) => {
   const receiptRef = useRef<HTMLDivElement>(null);
+  const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
+  const [pdfSuccess, setPdfSuccess] = useState(false);
 
-  const handlePrint = () => {
-    window.print();
+  const handleDownloadPdf = async () => {
+    if (isGeneratingPdf) return;
+    setIsGeneratingPdf(true);
+    setPdfSuccess(false);
+
+    try {
+      await downloadReceiptAsPdf(
+        receiptRef.current,
+        receipt,
+        `Donation-Receipt-${receipt.receiptNumber}.pdf`
+      );
+      setPdfSuccess(true);
+      setTimeout(() => setPdfSuccess(false), 4000);
+    } catch (err) {
+      console.error('Error downloading PDF receipt:', err);
+    } finally {
+      setIsGeneratingPdf(false);
+    }
   };
 
-  const handleDownloadText = () => {
-    const textContent = `
-============================================================
-              OFFICIAL DONATION RECEIPT
-              ${TEMPLE_INFO.trustNameEn}
-              ${TEMPLE_INFO.nameEn}
-              Address: ${TEMPLE_INFO.addressEn}
-              Contact: ${TEMPLE_INFO.phone} | ${TEMPLE_INFO.email}
-============================================================
-Receipt Number  : ${receipt.receiptNumber}
-Transaction ID  : ${receipt.transactionId}
-Donation Date   : ${new Date(receipt.createdAt).toLocaleString('en-IN')}
-Status          : ${receipt.status} (Verified)
-
-DONOR DETAILS:
-Name            : ${receipt.donorName}
-Mobile          : ${receipt.mobile}
-Email           : ${receipt.email}
-Address         : ${receipt.address}, ${receipt.city}, ${receipt.state}, ${receipt.country}
-${receipt.panNumber ? `Donor PAN       : ${receipt.panNumber}` : ''}
-
-OFFERING DETAILS:
-Purpose         : ${receipt.purpose}
-Payment Method  : ${receipt.paymentMethod}
-Amount Donated  : INR ₹${receipt.amount.toLocaleString('en-IN')}
-
-============================================================
-* This receipt is generated electronically.
-* Temple Trust PAN: ${TEMPLE_INFO.panNumber}
-* May the divine blessings of ${TEMPLE_INFO.deityNameEn} be with you and your family!
-============================================================
-`;
-    const blob = new Blob([textContent], { type: 'text/plain;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `Donation-Receipt-${receipt.receiptNumber}.txt`;
-    link.click();
-    URL.revokeObjectURL(url);
+  const handlePrint = async () => {
+    // As requested: print receipt should download in PDF format as well as trigger system print
+    handleDownloadPdf();
+    // Allow a slight moment for user to notice PDF before print dialog opens
+    setTimeout(() => {
+      window.print();
+    }, 400);
   };
 
   return (
@@ -77,26 +64,44 @@ Amount Donated  : INR ₹${receipt.amount.toLocaleString('en-IN')}
 
           <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
             <button
+              id="receipt-print-btn"
               onClick={handlePrint}
-              className="px-2.5 sm:px-3 py-1.5 rounded-lg bg-[#5E141F] hover:bg-[#731A28] text-xs font-semibold text-[#FFE58F] border border-[#D4AF37]/40 flex items-center gap-1.5 transition-colors"
-              title="Print Receipt"
+              disabled={isGeneratingPdf}
+              className="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg bg-[#5E141F] hover:bg-[#731A28] disabled:opacity-60 text-xs font-semibold text-[#FFE58F] border border-[#D4AF37]/40 flex items-center gap-1.5 transition-colors cursor-pointer shadow-sm"
+              title={currentLang === 'te' ? 'రసీదు ప్రింట్ & PDF డౌన్‌లోడ్' : 'Print Receipt & Download PDF'}
             >
-              <Printer className="w-4 h-4" />
-              <span className="hidden sm:inline">{currentLang === 'te' ? 'ప్రింట్' : 'Print'}</span>
+              <Printer className="w-4 h-4 text-[#FFE58F]" />
+              <span className="inline">{currentLang === 'te' ? 'ప్రింట్ / PDF' : 'Print / PDF'}</span>
             </button>
 
             <button
-              onClick={handleDownloadText}
-              className="px-2.5 sm:px-3 py-1.5 rounded-lg bg-[#5E141F] hover:bg-[#731A28] text-xs font-semibold text-[#FFE58F] border border-[#D4AF37]/40 flex items-center gap-1.5 transition-colors"
-              title="Download Copy"
+              id="receipt-download-pdf-btn"
+              onClick={handleDownloadPdf}
+              disabled={isGeneratingPdf}
+              className="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg bg-gradient-to-r from-[#D4AF37] to-[#B8860B] hover:from-[#FFE58F] hover:to-[#D4AF37] disabled:opacity-60 text-xs font-bold text-[#3B070E] flex items-center gap-1.5 transition-all cursor-pointer shadow-sm"
+              title={currentLang === 'te' ? 'రసీదు PDF డౌన్‌లోడ్ చేయండి' : 'Download Receipt in PDF Format'}
             >
-              <Download className="w-4 h-4" />
-              <span className="hidden sm:inline">{currentLang === 'te' ? 'డౌన్‌లోడ్' : 'Download'}</span>
+              {isGeneratingPdf ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin text-[#3B070E]" />
+                  <span className="inline">{currentLang === 'te' ? 'డౌన్‌లోడ్ అవుతోంది...' : 'Generating PDF...'}</span>
+                </>
+              ) : pdfSuccess ? (
+                <>
+                  <CheckCircle className="w-4 h-4 text-[#2E7D32]" />
+                  <span className="inline">{currentLang === 'te' ? 'PDF డౌన్‌లోడ్ అయింది!' : 'PDF Downloaded!'}</span>
+                </>
+              ) : (
+                <>
+                  <Download className="w-4 h-4 text-[#3B070E]" />
+                  <span className="inline">{currentLang === 'te' ? 'PDF డౌన్‌లోడ్' : 'Download PDF'}</span>
+                </>
+              )}
             </button>
 
             <button
               onClick={onClose}
-              className="p-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors ml-1"
+              className="p-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors ml-1 cursor-pointer"
               aria-label="Close modal"
             >
               <X className="w-5 h-5" />
@@ -242,16 +247,39 @@ Amount Donated  : INR ₹${receipt.amount.toLocaleString('en-IN')}
         </div>
 
         {/* Footer Actions (hidden when printing) */}
-        <div className="no-print bg-[#FAF6EE] px-6 py-4 border-t border-[#E8DCC0] flex items-center justify-between">
-          <span className="text-xs text-[#5D4037]">
-            {currentLang === 'te' ? 'ఈ రసీదును ప్రింట్ లేదా సేవ్ చేసుకోవచ్చు' : 'Print or save this receipt for your records'}
-          </span>
-          <button
-            onClick={onClose}
-            className="px-6 py-2.5 rounded-xl bg-[#5B101D] hover:bg-[#731A28] text-[#FFE58F] font-bold text-sm shadow transition-colors"
-          >
-            {currentLang === 'te' ? 'పూర్తయింది (సరే)' : 'Done'}
-          </button>
+        <div className="no-print bg-[#FAF6EE] px-4 sm:px-6 py-3.5 sm:py-4 border-t border-[#E8DCC0] flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-[#5D4037]">
+              {currentLang === 'te' ? 'ఈ అధికారిక రసీదు PDF రూపంలో భద్రపరచుకోవచ్చు' : 'Official tax-compliant receipt saved in PDF format'}
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2 sm:gap-3 ml-auto">
+            <button
+              onClick={handleDownloadPdf}
+              disabled={isGeneratingPdf}
+              className="px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#B8860B] hover:from-[#FFE58F] hover:to-[#D4AF37] disabled:opacity-60 text-[#3B070E] font-bold text-xs sm:text-sm shadow flex items-center gap-1.5 transition-all cursor-pointer"
+            >
+              {isGeneratingPdf ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin text-[#3B070E]" />
+                  <span>{currentLang === 'te' ? 'PDF సిద్ధమౌతోంది...' : 'Generating PDF...'}</span>
+                </>
+              ) : (
+                <>
+                  <Download className="w-4 h-4 text-[#3B070E]" />
+                  <span>{currentLang === 'te' ? 'PDF రసీదు డౌన్‌లోడ్' : 'Download PDF Receipt'}</span>
+                </>
+              )}
+            </button>
+
+            <button
+              onClick={onClose}
+              className="px-5 sm:px-6 py-2 sm:py-2.5 rounded-xl bg-[#5B101D] hover:bg-[#731A28] text-[#FFE58F] font-bold text-xs sm:text-sm shadow transition-colors cursor-pointer"
+            >
+              {currentLang === 'te' ? 'పూర్తయింది (సరే)' : 'Done'}
+            </button>
+          </div>
         </div>
 
       </div>

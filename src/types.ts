@@ -93,7 +93,7 @@ export interface DonationRecord {
   panNumber?: string;
   amount: number;
   purpose: DonationPurpose;
-  paymentMethod: 'UPI' | 'Debit Card' | 'Credit Card' | 'Net Banking';
+  paymentMethod: 'UPI' | 'Debit Card' | 'Credit Card' | 'Net Banking' | string;
   transactionId: string;
   status: 'SUCCESS' | 'PENDING' | 'FAILED';
   createdAt: string;

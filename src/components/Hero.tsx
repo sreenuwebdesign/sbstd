@@ -4,6 +4,7 @@ import { Language } from '../types';
 import { TEMPLE_INFO } from '../data/templeData';
 import { DiyaIcon, OrnamentalDivider, VaishnavaTirunamam } from './TempleMotifs';
 import { HangingBell } from './HangingBell';
+import { HeroDeepam } from './HeroDeepam';
 
 interface HeroProps {
   currentLang?: Language;
@@ -62,6 +63,10 @@ export const Hero: React.FC<HeroProps> = ({
       {/* Hanging Sacred Temple Bells on Left and Right (Compact Responsive Sizing) */}
       <HangingBell position="left" currentLang={currentLang} />
       <HangingBell position="right" currentLang={currentLang} />
+
+      {/* Sacred Animated Akhanda Deepams / Diyas at Bottom Left & Right */}
+      <HeroDeepam position="left" currentLang={currentLang} />
+      <HeroDeepam position="right" currentLang={currentLang} />
 
       {/* Main Content Container */}
       <div className="relative z-10 max-w-4xl mx-auto px-3.5 sm:px-6 text-center pt-1 sm:pt-2">

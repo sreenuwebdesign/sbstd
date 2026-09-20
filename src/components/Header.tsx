@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Globe } from 'lucide-react';
+import { Menu, X, HeartHandshake, Home, Landmark, Images, Clock } from 'lucide-react';
 import { Language } from '../types';
 import { TempleEmblem } from './TempleMotifs';
 import { TopSlokaScroller } from './TopSlokaScroller';
@@ -14,28 +14,35 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({
   currentLang = 'en',
   onToggleLang,
+  activeSection,
   onNavigate,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeTab, setActiveTab] = useState('home');
+  const [activeTab, setActiveTab] = useState(activeSection || 'home');
+
+  useEffect(() => {
+    if (activeSection) {
+      setActiveTab(activeSection);
+    }
+  }, [activeSection]);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
-      if (window.scrollY < 300) {
+      if (window.scrollY < 300 && activeSection !== 'donation') {
         setActiveTab('home');
       }
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [activeSection]);
 
   const navItems = [
-    { id: 'home', labelEn: 'Home', labelTe: 'ప్రారంభం', target: 'hero-section' },
-    { id: 'about', labelEn: 'About Temple', labelTe: 'ఆలయ విశేషాలు', target: 'about' },
-    { id: 'gallery', labelEn: 'Gallery', labelTe: 'చిత్రమాలిక', target: 'gallery' },
-    { id: 'contact', labelEn: 'Contact & Timings', labelTe: 'దర్శనం & వివరాలు', target: 'contact' },
+    { id: 'home', labelEn: 'Home', labelTe: 'ప్రారంభం', target: 'hero-section', icon: Home },
+    { id: 'about', labelEn: 'About Temple', labelTe: 'ఆలయ విశేషాలు', target: 'about', icon: Landmark },
+    { id: 'gallery', labelEn: 'Gallery', labelTe: 'చిత్రమాలిక', target: 'gallery', icon: Images },
+    { id: 'contact', labelEn: 'Contact & Timings', labelTe: 'దర్శనం & వివరాలు', target: 'contact', icon: Clock },
   ];
 
   const handleNavClick = (item: typeof navItems[0]) => {
@@ -56,8 +63,8 @@ export const Header: React.FC<HeaderProps> = ({
         background: 'linear-gradient(135deg, #5b0b17 0%, var(--primary-red) 50%, #5b0b17 100%)',
       }}
     >
-      {/* Venkateswara Swamy Sloka Top Scroller (One by One with Swamy Icons) */}
-      <TopSlokaScroller currentLang={currentLang} />
+      {/* Top Header Bar: Left Sloka Slide & Right Language Translator */}
+      <TopSlokaScroller currentLang={currentLang} onToggleLang={onToggleLang} />
 
       <div className="max-w-7xl mx-auto px-2.5 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between min-h-[62px] sm:min-h-[76px] py-1.5 sm:py-2">
@@ -73,28 +80,28 @@ export const Header: React.FC<HeaderProps> = ({
           >
             {/* Sacred Temple Emblem */}
             <div className="p-0.5 sm:p-1 rounded-full bg-[#5B101D]/40 border border-[#D4AF37]/40 shrink-0 shadow-md">
-              <TempleEmblem className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 transition-transform duration-300 group-hover:scale-105" />
+              <TempleEmblem className="w-7 h-7 sm:w-10 sm:h-10 md:w-12 md:h-12 transition-transform duration-300 group-hover:scale-105" />
             </div>
 
             {/* 3-Tier Devasthanam Typographic Lockup */}
             <div className="flex flex-col justify-center min-w-0">
-              {/* Line 1: Sri Sridevi Bhudevi Sametha */}
-              <span className="font-poppins text-[#F3CE72] font-semibold text-[10px] sm:text-[10px] md:text-xs lg:text-[13px] tracking-[0.05em] sm:tracking-[0.08em] uppercase leading-tight truncate">
+              {/* Line 1: Sri Sridevi Bhudevi Sametha (Decreased by 2px on mobile: 8px vs 10px) */}
+              <span className="font-poppins text-[#F3CE72] font-semibold text-[8px] sm:text-[10px] md:text-xs lg:text-[13px] tracking-[0.05em] sm:tracking-[0.08em] uppercase leading-tight truncate">
                 {currentLang === 'te' ? 'శ్రీ శ్రీదేవి భూదేవి సమేత' : 'Sri Sridevi Bhudevi Sametha'}
               </span>
 
-              {/* Line 2: Thirumalanadha Swamy (middle - white color) */}
-              <span className="font-poppins font-black text-white text-[13px] sm:text-base md:text-lg lg:text-xl tracking-[0.03em] sm:tracking-[0.05em] uppercase leading-tight my-0.5 truncate">
+              {/* Line 2: Thirumalanadha Swamy (middle - decreased by 2px on mobile: 11px vs 13px) */}
+              <span className="font-poppins font-black text-white text-[11px] sm:text-base md:text-lg lg:text-xl tracking-[0.03em] sm:tracking-[0.05em] uppercase leading-tight my-0.5 truncate">
                 {currentLang === 'te' ? 'తిరుమలనాథ స్వామి' : 'Thirumalanadha Swamy'}
               </span>
 
-              {/* Line 3: Devasthanam */}
+              {/* Line 3: Devasthanam (Decreased by 2px on mobile: 7.5px vs 9.5px) */}
               <div className="flex items-center gap-1 sm:gap-1.5">
-                <div className="h-[1px] w-2.5 sm:w-5 lg:w-7 bg-gradient-to-r from-transparent via-[#D4AF37] to-[#F3CE72]" />
-                <span className="font-poppins font-bold text-[#F3CE72] text-[9.5px] sm:text-[9.5px] md:text-[10.5px] tracking-[0.14em] sm:tracking-[0.2em] uppercase whitespace-nowrap">
+                <div className="h-[1px] w-2 sm:w-5 lg:w-7 bg-gradient-to-r from-transparent via-[#D4AF37] to-[#F3CE72]" />
+                <span className="font-poppins font-bold text-[#F3CE72] text-[7.5px] sm:text-[9.5px] md:text-[10.5px] tracking-[0.14em] sm:tracking-[0.2em] uppercase whitespace-nowrap">
                   {currentLang === 'te' ? 'దేవస్థానం' : 'Devasthanam'}
                 </span>
-                <div className="h-[1px] w-2.5 sm:w-5 lg:w-7 bg-gradient-to-l from-transparent via-[#D4AF37] to-[#F3CE72]" />
+                <div className="h-[1px] w-2 sm:w-5 lg:w-7 bg-gradient-to-l from-transparent via-[#D4AF37] to-[#F3CE72]" />
               </div>
             </div>
           </button>
@@ -120,21 +127,22 @@ export const Header: React.FC<HeaderProps> = ({
             })}
           </nav>
 
-          {/* Right Action Controls: Language Switcher & Mobile Toggle */}
-          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-            {/* Language Switcher */}
-            {onToggleLang && (
-              <button
-                id="language-switcher-btn"
-                onClick={onToggleLang}
-                className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-1 sm:py-1.5 rounded-lg bg-[#5B101D] hover:bg-[#731A28] border border-[#D4AF37]/50 text-[10.5px] sm:text-xs font-semibold text-[#FFE58F] transition-all shadow-md active:scale-95"
-                aria-label="Toggle Language"
-              >
-                <Globe className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#E5B839] shrink-0" />
-                <span className="hidden sm:inline">{currentLang === 'en' ? 'తెలుగు' : 'English'}</span>
-                <span className="sm:hidden uppercase tracking-wider text-[10px] font-bold">{currentLang === 'en' ? 'తె' : 'EN'}</span>
-              </button>
-            )}
+          {/* Right Action Controls: Donation Button & Mobile Toggle */}
+          <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+            {/* Direct Donation CTA Button - Compact on Mobile */}
+            <button
+              id="header-donate-btn"
+              onClick={() => {
+                setActiveTab('donation');
+                setMobileMenuOpen(false);
+                onNavigate('donation');
+              }}
+              className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-4 py-1 sm:py-2 rounded-md sm:rounded-lg bg-gradient-to-r from-[#D4AF37] via-[#E5B839] to-[#D48806] hover:from-[#FFE29F] hover:to-[#C58000] text-[#360910] text-[10.5px] sm:text-sm font-bold transition-all shadow-md active:scale-95 border border-[#FFF5CC]"
+              aria-label="Make a Sacred Donation"
+            >
+              <HeartHandshake className="w-3 h-3 sm:w-4 sm:h-4 text-[#360910] shrink-0" />
+              <span>{currentLang === 'te' ? 'విరాళం' : 'Donate'}</span>
+            </button>
 
             {/* Mobile/Tablet Menu Toggle Button */}
             <button
@@ -149,7 +157,7 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
       </div>
 
-      {/* Mobile & Tablet Drawer Menu with Smaller Responsive Font Size */}
+      {/* Mobile & Tablet Drawer Menu with Related Icons for Each Item (Mobile Only) */}
       {mobileMenuOpen && (
         <div 
           className="lg:hidden border-t border-[#D4AF37]/30 px-3 py-2.5 space-y-1 shadow-2xl animate-in slide-in-from-top-2 duration-200"
@@ -159,19 +167,29 @@ export const Header: React.FC<HeaderProps> = ({
         >
           {navItems.map((item) => {
             const isActive = activeTab === item.id;
+            const IconComponent = item.icon;
             return (
               <button
                 key={item.id}
                 id={`mobile-nav-${item.id}`}
                 onClick={() => handleNavClick(item)}
-                className={`font-poppins w-full text-left px-3 py-2 rounded-lg text-[11.5px] sm:text-xs font-medium transition-colors flex items-center justify-between ${
+                className={`font-poppins w-full text-left px-3 py-2.5 rounded-lg text-xs sm:text-[13px] font-medium transition-colors flex items-center justify-between group ${
                   isActive
-                    ? 'bg-[#5B101D] text-[#f3d47a] border-l-4 border-[#f3d47a]'
+                    ? 'bg-[#5B101D] text-[#f3d47a] border-l-4 border-[#f3d47a] shadow-inner'
                     : 'text-white hover:bg-[#5B101D]/60 hover:text-[#fff0be]'
                 }`}
               >
-                <span>{currentLang === 'te' ? item.labelTe : item.labelEn}</span>
-                {isActive && <span className="text-[9px] text-[#f3d47a]">●</span>}
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <IconComponent 
+                    className={`w-3.5 h-3.5 shrink-0 transition-colors ${
+                      isActive 
+                        ? 'text-[#f3d47a]' 
+                        : 'text-white group-hover:text-[#fff0be]'
+                    }`} 
+                  />
+                  <span className="truncate">{currentLang === 'te' ? item.labelTe : item.labelEn}</span>
+                </div>
+                {isActive && <span className="text-[10px] text-[#f3d47a] font-bold">●</span>}
               </button>
             );
           })}

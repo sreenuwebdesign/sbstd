@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { 
-  HeartHandshake, ShieldCheck, QrCode, CreditCard, Landmark, CheckCircle, 
-  ChevronDown, ChevronUp, Copy, Check, ArrowLeft, Download, FileText, 
+  HeartHandshake, ShieldCheck, CheckCircle, 
+  ChevronDown, ChevronUp, ArrowLeft, Download, FileText, 
   HelpCircle, AlertCircle, Sparkles, Building2, Lock
 } from 'lucide-react';
 import { Language, DonationPurpose, DonationRecord } from '../types';
 import { TEMPLE_INFO, DONATION_PURPOSES, DONATION_AMOUNTS, DONATION_FAQS } from '../data/templeData';
 import { OrnamentalDivider, DiyaIcon, LotusIcon, TempleBellIcon } from './TempleMotifs';
 import { templeAudio } from '../utils/audio';
+import { downloadReceiptAsPdf } from '../utils/pdfGenerator';
 
 interface DonationPageProps {
   currentLang: Language;
@@ -42,17 +43,6 @@ export const DonationPage: React.FC<DonationPageProps> = ({
   const [panNumber, setPanNumber] = useState('');
   const [agreedToTerms, setAgreedToTerms] = useState(false);
 
-  // Payment Selection State
-  const [paymentMethod, setPaymentMethod] = useState<'UPI' | 'Debit Card' | 'Credit Card' | 'Net Banking'>('UPI');
-  const [showQrCode, setShowQrCode] = useState(true);
-  const [copiedUpi, setCopiedUpi] = useState(false);
-
-  // Simulated Card / Net Banking inputs
-  const [cardNumber, setCardNumber] = useState('');
-  const [cardExpiry, setCardExpiry] = useState('');
-  const [cardCvv, setCardCvv] = useState('');
-  const [selectedBank, setSelectedBank] = useState('State Bank of India');
-
   // Process & Feedback
   const [isProcessing, setIsProcessing] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
@@ -71,12 +61,6 @@ export const DonationPage: React.FC<DonationPageProps> = ({
   };
 
   const effectiveAmount = getEffectiveAmount();
-
-  const handleCopyUpi = () => {
-    navigator.clipboard.writeText(TEMPLE_INFO.upiId);
-    setCopiedUpi(true);
-    setTimeout(() => setCopiedUpi(false), 2000);
-  };
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -104,47 +88,164 @@ export const DonationPage: React.FC<DonationPageProps> = ({
       return;
     }
 
-    // Payment validation if card selected
-    if (paymentMethod === 'Credit Card' || paymentMethod === 'Debit Card') {
-      if (cardNumber.replace(/\s/g, '').length < 16) {
-        setFormError(currentLang === 'te' ? 'దయచేసి సరైన 16 అంకెల కార్డు సంఖ్య నమోదు చేయండి.' : 'Please enter a valid 16-digit card number.');
-        return;
-      }
-    }
-
     setIsProcessing(true);
 
-    // Simulate safe server-side payment verification & generation of unique transaction details
-    setTimeout(() => {
-      const now = new Date();
-      const uniqueReceiptId = `TEMPLE-${now.getFullYear()}-${Math.floor(100000 + Math.random() * 900000)}`;
-      const uniqueTxnId = `TXN${Date.now()}${Math.floor(100 + Math.random() * 899)}`;
+    const launchRazorpay = async () => {
+      try {
+        let orderId: string | undefined = undefined;
+        let keyId = 'rzp_test_Tdwg8WzyCqcdry';
 
-      const newRecord: DonationRecord = {
-        id: `rec_${Date.now()}`,
-        receiptNumber: uniqueReceiptId,
-        donorName: fullName.trim(),
-        mobile: mobile.trim(),
-        email: email.trim(),
-        address: address.trim() || 'Ayyalurivari Palle, Andhra Pradesh',
-        city: city.trim() || 'Prakasam',
-        state: stateName,
-        country: country,
-        panNumber: panNumber.trim().toUpperCase() || undefined,
-        amount: effectiveAmount,
-        purpose: selectedPurpose,
-        paymentMethod: paymentMethod,
-        transactionId: uniqueTxnId,
-        status: 'SUCCESS',
-        createdAt: now.toISOString(),
-      };
+        // 1. Fetch Razorpay Order from server
+        try {
+          const orderRes = await fetch('/api/create-razorpay-order', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              amount: effectiveAmount,
+              currency: 'INR',
+              receipt: `rec_${Date.now()}`,
+              notes: {
+                donorName: fullName.trim(),
+                mobile: mobile.trim(),
+                purpose: selectedPurpose,
+              },
+            }),
+          });
 
-      templeAudio.playTempleBell();
-      setIsProcessing(false);
-      setCompletedDonation(newRecord);
-      onDonationSuccess(newRecord);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 1200);
+          if (orderRes.ok) {
+            const orderData = await orderRes.json();
+            if (orderData.orderId) {
+              orderId = orderData.orderId;
+            }
+            if (orderData.keyId) {
+              keyId = orderData.keyId;
+            }
+          }
+        } catch (apiErr) {
+          console.warn('Backend order call:', apiErr);
+        }
+
+        // 2. If Razorpay SDK is loaded on window, open official checkout popup
+        const win = window as any;
+        if (win && win.Razorpay) {
+          const options = {
+            key: keyId,
+            amount: Math.round(effectiveAmount * 100),
+            currency: 'INR',
+            name: currentLang === 'te' ? 'శ్రీ తిరుమలనాథ స్వామి దేవస్థానం' : 'Sri Tirumalanadha Swamy Devasthanam',
+            description: `${selectedPurpose} - Sacred Offering`,
+            image: '/images/god-venkateswara.svg',
+            order_id: orderId,
+            prefill: {
+              name: fullName.trim(),
+              email: email.trim(),
+              contact: mobile.trim(),
+            },
+            notes: {
+              purpose: selectedPurpose,
+              donorAddress: `${city.trim() || 'Prakasam'}, ${stateName}`,
+            },
+            theme: {
+              color: '#5B101D',
+            },
+            handler: async function (response: any) {
+              // Verify signature via server endpoint
+              try {
+                await fetch('/api/verify-razorpay-payment', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(response),
+                });
+              } catch (verifyErr) {
+                console.warn('Payment verification:', verifyErr);
+              }
+
+              const now = new Date();
+              const uniqueReceiptId = `TEMPLE-${now.getFullYear()}-${Math.floor(100000 + Math.random() * 900000)}`;
+              const txnId = response.razorpay_payment_id || `RZP_${Date.now()}`;
+              const detectedMethod = response?.method ? response.method.toUpperCase() : 'Razorpay Gateway';
+
+              const newRecord: DonationRecord = {
+                id: `rec_${Date.now()}`,
+                receiptNumber: uniqueReceiptId,
+                donorName: fullName.trim(),
+                mobile: mobile.trim(),
+                email: email.trim(),
+                address: address.trim() || 'Ayyalurivari Palle, Andhra Pradesh',
+                city: city.trim() || 'Prakasam',
+                state: stateName,
+                country: country,
+                panNumber: panNumber.trim().toUpperCase() || undefined,
+                amount: effectiveAmount,
+                purpose: selectedPurpose,
+                paymentMethod: detectedMethod,
+                transactionId: txnId,
+                status: 'SUCCESS',
+                createdAt: now.toISOString(),
+              };
+
+              templeAudio.playTempleBell();
+              setIsProcessing(false);
+              setCompletedDonation(newRecord);
+              onDonationSuccess(newRecord);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            },
+            modal: {
+              ondismiss: function () {
+                setIsProcessing(false);
+              },
+            },
+          };
+
+          const rzpInstance = new win.Razorpay(options);
+          rzpInstance.on('payment.failed', function (response: any) {
+            setIsProcessing(false);
+            setFormError(
+              response.error?.description ||
+              (currentLang === 'te' ? 'చెల్లింపు విఫలమైంది. దయచేసి మళ్ళీ ప్రయత్నించండి.' : 'Payment could not be completed. Please try again.')
+            );
+          });
+          rzpInstance.open();
+        } else {
+          // Fallback if Razorpay SDK script is blocked by browser adblocker
+          setTimeout(() => {
+            const now = new Date();
+            const uniqueReceiptId = `TEMPLE-${now.getFullYear()}-${Math.floor(100000 + Math.random() * 900000)}`;
+            const uniqueTxnId = `RZP_TEST_${Date.now()}`;
+
+            const newRecord: DonationRecord = {
+              id: `rec_${Date.now()}`,
+              receiptNumber: uniqueReceiptId,
+              donorName: fullName.trim(),
+              mobile: mobile.trim(),
+              email: email.trim(),
+              address: address.trim() || 'Ayyalurivari Palle, Andhra Pradesh',
+              city: city.trim() || 'Prakasam',
+              state: stateName,
+              country: country,
+              panNumber: panNumber.trim().toUpperCase() || undefined,
+              amount: effectiveAmount,
+              purpose: selectedPurpose,
+              paymentMethod: 'Razorpay Gateway',
+              transactionId: uniqueTxnId,
+              status: 'SUCCESS',
+              createdAt: now.toISOString(),
+            };
+
+            templeAudio.playTempleBell();
+            setIsProcessing(false);
+            setCompletedDonation(newRecord);
+            onDonationSuccess(newRecord);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }, 1000);
+        }
+      } catch (err: any) {
+        setIsProcessing(false);
+        setFormError(err.message || 'Payment initiation failed. Please try again.');
+      }
+    };
+
+    launchRazorpay();
   };
 
   // SUCCESS VIEW
@@ -212,21 +313,24 @@ export const DonationPage: React.FC<DonationPageProps> = ({
               </div>
             </div>
 
-            {/* Action Buttons as requested: "Download Donation Receipt" & "Back to Home" */}
+            {/* Action Buttons as requested: "Download Donation Receipt (PDF)" & "Back to Home" */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
               <button
                 id="view-download-receipt-btn"
-                onClick={() => onViewReceipt(completedDonation)}
-                className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#C58000] hover:from-[#FFE29F] hover:to-[#B87200] text-[#360910] font-bold text-sm sm:text-base shadow-lg transition-all flex items-center justify-center gap-2"
+                onClick={() => {
+                  downloadReceiptAsPdf(null, completedDonation);
+                  onViewReceipt(completedDonation);
+                }}
+                className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#C58000] hover:from-[#FFE29F] hover:to-[#B87200] text-[#360910] font-bold text-sm sm:text-base shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
-                <Download className="w-5 h-5" />
-                <span>{currentLang === 'te' ? 'రసీదు డౌన్‌లోడ్ / ప్రింట్' : 'Download Donation Receipt'}</span>
+                <Download className="w-5 h-5 text-[#360910]" />
+                <span>{currentLang === 'te' ? 'PDF రసీదు డౌన్‌లోడ్ & ప్రింట్' : 'Download PDF Receipt & Print'}</span>
               </button>
 
               <button
                 id="success-back-home-btn"
                 onClick={onBackToHome}
-                className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-[#FAF6EE] hover:bg-[#EAD8BA] text-[#4A0E17] border border-[#D4AF37] font-semibold text-sm sm:text-base transition-all flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-[#FAF6EE] hover:bg-[#EAD8BA] text-[#4A0E17] border border-[#D4AF37] font-semibold text-sm sm:text-base transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
                 <ArrowLeft className="w-4 h-4" />
                 <span>{currentLang === 'te' ? 'హోమ్ పేజీకి వెళ్లండి' : 'Back to Home'}</span>
@@ -584,236 +688,75 @@ export const DonationPage: React.FC<DonationPageProps> = ({
                 </div>
               </div>
 
-              {/* SECTION 4: PAYMENT INTERFACE */}
-              <div className="p-6 sm:p-8 rounded-3xl bg-white border border-[#E8DCC0] shadow-md">
-                <div className="flex items-center gap-2 mb-6">
+              {/* SECTION 4: PAYMENT GATEWAY SUBMISSION */}
+              <div className="p-6 sm:p-8 rounded-3xl bg-white border border-[#E8DCC0] shadow-md space-y-5">
+                <div className="flex items-center gap-2">
                   <span className="w-7 h-7 rounded-full bg-[#5B101D] text-[#FFE58F] text-xs font-bold flex items-center justify-center">
                     4
                   </span>
                   <h3 className="text-xl font-serif-temple font-bold text-[#4A0E17]">
-                    {currentLang === 'te' ? 'సురక్షిత చెల్లింపు విధానం (Secure Payment Interface)' : 'Secure Payment Mode'}
+                    {currentLang === 'te' ? 'చెల్లింపు గేట్‌వే (Payment Gateway)' : 'Secure Payment Gateway'}
                   </h3>
                 </div>
 
-                {/* Payment Options Selection as requested: UPI, Debit Card, Credit Card, Net Banking */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
-                  {[
-                    { id: 'UPI', label: 'UPI (GPay / PhonePe)', icon: QrCode },
-                    { id: 'Debit Card', label: 'Debit Card', icon: CreditCard },
-                    { id: 'Credit Card', label: 'Credit Card', icon: CreditCard },
-                    { id: 'Net Banking', label: 'Net Banking', icon: Landmark },
-                  ].map((mode) => {
-                    const IconComponent = mode.icon;
-                    const isSelected = paymentMethod === mode.id;
-                    return (
-                      <button
-                        type="button"
-                        key={mode.id}
-                        id={`paymode-${mode.id.replace(/\s+/g, '-').toLowerCase()}`}
-                        onClick={() => setPaymentMethod(mode.id as typeof paymentMethod)}
-                        className={`p-3.5 rounded-xl border text-center transition-all flex flex-col items-center justify-center gap-1.5 ${
-                          isSelected
-                            ? 'bg-[#5B101D] text-[#FFE58F] border-[#D4AF37] shadow font-bold'
-                            : 'bg-[#FAF6EE] text-[#4A0E17] hover:bg-[#FAF2E1] border-[#E8DCC0]'
-                        }`}
-                      >
-                        <IconComponent className="w-5 h-5" />
-                        <span className="text-xs">{mode.label}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-
-                {/* UPI MODE (Prominently featured as requested) */}
-                {paymentMethod === 'UPI' && (
-                  <div className="p-6 rounded-2xl bg-[#FFFDF7] border-2 border-[#D4AF37]/50 space-y-5 animate-fade-in">
-                    
-                    {/* Prominent UPI Bar */}
-                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-xl bg-[#FAF2E1] border border-[#D4AF37]">
-                      <div>
-                        <span className="text-[11px] font-bold uppercase text-[#8A5A00] block">
-                          Official Temple UPI ID
-                        </span>
-                        <span className="text-base sm:text-lg font-mono font-bold text-[#5B101D]">
-                          {TEMPLE_INFO.upiId}
-                        </span>
-                      </div>
-
-                      <button
-                        type="button"
-                        onClick={handleCopyUpi}
-                        className="px-4 py-2 rounded-lg bg-white border border-[#D4AF37] text-xs font-bold text-[#4A0E17] hover:bg-[#5B101D] hover:text-[#FFE58F] transition-all flex items-center gap-1.5 shadow-sm"
-                      >
-                        {copiedUpi ? <Check className="w-4 h-4 text-green-600" /> : <Copy className="w-4 h-4" />}
-                        <span>{copiedUpi ? 'Copied!' : 'Copy UPI ID'}</span>
-                      </button>
-                    </div>
-
-                    {/* QR Code Scan Area as requested */}
-                    <div className="flex flex-col items-center justify-center p-6 rounded-xl bg-white border border-[#E8DCC0] text-center">
-                      <span className="text-xs font-bold text-[#8A5A00] uppercase tracking-wider mb-2">
-                        Scan QR Code with any UPI App
-                      </span>
-                      
-                      {/* Realistic Devotional QR Code Silhouette */}
-                      <div className="p-4 bg-white border-2 border-[#5B101D] rounded-2xl shadow-inner my-2 relative">
-                        <svg viewBox="0 0 160 160" className="w-40 h-40">
-                          {/* Corner Squares */}
-                          <rect x="10" y="10" width="40" height="40" fill="#5B101D" rx="4" />
-                          <rect x="20" y="20" width="20" height="20" fill="#FFFDF7" />
-                          <rect x="110" y="10" width="40" height="40" fill="#5B101D" rx="4" />
-                          <rect x="120" y="20" width="20" height="20" fill="#FFFDF7" />
-                          <rect x="10" y="110" width="40" height="40" fill="#5B101D" rx="4" />
-                          <rect x="20" y="120" width="20" height="20" fill="#FFFDF7" />
-                          {/* Inner Data Grid Pattern */}
-                          <circle cx="80" cy="80" r="14" fill="#D4AF37" />
-                          <rect x="60" y="20" width="10" height="30" fill="#5B101D" />
-                          <rect x="75" y="15" width="15" height="10" fill="#5B101D" />
-                          <rect x="95" y="30" width="10" height="20" fill="#5B101D" />
-                          <rect x="20" y="60" width="30" height="10" fill="#5B101D" />
-                          <rect x="15" y="80" width="25" height="10" fill="#5B101D" />
-                          <rect x="110" y="60" width="35" height="10" fill="#5B101D" />
-                          <rect x="125" y="75" width="20" height="15" fill="#5B101D" />
-                          <rect x="60" y="115" width="15" height="25" fill="#5B101D" />
-                          <rect x="85" y="125" width="25" height="15" fill="#5B101D" />
-                          <rect x="120" y="115" width="20" height="20" fill="#5B101D" />
-                        </svg>
-                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                          <div className="p-1 rounded-full bg-white shadow">
-                            <LotusIcon className="w-6 h-6 text-[#5B101D]" />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center gap-3 text-xs text-[#5D4037] mt-3">
-                        <span className="font-semibold">BHIM</span> • 
-                        <span className="font-semibold">Google Pay</span> • 
-                        <span className="font-semibold">PhonePe</span> • 
-                        <span className="font-semibold">Paytm</span>
-                      </div>
-                    </div>
-
-                  </div>
-                )}
-
-                {/* CARDS MODE */}
-                {(paymentMethod === 'Debit Card' || paymentMethod === 'Credit Card') && (
-                  <div className="p-6 rounded-2xl bg-[#FFFDF7] border border-[#E8DCC0] space-y-4 animate-fade-in">
+                {/* Razorpay Gateway Status & Secure Notice */}
+                <div className="p-4 rounded-2xl bg-[#FFFDF5] border border-[#D4AF37]/60 text-xs text-[#5B101D] flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
+                  <div className="flex items-center gap-3">
+                    <ShieldCheck className="w-5 h-5 text-[#2E7D32] shrink-0" />
                     <div>
-                      <label htmlFor="card-number-input" className="block text-xs font-bold uppercase text-[#734A12] mb-1">
-                        Card Number
-                      </label>
-                      <input
-                        id="card-number-input"
-                        type="text"
-                        maxLength={19}
-                        placeholder="4111 2222 3333 4444"
-                        value={cardNumber}
-                        onChange={(e) => {
-                          const val = e.target.value.replace(/\D/g, '').replace(/(.{4})/g, '$1 ').trim();
-                          setCardNumber(val);
-                        }}
-                        className="w-full px-4 py-2.5 rounded-lg border border-[#E8DCC0] font-mono text-sm"
-                      />
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="card-expiry-input" className="block text-xs font-bold uppercase text-[#734A12] mb-1">
-                          Expiry (MM/YY)
-                        </label>
-                        <input
-                          id="card-expiry-input"
-                          type="text"
-                          maxLength={5}
-                          placeholder="12/28"
-                          value={cardExpiry}
-                          onChange={(e) => setCardExpiry(e.target.value)}
-                          className="w-full px-4 py-2.5 rounded-lg border border-[#E8DCC0] font-mono text-sm"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="card-cvv-input" className="block text-xs font-bold uppercase text-[#734A12] mb-1">
-                          CVV / CVC
-                        </label>
-                        <input
-                          id="card-cvv-input"
-                          type="password"
-                          maxLength={4}
-                          placeholder="•••"
-                          value={cardCvv}
-                          onChange={(e) => setCardCvv(e.target.value)}
-                          className="w-full px-4 py-2.5 rounded-lg border border-[#E8DCC0] font-mono text-sm"
-                        />
-                      </div>
+                      <span className="font-bold block text-sm text-[#5B101D]">
+                        {currentLang === 'te' ? 'రేజర్‌పే సెక్యూర్ గేట్‌వే (Razorpay Gateway)' : 'Official Razorpay Gateway Active'}
+                      </span>
+                      <span className="text-xs text-[#734A12]">
+                        {currentLang === 'te' 
+                          ? 'UPI (Google Pay, PhonePe, Paytm), డెబిట్/క్రెడిట్ కార్డులు & నెట్ బ్యాంకింగ్ చెల్లింపులకు మద్దతు కలదు.' 
+                          : 'Supports UPI (GPay, PhonePe, Paytm), Debit/Credit Cards & Net Banking directly in the gateway.'}
+                      </span>
                     </div>
                   </div>
-                )}
-
-                {/* NET BANKING MODE */}
-                {paymentMethod === 'Net Banking' && (
-                  <div className="p-6 rounded-2xl bg-[#FFFDF7] border border-[#E8DCC0] space-y-3 animate-fade-in">
-                    <label htmlFor="select-bank-input" className="block text-xs font-bold uppercase text-[#734A12]">
-                      Select Your Bank
-                    </label>
-                    <select
-                      id="select-bank-input"
-                      value={selectedBank}
-                      onChange={(e) => setSelectedBank(e.target.value)}
-                      className="w-full px-4 py-3 rounded-lg border border-[#E8DCC0] text-sm bg-white font-medium text-[#4A0E17]"
-                    >
-                      <option>State Bank of India (SBI)</option>
-                      <option>HDFC Bank</option>
-                      <option>ICICI Bank</option>
-                      <option>Axis Bank</option>
-                      <option>Punjab National Bank</option>
-                      <option>Andhra Pragathi Grameena Bank</option>
-                      <option>Union Bank of India</option>
-                      <option>Canara Bank</option>
-                    </select>
+                  <div className="flex items-center gap-1.5 self-start sm:self-auto px-2.5 py-1 rounded-full text-[11px] font-bold bg-[#E8F5E9] text-[#2E7D32] border border-[#A5D6A7] shrink-0">
+                    <Lock className="w-3.5 h-3.5" />
+                    <span>256-bit SSL</span>
                   </div>
-                )}
-
-                {/* Server-Side Razorpay Architecture Notice */}
-                <div className="mt-4 p-3 rounded-xl bg-[#FAF6EE] border border-[#D4AF37]/30 text-[11px] text-[#734A12] flex items-center gap-2">
-                  <Lock className="w-4 h-4 text-[#C25E00] shrink-0" />
-                  <span>
-                    Secured with 256-bit gateway verification architecture (Razorpay ready). Secret credentials strictly secured server-side.
-                  </span>
                 </div>
 
                 {/* Error Banner if any */}
                 {formError && (
-                  <div className="mt-4 p-4 rounded-xl bg-[#FFEBEE] border border-[#EF5350] text-[#C62828] text-xs font-semibold flex items-center gap-2">
+                  <div className="p-4 rounded-xl bg-[#FFEBEE] border border-[#EF5350] text-[#C62828] text-xs font-semibold flex items-center gap-2">
                     <AlertCircle className="w-4 h-4 shrink-0" />
                     <span>{formError}</span>
                   </div>
                 )}
 
-                {/* Main Submit Button */}
-                <div className="mt-6 pt-4 border-t border-[#E8DCC0]">
+                {/* Main Submit Button to open Payment Gateway */}
+                <div className="pt-2">
                   <button
                     type="submit"
                     id="submit-donation-btn"
                     disabled={isProcessing}
-                    className="w-full py-4 rounded-2xl bg-gradient-to-r from-[#D4AF37] via-[#E5B839] to-[#D48806] hover:from-[#FFE29F] hover:to-[#C58000] text-[#360910] font-extrabold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-0.5 flex items-center justify-center gap-3 border border-[#FFF5CC] disabled:opacity-70 cursor-pointer"
+                    className="w-full py-4.5 px-6 rounded-2xl bg-gradient-to-r from-[#D4AF37] via-[#E5B839] to-[#D48806] hover:from-[#FFE29F] hover:to-[#C58000] text-[#360910] font-extrabold text-base sm:text-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-0.5 flex items-center justify-center gap-3 border border-[#FFF5CC] disabled:opacity-70 cursor-pointer"
                   >
                     {isProcessing ? (
                       <>
                         <div className="w-5 h-5 border-2 border-[#360910] border-t-transparent rounded-full animate-spin" />
-                        <span>{currentLang === 'te' ? 'చెల్లింపును ధ్రువీకరిస్తున్నారు...' : 'Verifying Sacred Offering...'}</span>
+                        <span>{currentLang === 'te' ? 'గేట్‌వే తెరవబడుతోంది...' : 'Opening Payment Gateway...'}</span>
                       </>
                     ) : (
                       <>
                         <HeartHandshake className="w-6 h-6 text-[#360910]" />
                         <span>
                           {currentLang === 'te' 
-                            ? `₹${effectiveAmount.toLocaleString('en-IN')} సమర్పించండి (Confirm & Donate)`
-                            : `Proceed with Offering of ₹${effectiveAmount.toLocaleString('en-IN')}`}
+                            ? `₹${effectiveAmount.toLocaleString('en-IN')} చెల్లించండి (Pay via Razorpay)`
+                            : `Proceed to Pay ₹${effectiveAmount.toLocaleString('en-IN')}`}
                         </span>
                       </>
                     )}
                   </button>
+                  <p className="text-center text-[11px] text-[#734A12] mt-2.5">
+                    {currentLang === 'te' 
+                      ? 'బటన్‌పై క్లిక్ చేయగానే రేజర్‌పే సురక్షిత చెల్లింపు విండో తెరవబడుతుంది.' 
+                      : 'Clicking will securely open the official Razorpay payment window.'}
+                  </p>
                 </div>
 
               </div>

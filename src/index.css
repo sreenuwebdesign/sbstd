@@ -110,6 +110,38 @@
   animation: bellSway 3s ease-in-out infinite;
 }
 
+/* Sacred temple bell smooth and slow devotional sway */
+@keyframes devotionalBellSway {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(4.5deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-4.5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-bell-devotional {
+  transform-origin: top center;
+  animation: devotionalBellSway 5.6s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  will-change: transform;
+}
+
+.animate-bell-devotional-offset {
+  transform-origin: top center;
+  animation: devotionalBellSway 5.6s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  animation-delay: -2.8s;
+  will-change: transform;
+}
+
 @keyframes bellRingSwing {
   0% { transform: rotate(0deg); }
   15% { transform: rotate(20deg); }
@@ -140,6 +172,97 @@
 
 .animate-sloka-fade {
   animation: slokaFade 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Sacred Temple Diya & Deepam Flame Animations */
+@keyframes flameFlicker {
+  0%, 100% {
+    transform: scale(1) skewX(0deg) translateY(0);
+    filter: drop-shadow(0 0 10px rgba(255, 170, 0, 0.9));
+  }
+  20% {
+    transform: scale(1.05, 0.95) skewX(-1.8deg) translateY(-1px);
+    filter: drop-shadow(0 0 14px rgba(255, 140, 0, 1));
+  }
+  40% {
+    transform: scale(0.96, 1.06) skewX(2.2deg) translateY(-2px);
+    filter: drop-shadow(0 0 9px rgba(255, 195, 20, 0.88));
+  }
+  60% {
+    transform: scale(1.03, 0.97) skewX(-1.2deg) translateY(-1px);
+    filter: drop-shadow(0 0 16px rgba(255, 150, 0, 0.95));
+  }
+  80% {
+    transform: scale(0.97, 1.03) skewX(1.4deg) translateY(0);
+    filter: drop-shadow(0 0 12px rgba(255, 180, 0, 0.9));
+  }
+}
+
+@keyframes flameCorePulse {
+  0%, 100% {
+    opacity: 0.92;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08) translateY(-0.5px);
+  }
+}
+
+@keyframes diyaAuraPulse {
+  0%, 100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.18);
+  }
+}
+
+@keyframes diyaSparkleFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.6);
+  }
+  40% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.6;
+    transform: translateY(-24px) translateX(3px) scale(1.1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-38px) translateX(-4px) scale(0.5);
+  }
+}
+
+.animate-diya-flame {
+  transform-origin: 50% 90%;
+  animation: flameFlicker 1.8s ease-in-out infinite alternate;
+}
+
+.animate-diya-flame-alt {
+  transform-origin: 50% 90%;
+  animation: flameFlicker 2.1s ease-in-out 0.35s infinite alternate;
+}
+
+.animate-flame-core {
+  transform-origin: 50% 90%;
+  animation: flameCorePulse 1.2s ease-in-out infinite alternate;
+}
+
+.animate-diya-aura {
+  animation: diyaAuraPulse 2.5s ease-in-out infinite;
+}
+
+.animate-diya-sparkle-1 {
+  animation: diyaSparkleFloat 3.2s ease-out infinite;
+}
+
+.animate-diya-sparkle-2 {
+  animation: diyaSparkleFloat 3.8s ease-out 1.5s infinite;
 }
 
 /* Print Receipt Styles */
