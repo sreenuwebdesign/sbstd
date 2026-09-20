@@ -121,7 +121,7 @@ export const TopSlokaScroller: React.FC<TopSlokaScrollerProps> = ({
             className="inline-flex items-center gap-1.5 sm:gap-2 animate-sloka-fade transition-all duration-300 min-w-0"
           >
             {renderIcon(activeSloka.iconType)}
-            <p className="font-poppins font-normal lowercase text-[10px] sm:text-[11.5px] md:text-xs text-[#f3d47a] tracking-normal leading-tight truncate">
+            <p className="font-poppins font-normal lowercase text-[9.5px] sm:text-[11.5px] md:text-xs text-white sm:text-[#f3d47a] tracking-normal leading-tight truncate">
               {currentLang === 'te' ? activeSloka.slokaTe : activeSloka.slokaEn}
             </p>
           </div>
@@ -134,11 +134,11 @@ export const TopSlokaScroller: React.FC<TopSlokaScrollerProps> = ({
               id="top-language-switcher-btn"
               type="button"
               onClick={onToggleLang}
-              className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-md bg-[#6A1220] hover:bg-[#831828] border border-[#D4AF37]/50 text-[10px] sm:text-[11px] font-medium text-[#FFE58F] hover:text-white transition-all shadow-xs active:scale-95 cursor-pointer focus:outline-none focus:ring-1 focus:ring-[#FFE58F]/50"
+              className="flex items-center gap-1 sm:gap-1.5 px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded sm:rounded-md bg-[#6A1220] hover:bg-[#831828] border border-[#D4AF37]/50 text-[9px] sm:text-[11px] font-medium text-white sm:text-[#FFE58F] hover:text-white transition-all shadow-xs active:scale-95 cursor-pointer focus:outline-none focus:ring-1 focus:ring-[#FFE58F]/50"
               aria-label={currentLang === 'en' ? 'Switch to Telugu language' : 'Switch to English language'}
               title={currentLang === 'en' ? 'తెలుగులోకి మార్చండి' : 'Switch to English'}
             >
-              <Globe className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#F3CE72] shrink-0" />
+              <Globe className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 text-white sm:text-[#F3CE72] shrink-0" />
               <span className="font-poppins tracking-wide">
                 {currentLang === 'en' ? 'తెలుగు' : 'English'}
               </span>
